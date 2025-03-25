@@ -1,0 +1,36 @@
+/******************* USP BAR ******************************/
+.usp_bar {
+    background-color: var(--secondary);
+    height: 50px;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.fade {
+    position: absolute;
+    opacity: 0;
+    animation: fadeAnimation 5s ease-in-out infinite;
+}
+
+@keyframes fadeAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

@@ -2,6 +2,9 @@
 
 import { Link } from "react-router-dom";
 
+// Import header css
+import styles from "./Header.module.css";
+
 
 import logo from '../assets/provaLogo.png'
 
@@ -12,19 +15,14 @@ export default function Header() {
         // Header section
         <header>
 
-            {/* USP bar section */}
-            <div className="usp_bar">
 
-                <p>Consegna gratuita per ordini superiori a 99€</p>
-
-            </div>
 
             {/* Big header container */}
-            <div className="header_container">
+            <div className={styles.header_container}>
 
                 {/* Logo container */}
 
-                <div className="logo_container">
+                <div className={styles.logo_container}>
 
                     <Link to='/'>
                         <img src={logo} alt="logo" />
@@ -33,7 +31,7 @@ export default function Header() {
 
                 {/* Page link container */}
 
-                <div className="page_link_container">
+                <div className={styles.page_link_container}>
                     <Link to='/'>
                         <p> HOME PAGE</p>
                     </Link>
@@ -44,7 +42,7 @@ export default function Header() {
 
                 {/* Nav container */}
 
-                <div className="nav_container">
+                <div className={styles.nav_container}>
                     <i class="fa-solid fa-bag-shopping"></i>
                     <i class="fa-solid fa-bars"></i>
                 </div>
