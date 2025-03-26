@@ -42,7 +42,7 @@
     font-weight: 50;
     background-color: var(--primary);
     /* Uses global CSS variable for primary color */
-    height: 100px;
+    height: 175px;
     display: flex;
     justify-content: center;
 
@@ -155,4 +155,5 @@
     object-fit: cover;
     /* o cover */
     object-position: center;
+
 }

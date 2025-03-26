@@ -27,8 +27,8 @@ export default function HomePage() {
 
     // Retrieving specific wines by their IDs (7, 9, and 25)
     const redWine = getWineById(7);
-    const whiteWine = getWineById(9);
-    const roseWine = getWineById(25);
+    const whiteWine = getWineById(21);
+    const roseWine = getWineById(35);
 
     // Wait until the wines data is fully loaded; otherwise, display a loading message
     if (!redWine || !whiteWine || !roseWine) {
@@ -97,7 +97,7 @@ export default function HomePage() {
 
             </div>
 
-            <div className={styles.green_image_container}>
+            <div className={styles.green_image_container} >
                 <img src={greenImage} alt="vigneto" />
             </div>
 
