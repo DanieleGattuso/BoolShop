@@ -43,8 +43,8 @@ export default function Header() {
                 {/* Nav container */}
 
                 <div className={styles.nav_container}>
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <i class="fa-solid fa-bars"></i>
+                    <i className="fa-solid fa-bag-shopping"></i>
+                    <i className="fa-solid fa-bars"></i>
                 </div>
 
 

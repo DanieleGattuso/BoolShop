@@ -1,17 +1,24 @@
-/************ HERO SECTION VIDEO RULES *******/
+/* ======== HERO SECTION VIDEO RULES ======== */
+
+/* Main video container, covers the entire viewport height partially (82vh) */
 .homepage_video {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 82vh;
+    /* 82% of the viewport height */
     overflow: hidden;
+
 }
 
+/* Styling rules for the video inside homepage_video */
 .homepage_video video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Ensures the video covers entire container without distortion */
 }
 
+/* Overlay content positioned absolutely over the video */
 .overlay_content {
     position: absolute;
     top: 0;
@@ -23,4 +30,94 @@
     align-items: center;
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black overlay */
+}
+
+
+/* ======== BEST SELLER WINE SECTION ======== */
+
+/* Title container for Best Seller wines */
+.best_seller_title {
+    font-size: 28px;
+    font-weight: 50;
+    background-color: var(--primary);
+    /* Uses global CSS variable for primary color */
+    height: 100px;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+/* Container holding the best wines, displayed as a flexible layout */
+.best_seller_container {
+
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+}
+
+/* Container for the red wine */
+.best_red_wine_container {
+    background-color: var(--third);
+    /* Uses global CSS variable for third color */
+    width: calc(100vw / 3);
+    /* 1/3 of viewport width */
+    height: 100%;
+
+    display: flex;
+}
+
+/* Container for the white wine */
+.best_white_wine_container {
+    background-color: var(--fourth);
+    /* Uses global CSS variable for fourth color */
+    width: calc(100vw / 3);
+    /* 1/3 of viewport width */
+    height: 100%;
+
+    display: flex;
+}
+
+/* Container for the rosé wine */
+.best_rose_wine_container {
+    background-color: var(--fifth);
+    /* Uses global CSS variable for fifth color */
+    width: calc(100vw / 3);
+    /* 1/3 of viewport width */
+    height: 100%;
+
+    display: flex;
+}
+
+
+.wine_image_container {
+
+    /* height: 100%; */
+    width: 30%;
+
+}
+
+.wine_image_container img {
+
+    width: 60%;
+    height: 100%;
+    padding: 20px;
+    margin-left: 20px;
+
+}
+
+.wine_container_traits {
+
+    width: 70%;
+
+}
+
+.wine_container_traits p {
+
+    font-size: 30px;
+    color: white;
 }
