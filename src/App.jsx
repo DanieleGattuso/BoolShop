@@ -12,6 +12,7 @@ import HomePage from "./pages/HomePage"
 
 // Import wine page
 import Winespage from "./pages/WinePage"
+import CheckoutPage from "./pages/CheckOutPage"
 
 
 
@@ -28,6 +29,11 @@ export default function App() {
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/winespage" element={<Winespage />} />
+
+            {/* provvisoria */}
+            <Route path="/checkoutpage" element={<CheckoutPage />} />
+
+
 
 
 
