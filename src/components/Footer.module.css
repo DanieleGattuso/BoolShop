@@ -6,24 +6,119 @@ footer {
 
 .footer_container {
 
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     width: 100%;
-    height: 700px;
+    /* height: 500px; */
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+
 }
 
 .footer_nav_bars_container {
 
-    background-color: blue;
+
     width: 70%;
     height: 100%;
     display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .footer_nav_bars {
 
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     width: calc(100vw / 3);
+    display: flex;
+    justify-content: center;
+
+}
+
+.footer_nav_bars li {
+
+    margin-bottom: 30px;
+    list-style-type: none;
+    font-size: 20px;
+}
+
+.social_container {
+
+    /* background-color: aqua; */
+    width: 70%;
+    height: 150px;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.social_container ul {
+
+    display: flex;
+    list-style-type: none;
+    font-size: 40px;
+    gap: 60px;
+}
+
+
+
+
+.policy_container {
+
+    width: 70%;
+    height: 100px;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.euBanner {
+
+
+    font-size: 14px;
+    color: #2c2c4a;
+}
+
+.euFlag {
+    height: 20px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.europe_container {
+    display: flex;
+    width: 40%;
+    /* background-color: aqua; */
+}
+
+.policy_nav_bar_container {
+
+    width: 60%;
+
+}
+
+.policy_nav_bar_container ul {
+
+    display: flex;
+    justify-content: end;
+    list-style-type: none;
+
+    gap: 20px;
+}
+
+.copyright_container {
+
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: grey;
 }

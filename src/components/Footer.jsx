@@ -1,27 +1,77 @@
 
 import styles from "./Footer.module.css";
+import europe from "../assets/european-union.png"
 
 export default function Footer() {
 
     return (
 
         <footer>
+            <div className={styles.wave_divider}>
+
+            </div>
+
+
             <div className={styles.footer_container}>
+
+
                 <div className={styles.footer_nav_bars_container}>
 
                     <div className={styles.footer_nav_bars}>
                         <ul>
-                            <li></li>
+                            <li>CHI SIAMO</li>
+                            <li>COMUNITA'</li>
+                            <li>TERRITORIO</li>
                         </ul>
                     </div>
 
                     <div className={styles.footer_nav_bars}>
-                        aaaaa
+                        <ul>
+                            <li>I NOSTRI VINI</li>
+                            <li>A TAVOLA</li>
+                            <li>SOSTENIBILITA'</li>
+                        </ul>
                     </div>
 
                     <div className={styles.footer_nav_bars}>
-                        aaaaa
+                        <ul>
+                            <li>CONTATTI</li>
+                            <li>SHOP</li>
+                            <li>CANTINA BOOLWINE</li>
+                        </ul>
                     </div>
+                </div>
+
+                <div className={styles.social_container}>
+
+                    <ul>
+                        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li><a href="#"></a><i class="fa-brands fa-instagram"></i></li>
+                        <li><a href="#"></a><i class="fa-brands fa-youtube"></i></li>
+                    </ul>
+
+                </div>
+
+                <div className={styles.policy_container}>
+
+                    <div className={styles.europe_container}>
+                        <img src={europe} alt="EU Flag" className={styles.euFlag} />
+                        <p>CAMPAIGN FINANCED ACCORDING TO EU REG. NO. 1308/2013</p>
+                    </div>
+
+                    <div className={styles.policy_nav_bar_container}>
+
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#"></a>Cookie Policy</li>
+                            <li><a href="#"></a>Crediti</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div className={styles.copyright_container}>
+                    <p>Copyright © 2025 CANTINE BOOLEANE S.C.A - STRADA STATALE 115, 92013 MENFI (AG) - P.IVA 00071330849</p>
                 </div>
             </div>
 
