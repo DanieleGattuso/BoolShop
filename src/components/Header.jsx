@@ -36,7 +36,9 @@ export default function Header() {
                         <p> HOME PAGE</p>
                     </Link>
 
-                    <p> I NOSTRI VINI</p>
+                    <Link to='/winespage'>
+                        <p> I NOSTRI VINI</p>
+                    </Link>
                     <p> CONTATTI</p>
                 </div>
 

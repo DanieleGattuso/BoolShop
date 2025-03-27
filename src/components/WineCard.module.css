@@ -1,0 +1,91 @@
+/* Main container for each wine card */
+.wine_card {
+    border: black 1px solid;
+    width: 23%;
+    margin-bottom: 3%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* Styling for the wine image */
+.wine_card img {
+    width: 100px;
+    padding: 20px;
+    transition: transform 1.2s ease;
+
+}
+
+.wine_card img:hover {
+    transform: scale(1.15);
+}
+
+.wine_card h3 {
+    font-weight: 520;
+    text-transform: uppercase;
+    margin-bottom: 1%;
+}
+
+.wine_card h4 {
+    font-weight: 300;
+    color: #a56b6b;
+
+    text-transform: uppercase;
+}
+
+/* Description text styling */
+.wine_card p {
+    margin: 3% 2%;
+    line-height: 2em;
+
+}
+
+/* Styling for the action button */
+.wine_card button {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #999;
+    background: none;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 5%;
+}
+
+/* Hover effect for the button */
+.wine_card button:hover {
+    background-color: #3a2520;
+    color: #fff;
+}
+
+
+/********** RESPONSIVE ************/
+
+/* Tablet (max-width 768px) */
+@media screen and (max-width: 1024px) {
+    .wine_card {
+
+        width: 30%;
+
+    }
+
+}
+
+/* Mobile (max-width 480px) */
+@media screen and (max-width: 480px) {
+    .wine_card {
+        width: 40%;
+    }
+
+    .wine_card p {
+        width: 40%;
+        display: none;
+    }
+
+    .wine_card button {
+        padding: 4px 6px;
+
+        margin-top: 5%;
+    }
+}

@@ -10,6 +10,9 @@ import DefaultLayout from './layout/DefaultLayout'
 // Import pages
 import HomePage from "./pages/HomePage"
 
+// Import wine page
+import Winespage from "./pages/WinePage"
+
 
 
 
@@ -24,6 +27,7 @@ export default function App() {
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/winespage" element={<Winespage />} />
 
 
 

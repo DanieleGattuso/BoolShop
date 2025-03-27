@@ -1,0 +1,151 @@
+main {
+    background-color: #FFFCF5;
+}
+
+.big_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* head container rules */
+
+.head_winelist_container {
+    width: 50%;
+    text-align: center;
+    margin: 3% 0%;
+    line-height: 1.3em;
+    /* DEBUG */
+    /* background-color: yellowgreen; */
+    /* height: 400px; */
+}
+
+/* head container title rules */
+.head_winelist_container h1 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin-top: 5%;
+    font-weight: 100;
+}
+
+/* head container paragraph rules */
+.head_winelist_container p {
+    font-size: 1rem;
+    width: 46%;
+    margin-left: 27%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+/* head container button rules */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Styling for the action button */
+.buttons button {
+    border: 1px solid #3a2520;
+    background-color: transparent;
+    color: #3a2520;
+    border-radius: 20px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+/* Hover effect for the button */
+.buttons button:hover {
+    background-color: #3a2520;
+    color: #f9f9ee;
+}
+
+/******** WINELIST SECTION  **********/
+
+.big_wines_list_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wines_list_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+    /* DEBUG */
+    /* background-color: chocolate; */
+
+}
+
+
+
+/* Tablet (max-width 1024px) */
+@media screen and (max-width: 720px) {
+    .head_winelist_container {
+        width: 70%;
+    }
+
+    .head_winelist_container p {
+        width: 70%;
+        margin: auto;
+    }
+
+    .wines_list_container {
+        justify-content: center;
+        gap: 20px;
+    }
+}
+
+/* Tablet (max-width 768px) */
+@media screen and (max-width: 768px) {
+    .head_winelist_container h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .head_winelist_container p {
+        font-size: 0.95rem;
+        width: 90%;
+        margin: 0 auto 20px auto;
+    }
+
+    .head_winelist_container {
+        width: 90%;
+        margin: 5% 0;
+    }
+
+    .buttons button {
+        padding: 6px 16px;
+        font-size: 0.9rem;
+    }
+
+    .wines_list_container {
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+/* Mobile (max-width 480px) */
+@media screen and (max-width: 480px) {
+    .head_winelist_container h1 {
+        font-size: 1.5rem;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    .buttons button {
+        padding: 5px 14px;
+        font-size: 0.85rem;
+    }
+
+    .wines_list_container {
+        padding: 0 10px;
+    }
+}
