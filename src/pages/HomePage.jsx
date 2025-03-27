@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import styles from "./HomePage.module.css";
 import videoBg from '../assets/vinogiusto.mp4';
-import greenImage from '../assets/vigneto.jpeg'
+import greenImage from '../assets/image.png'
 
 export default function HomePage() {
     // State variable 'wines' to store fetched wine data

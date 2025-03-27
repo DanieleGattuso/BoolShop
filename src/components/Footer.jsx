@@ -1,6 +1,7 @@
 
 import styles from "./Footer.module.css";
 import europe from "../assets/european-union.png"
+import waves from "../assets/path.svg"
 
 export default function Footer() {
 
@@ -14,7 +15,7 @@ export default function Footer() {
 
             <div className={styles.footer_container}>
 
-
+                <img src={waves} alt="" className={styles.footer_big_wave} />
                 <div className={styles.footer_nav_bars_container}>
 
                     <div className={styles.footer_nav_bars}>
@@ -44,11 +45,27 @@ export default function Footer() {
 
                 <div className={styles.social_container}>
 
-                    <ul>
-                        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-                        <li><a href="#"></a><i class="fa-brands fa-instagram"></i></li>
-                        <li><a href="#"></a><i class="fa-brands fa-youtube"></i></li>
-                    </ul>
+                    <div className={styles.small_social_container}>
+
+                        <img src={waves} alt="" className={styles.footer_small_waves} />
+
+                    </div>
+
+                    <div className={styles.small_social_container}>
+                        <ul>
+                            <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                            <li><a href="#"></a><i class="fa-brands fa-instagram"></i></li>
+                            <li><a href="#"></a><i class="fa-brands fa-youtube"></i></li>
+                        </ul>
+
+                    </div>
+
+                    <div className={styles.small_social_container}>
+                        <img src={waves} alt="" className={styles.footer_small_waves} />
+
+                    </div>
+
+
 
                 </div>
 
