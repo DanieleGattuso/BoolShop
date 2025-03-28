@@ -1,0 +1,48 @@
+.hero_section {
+
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    /* sfondo simile a quello dell'immagine */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.background_text {
+    font-size: 8vw;
+    color: white;
+    /* opacity: 0.1; */
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    letter-spacing: 10px;
+}
+
+.bottle {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    height: 500px;
+    z-index: 2;
+}
+
+.rosato {
+
+    background-color: rgb(247, 136, 0);
+}
+
+.rosso {
+
+    background-color: brown;
+}
+
+.bianco {
+
+    background-color: aqua;
+}

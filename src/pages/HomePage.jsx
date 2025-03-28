@@ -2,43 +2,51 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import styles from "./HomePage.module.css";
 import videoBg from '../assets/vinogiusto.mp4';
-import greenImage from '../assets/image.png'
+import greenImage from '../assets/image.png';
 
 export default function HomePage() {
-    // State variable 'wines' to store fetched wine data
+    // State per tutti i vini e per i bestseller
     const [wines, setWines] = useState([]);
+    const [bestWines, setBestWines] = useState([]);
 
-    // useEffect hook to fetch wine data once when the component mounts
+    // useEffect per effettuare le chiamate API una sola volta al mount del componente
     useEffect(() => {
         fetchWines();
+        fetchBestWines();
     }, []);
 
-    // Function to fetch wines from the API using axios
+    // Funzione per recuperare tutti i vini
     function fetchWines() {
         axios.get('http://localhost:3000/api/wines')
             .then(res => setWines(res.data))
             .catch(err => console.log(err));
     }
 
-    // Helper function to retrieve a wine object by its id
+    // Funzione per recuperare i vini bestseller
+    function fetchBestWines() {
+        axios.get('http://localhost:3000/api/wines/limited_stock')
+            .then(res => setBestWines(res.data))
+            .catch(err => console.log(err));
+    }
+
+    // Funzione helper per ottenere un vino tramite id
     function getWineById(id) {
         return wines.find(wine => wine.id === id);
     }
 
-    // Retrieving specific wines by their IDs (7, 9, and 25)
+    // Recupero dei vini specifici (per la sezione TOP 2025)
     const redWine = getWineById(7);
     const whiteWine = getWineById(21);
     const roseWine = getWineById(35);
 
-    // Wait until the wines data is fully loaded; otherwise, display a loading message
+    // Se i vini non sono ancora stati caricati, mostra un messaggio di caricamento
     if (!redWine || !whiteWine || !roseWine) {
         return <div>Caricamento vini...</div>;
     }
 
-    // JSX rendering
     return (
         <>
-            {/* Hero section video background */}
+            {/* Sezione Hero con video di sfondo */}
             <div className={styles.homepage_video}>
                 <video autoPlay loop muted playsInline>
                     <source src={videoBg} type="video/mp4" />
@@ -48,59 +56,75 @@ export default function HomePage() {
                 </div>
             </div>
 
-            {/* Section title for best-selling wines */}
+            {/* Sezione TOP 2025 */}
             <div className={styles.best_seller_title}>
                 <h1>I NOSTRI TOP 2025</h1>
             </div>
-
-            {/* Container holding the details for each best-selling wine */}
             <div className={styles.best_seller_container}>
-
-                {/* Red Wine Container */}
+                {/* Contenitore per il vino rosso */}
                 <div className={styles.best_red_wine_container}>
                     <div className={styles.wine_image_container}>
                         <img src={redWine.image} alt={redWine.name} />
                     </div>
                     <div className={styles.wine_container_traits}>
-                        {/* Splitting the traits string and displaying each trait in a separate paragraph */}
                         {redWine.traits.split(',').map((trait, index) => (
                             <p key={index}>{trait.trim().toUpperCase()}</p>
                         ))}
                     </div>
                 </div>
 
-                {/* White Wine Container */}
+                {/* Contenitore per il vino bianco */}
                 <div className={styles.best_white_wine_container}>
                     <div className={styles.wine_image_container}>
                         <img src={whiteWine.image} alt={whiteWine.name} />
                     </div>
                     <div className={styles.wine_container_traits}>
-                        {/* Splitting the traits string and displaying each trait in a separate paragraph */}
                         {whiteWine.traits.split(',').map((trait, index) => (
                             <p key={index}>{trait.trim().toUpperCase()}</p>
                         ))}
                     </div>
                 </div>
 
-                {/* Rosé Wine Container */}
+                {/* Contenitore per il vino rosato */}
                 <div className={styles.best_rose_wine_container}>
                     <div className={styles.wine_image_container}>
                         <img src={roseWine.image} alt={roseWine.name} />
                     </div>
                     <div className={styles.wine_container_traits}>
-                        {/* Splitting the traits string and displaying each trait in a separate paragraph */}
                         {roseWine.traits.split(',').map((trait, index) => (
                             <p key={index}>{trait.trim().toUpperCase()}</p>
                         ))}
                     </div>
                 </div>
-
             </div>
 
-            <div className={styles.green_image_container} >
+            {/* Sezione Bestseller */}
+            <div className={styles.best_seller_title}>
+                <h1>BESTSELLER</h1>
+            </div>
+            <div className={styles.best_seller_container}>
+                {bestWines.length > 0 ? (
+                    bestWines.map(wine => (
+                        <div key={wine.id} className={styles.best_wine_container}>
+                            <div className={styles.wine_image_container}>
+                                <img src={wine.image} alt={wine.name} />
+                            </div>
+                            <div className={styles.wine_container_traits}>
+                                {wine.traits.split(',').map((trait, index) => (
+                                    <p key={index}>{trait.trim().toUpperCase()}</p>
+                                ))}
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <div>Caricamento bestseller...</div>
+                )}
+            </div>
+
+            {/* Immagine aggiuntiva */}
+            <div className={styles.green_image_container}>
                 <img src={greenImage} alt="vigneto" />
             </div>
-
         </>
     );
 }
