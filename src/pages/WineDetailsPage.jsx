@@ -1,56 +1,33 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import styles from "./WineDetailsPage.module.css";
-import { useParams } from "react-router-dom";
 
+export default function WineDetailsPage() {
+    const location = useLocation();
+    const navigate = useNavigate();
 
-export default function WinesDetailPage() {
+    // Recupera il vino passato tramite lo state del navigate
+    const wineDetails = location.state?.wine;
 
-    // recuperiamo l'id
-    const { id } = useParams();
+    // Se non ci sono dati (es. l’utente ha ricaricato la pagina), torna alla lista
+    useEffect(() => {
+        if (!wineDetails) {
+            navigate("/wines");
+        }
+    }, []);
 
-    const [wineDetails, setWineDetails,] = useState({});
+    // Se i dati non ci sono ancora, non mostrare nulla
+    if (!wineDetails) return null;
 
-    // Function call axios
-
-    function fetchWine() {
-
-        axios.get(`http://localhost:3000/api/wines/${id}`)
-
-            .then(res => {
-                setWineDetails(res.data)
-
-            })
-
-            .catch(err => {
-                console.log(err);
-                // if (err.status === 404) redirect ("/PageNotFound")
-
-            })
-
-
-    }
-
-    useEffect(fetchWine, [id]);
-
-    function renderWineDetails() {
-        return (
-            <>
-
-                <h1 className={styles.background_text} >{wineDetails.name}</h1>
-                <img src={wineDetails.image} alt={wineDetails.name} className={styles.bottle} />
-            </>
-        );
-    }
     return (
-
-        <>
-            <div className={`${styles.hero_section} ${styles[wineDetails.type]}`}>
-                {renderWineDetails()}
-            </div>
-
-        </>
-    )
-
-
+        <div className={`${styles.hero_section} ${styles[wineDetails.type]}`}>
+            <h1 className={styles.background_text}>{wineDetails.name}</h1>
+            <img
+                src={wineDetails.image}
+                alt={wineDetails.name}
+                className={styles.bottle}
+            />
+            <p className={styles.description}>{wineDetails.description}</p>
+        </div>
+    );
 }

@@ -98,6 +98,11 @@ export default function HomePage() {
                 </div>
             </div>
 
+            {/* Immagine aggiuntiva */}
+            <div className={styles.green_image_container}>
+                <img src={greenImage} alt="vigneto" />
+            </div>
+
             {/* Sezione Bestseller */}
             <div className={styles.best_seller_title}>
                 <h1>BESTSELLER</h1>
@@ -105,7 +110,7 @@ export default function HomePage() {
             <div className={styles.best_seller_container}>
                 {bestWines.length > 0 ? (
                     bestWines.map(wine => (
-                        <div key={wine.id} className={styles.best_wine_container}>
+                        <div key={wine.id} className={`${styles.best_dynamic_wine_container} ${styles[wine.type]}`}>
                             <div className={styles.wine_image_container}>
                                 <img src={wine.image} alt={wine.name} />
                             </div>
@@ -121,10 +126,7 @@ export default function HomePage() {
                 )}
             </div>
 
-            {/* Immagine aggiuntiva */}
-            <div className={styles.green_image_container}>
-                <img src={greenImage} alt="vigneto" />
-            </div>
+
         </>
     );
 }

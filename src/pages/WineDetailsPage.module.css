@@ -12,15 +12,24 @@
 }
 
 .background_text {
-    font-size: 8vw;
+    font-size: 280px;
     color: white;
     /* opacity: 0.1; */
     position: absolute;
-    top: 20%;
+    top: 5%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
     letter-spacing: 10px;
+    font-family: 'Source Serif 4', serif;
+    text-align: center;
+
+}
+
+h1 {
+
+    font-weight: 350;
+    text-transform: uppercase;
 }
 
 .bottle {
@@ -28,21 +37,36 @@
     top: 30%;
     left: 50%;
     transform: translate(-50%, -30%);
-    height: 500px;
+    height: 900px;
     z-index: 2;
 }
 
 .rosato {
 
-    background-color: rgb(247, 136, 0);
+    background-color: var(--pink);
 }
 
 .rosso {
 
-    background-color: brown;
+    background-color: var(--red);
 }
 
 .bianco {
 
-    background-color: aqua;
+    background-color: var(--white);
+}
+
+.rosato h1 {
+
+    color: #E3AF9D;
+}
+
+.rosso h1 {
+
+    color: #694B47;
+}
+
+.bianco h1 {
+
+    color: #BBAE7D;
 }

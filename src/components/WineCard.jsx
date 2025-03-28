@@ -1,12 +1,17 @@
 import styles from "./WineCard.module.css";
+import { useNavigate } from "react-router-dom";
 
 const WineCard = ({ wineProps }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/winedetails", { state: { wine: wineProps } });
+    };
+
     return (
         <div className={styles.wine_card}>
-
-            {/* upper section  card */}
+            {/* upper section card */}
             <div>
-
                 <img src={wineProps.image} alt={wineProps.name} />
                 <h3>{wineProps.name}</h3>
 
@@ -20,17 +25,13 @@ const WineCard = ({ wineProps }) => {
                     <h4 className={styles.rosato}>Rosato</h4>
                 )}
             </div>
+
             <p>{wineProps.abstract}</p>
 
             {/* down section with button */}
             <div>
-
-
-                <button>Scopri di più</button>
-
+                <button onClick={handleClick}>Scopri di più!</button>
             </div>
-
-
         </div>
     );
 };

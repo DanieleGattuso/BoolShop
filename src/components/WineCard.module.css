@@ -49,13 +49,14 @@
 
 /* Styling for the action button */
 .wine_card button {
-    padding: 8px 12px;
+    padding: 10px 30px;
     border-radius: 20px;
-    border: 1px solid #999;
+    border: 1px solid #050505;
     background: none;
     cursor: pointer;
     transition: 0.3s;
     margin-bottom: 5%;
+    font-size: 15px;
 }
 
 /* Hover effect for the button */
