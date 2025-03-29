@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from 'react';
 
+
 // mettiamo l'oggetto vuoto all'interno di una variabile
 const initialFormData = {
     // aggiungiamo tutte le proprietà che vogliamo mappare e assegniamo loro un valore iniziale.
@@ -27,7 +28,7 @@ export default function CheckoutPage() {
     // funzione per inviare i dati
     function sendData(e) {
         e.preventDefault();
-        console.log("Dati inviati:", formData); // 🔍 Debug
+        console.log("Dati inviati:", formData);
         axios.post(endpoint, formData)
             .then(response => {
                 console.log("Ordine inviato con successo:", response.data);
@@ -43,11 +44,16 @@ export default function CheckoutPage() {
         setFormData(prev => ({ ...prev, [name]: value }));
     }
 
+
+
     return (
         <>
             <div className="container">
                 <h1>Inserisci i tuoi dati</h1>
+
+                {/* da modificare la class */}
                 <section className='add-trip-sections'>
+
                     {/* form */}
                     <form onSubmit={sendData}>
                         <div className='row'>
