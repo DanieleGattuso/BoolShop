@@ -6,11 +6,11 @@
 }
 
 :root {
-    --primary: #faebd7;
+    --primary: #FFFCF5;
     --secondary: #475D59;
-    --third: #372A29;
-    --fourth: #CFC189;
-    --fifth: #F5C6B6;
+    --red: #372A29;
+    --white: #CFC189;
+    --pink: #F5C6B6;
 
 
 }

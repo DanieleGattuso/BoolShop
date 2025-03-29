@@ -23,7 +23,7 @@ main {
 
 /* head container title rules */
 .head_winelist_container h1 {
-    font-size: 2.5rem;
+    font-size: 5rem;
     letter-spacing: 4px;
     margin-top: 5%;
     font-weight: 100;
@@ -31,7 +31,7 @@ main {
 
 /* head container paragraph rules */
 .head_winelist_container p {
-    font-size: 1rem;
+    font-size: 20px;
     width: 46%;
     margin-left: 27%;
     margin-top: 5%;
@@ -74,7 +74,7 @@ main {
 .wines_list_container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 2%;
     width: 90%;
     /* DEBUG */
     /* background-color: chocolate; */

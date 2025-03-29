@@ -62,7 +62,7 @@
 
 /* Container for the red wine */
 .best_red_wine_container {
-    background-color: var(--third);
+    background-color: var(--red);
     /* Uses global CSS variable for third color */
     width: calc(100vw / 3);
     /* 1/3 of viewport width */
@@ -73,7 +73,7 @@
 
 /* Container for the white wine */
 .best_white_wine_container {
-    background-color: var(--fourth);
+    background-color: var(--white);
     /* Uses global CSS variable for fourth color */
     width: calc(100vw / 3);
     /* 1/3 of viewport width */
@@ -84,7 +84,7 @@
 
 /* Container for the rosé wine */
 .best_rose_wine_container {
-    background-color: var(--fifth);
+    background-color: var(--pink);
     /* Uses global CSS variable for fifth color */
     width: calc(100vw / 3);
     /* 1/3 of viewport width */
@@ -156,4 +156,30 @@
     /* o cover */
     object-position: center;
 
+}
+
+.best_dynamic_wine_container {
+
+
+
+    width: calc(100vw / 3);
+    /* 1/3 of viewport width */
+    height: 100%;
+
+    display: flex;
+}
+
+.rosato {
+
+    background-color: var(--pink);
+}
+
+.rosso {
+
+    background-color: var(--red);
+}
+
+.bianco {
+
+    background-color: var(--white);
 }
