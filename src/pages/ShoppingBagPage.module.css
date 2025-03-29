@@ -2,3 +2,69 @@ table {
     width: 100%;
     margin-bottom: 50px;
 }
+
+button {
+    all: unset;
+    /* Rimuove tutti gli stili predefiniti */
+    background: none;
+    /* Rimuove il background */
+    border: none;
+    /* Rimuove il bordo */
+    padding: 0;
+    /* Rimuove il padding */
+    font: inherit;
+    /* Inherited font styles */
+    color: inherit;
+    /* Inherited text color */
+    cursor: pointer;
+    /* Mantiene il cursore pointer per indicare che è cliccabile */
+    outline: none;
+}
+
+.table_product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.table_image img {
+    height: 60px;
+}
+
+
+.quantity {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #a78888;
+    background-color: #fffcf5;
+    border-radius: 9999px;
+    margin-right: 0.5rem;
+    min-width: 110px;
+    transition: background-color 0.2s ease;
+}
+
+.quantitybtn {
+    color: #a78888;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.trash {
+    color: #4a2727;
+    cursor: pointer;
+}
+
+.trash:hover {
+    color: #953333;
+}
+
+.quantity:hover {
+    background-color: #f9efd9;
+}
+
+.quantitybtn:active {
+    color: #fff;
+}

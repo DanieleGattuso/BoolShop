@@ -2,7 +2,8 @@ import styles from "../pages/ShoppingBagPage.module.css";
 import { useEffect, useState, useContext, } from "react";
 import { Link } from "react-router-dom";
 import WineContext from "../context/WineContext";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShoppingBagPage() {
 
@@ -75,34 +76,71 @@ export default function ShoppingBagPage() {
                 quantity: item.quantity
             };
         });
-
+    console.log('queste sono le render cart', renderCart)
     // RENDER
     return (
         <>
-            <table className={styles}>
-                <thead>
+            <table className="table text-center ">
+                <thead className="">
                     <tr>
-                        <th>Prodotto</th>
-                        <th>Quantità</th>
-                        <th>Prezzo Unitario</th>
-                        <th>Prezzo Totale</th>
+                        <th scope="col">PRODOTTO</th>
+                        <th scope="col">QUANTITA</th>
+                        <th scope="col">PREZZO ARTICOLO</th>
+                        <th scope="col">TOTALE</th>
                     </tr>
-                </thead>
-
+                </thead >
                 <tbody>
                     {renderCart.map(item => {
                         const hasDiscount = item.discount_price !== null; // check if discount exists
                         const originalPrice = Number(item.price); // convert price to number
-                        const finalPrice = hasDiscount ? Number(item.discount_price) : originalPrice; // use discount price if available
+                        const finalPrice = hasDiscount ? Number(item.discount_price) : originalPrice;
+                        // use discount price if available
 
                         return (
                             <tr key={item.id}>
-                                <td>{item.name}</td>
                                 <td>
-                                    <button disabled={item.quantity === 1} onClick={() => quantityButton(item.id, -1)}>-</button>
-                                    {item.quantity}
-                                    <button disabled={item.quantity >= item.quantity_in_stock} onClick={() => quantityButton(item.id, 1)}>+</button>
-                                    <button onClick={() => { quantityButton(item.id, 0) }}> cestino</button>
+
+                                    <div className={styles.table_product}>
+                                        <div className={styles.table_image}>
+                                            <img src={item.image} alt="" />
+                                        </div>
+                                        <div>
+                                            {item.name}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className=" d-flex justify-content-center align-items-center gap-2">
+                                        <div className={styles.quantity}>
+                                            {/* pulsante per rimuovere una quantità */}
+
+                                            <button
+                                                className={styles.quantitybtn}
+                                                disabled={item.quantity === 1}
+                                                onClick={() => quantityButton(item.id, -1)}
+                                            >
+                                                <FontAwesomeIcon icon={faMinus} />
+                                            </button>
+                                            {/* numero quantita */}
+                                            <span className="fw-bold px-2">{item.quantity}</span>
+
+                                            {/* pulsante per aggiungere una quantità */}
+                                            <button
+                                                className={styles.quantitybtn}
+                                                disabled={item.quantity >= item.quantity_in_stock}
+                                                onClick={() => quantityButton(item.id, 1)}
+                                            >
+                                                <FontAwesomeIcon icon={faPlus} />
+                                            </button>
+                                        </div>
+
+                                        <button className={styles.trash}
+                                            onClick={() => quantityButton(item.id, 0)}
+                                        >
+                                            <FontAwesomeIcon icon={faTrash} />
+                                        </button>
+                                    </div>
+
                                 </td>
                                 <td>
                                     {hasDiscount ? (
@@ -118,41 +156,46 @@ export default function ShoppingBagPage() {
                                 </td>
                                 <td>{(finalPrice * item.quantity).toFixed(2)}€</td> {/* calculate total price */}
                             </tr>
-                        );
+                        )
                     })}
                 </tbody>
             </table >
 
-            <table className={styles}>
-                <tr>
-                    <td>Totale Imponibile</td>
-                    <td>
-                        {renderCart
-                            .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
-                            .toFixed(2)}€ {/* total amount excluding tax */}
-                    </td>
-                </tr>
-                <tr>
-                    <td>Tasse</td>
-                    <td>Incluse</td> {/* taxes included */}
-                </tr>
-                <tr>
-                    <td>Spedizione</td>
-                    <td>GRATUITA</td> {/* free shipping */}
-                </tr>
-                <tr>
-                    <td>Totale</td>
-                    <td>
-                        {renderCart
-                            .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
-                            .toFixed(2)}€ {/* final total price */}
-                    </td>
-                </tr>
+
+            < table className={styles} >
+                <tbody>
+
+                    <tr>
+                        <td>Totale Imponibile</td>
+                        <td>
+                            {renderCart
+                                .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
+                                .toFixed(2)}€ {/* total amount excluding tax */}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tasse</td>
+                        <td>Incluse</td> {/* taxes included */}
+                    </tr>
+                    <tr>
+                        <td>Spedizione</td>
+                        <td>GRATUITA</td> {/* free shipping */}
+                    </tr>
+                    <tr>
+                        <td>Totale</td>
+                        <td>
+                            {renderCart
+                                .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
+                                .toFixed(2)}€ {/* final total price */}
+                        </td>
+                    </tr>
+                </tbody>
+
             </table>
 
             {/* procedi al checkout */}
 
-            <div className={styles.checkoutButton}>
+            < div className={styles.checkoutButton} >
                 <Link to="/checkoutpage">Procedi al checkout</Link>
             </div>
 
