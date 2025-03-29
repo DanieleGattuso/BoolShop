@@ -1,21 +1,23 @@
 import styles from "../pages/ShoppingBagPage.module.css";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, use } from "react";
 import WineContext from "../context/WineContext";
+
 
 export default function ShoppingBagPage() {
 
-    const { wines } = useContext(WineContext);
+    const { wines, cart, setCart } = useContext(WineContext);
 
     // get cart data from localStorage
-    const [winesId, setwinesId] = useState(() => {
-        const savedCart = localStorage.getItem("cart");
-        return savedCart ? JSON.parse(savedCart) : [];
-    });
+    useEffect(() => { setCart(JSON.parse(localStorage.getItem("cart")) || []); }, []);
+    //     const savedCart = localStorage.getItem("cart");
+    //     return savedCart ? JSON.parse(savedCart) : [];
+    // });
+
 
     // save cart data back to localStorage whenever winesId changes
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(winesId));
-    }, [winesId]);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
     // function to count the quantity of each item in the array
     function countWinesById(array) {
@@ -30,22 +32,28 @@ export default function ShoppingBagPage() {
         }));
     }
 
-    const cart = countWinesById(winesId);
+    const cartino = countWinesById(cart);
 
     // function to update the quantity in the cart (increment or decrement)
     const quantityButton = (id, qtyChange) => {
-        setwinesId(prevCart => {
+        setCart(prevCart => {
             let newCart = [...prevCart];
 
             if (qtyChange === 1) {
                 // add one more product with the same ID
                 newCart.push({ id });
-            } else {
+            }
+
+            else if (qtyChange === -1) {
                 // remove one product with the given ID
                 const index = newCart.findIndex(item => item.id === id);
                 if (index !== -1) {
                     newCart.splice(index, 1);
                 }
+            }
+            else if (qtyChange === 0) {
+                // remove all products with the given ID
+                newCart = newCart.filter(item => item.id !== id);
             }
 
             return newCart;
@@ -54,15 +62,14 @@ export default function ShoppingBagPage() {
 
     // render card only for FE
     const renderCart = wines
-        .filter(wine => cart.some(item => item.wine_id === wine.id)) // filter wines that are in the cart
+        .filter(wine => cartino.some(item => item.wine_id === wine.id)) // filter wines that are in the cart
         .map(wine => {
-            const item = cart.find(item => item.wine_id === wine.id);
+            const item = cartino.find(item => item.wine_id === wine.id);
             return {
                 ...wine,
                 quantity: item.quantity
             };
         });
-
 
     // RENDER
     return (
@@ -87,9 +94,10 @@ export default function ShoppingBagPage() {
                             <tr key={item.id}>
                                 <td>{item.name}</td>
                                 <td>
-                                    <button onClick={() => quantityButton(item.id, -1)}>-</button>
+                                    <button disabled={item.quantity === 1} onClick={() => quantityButton(item.id, -1)}>-</button>
                                     {item.quantity}
-                                    <button onClick={() => quantityButton(item.id, 1)}>+</button>
+                                    <button disabled={item.quantity >= item.quantity_in_stock} onClick={() => quantityButton(item.id, 1)}>+</button>
+                                    <button onClick={() => { quantityButton(item.id, 0) }}> cestino</button>
                                 </td>
                                 <td>
                                     {hasDiscount ? (
@@ -108,7 +116,7 @@ export default function ShoppingBagPage() {
                         );
                     })}
                 </tbody>
-            </table>
+            </table >
 
             <table className={styles}>
                 <tr>
@@ -136,6 +144,7 @@ export default function ShoppingBagPage() {
                     </td>
                 </tr>
             </table>
+
         </>
     );
 }
