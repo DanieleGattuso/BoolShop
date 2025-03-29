@@ -74,6 +74,10 @@ button {
     color: #fff;
 }
 
+.price {
+    margin-top: 15px;
+}
+
 
 /* Summary  */
 .summary_row {
@@ -129,6 +133,10 @@ button {
         align-items: center
     }
 
+    .table_image {
+        display: none;
+    }
+
     .box_quantity {
         margin-top: 0px;
     }
@@ -144,7 +152,9 @@ button {
         padding: 3px 10px;
     }
 
-    .table_image {
-        display: none;
+    .price {
+        margin-top: 0px;
     }
+
+
 }

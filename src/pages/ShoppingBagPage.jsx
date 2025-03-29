@@ -98,6 +98,7 @@ export default function ShoppingBagPage() {
 
                         return (
                             <tr key={item.id}>
+                                {/* product */}
                                 <td>
 
                                     <div className={styles.table_product}>
@@ -109,6 +110,7 @@ export default function ShoppingBagPage() {
                                         </div>
                                     </div>
                                 </td>
+                                {/* quantity */}
                                 <td >
                                     <div className={styles.box_quantity}>
                                         <div className={styles.quantity}>
@@ -142,19 +144,29 @@ export default function ShoppingBagPage() {
                                     </div>
 
                                 </td>
-                                <td>
-                                    {hasDiscount ? (
-                                        <>
-                                            <s>{originalPrice.toFixed(2)}€</s>
-                                            <span>
-                                                {finalPrice.toFixed(2)}€
-                                            </span>
-                                        </>
-                                    ) : (
-                                        `${finalPrice.toFixed(2)}€`
-                                    )}
+                                {/* single item price */}
+                                <td >
+                                    <div className={styles.price}>
+                                        {hasDiscount ? (
+                                            <>
+                                                <s>{originalPrice.toFixed(2)}€</s>
+                                                <span>
+                                                    {finalPrice.toFixed(2)}€
+                                                </span>
+                                            </>
+                                        ) : (
+                                            `${finalPrice.toFixed(2)}€`
+                                        )}
+                                    </div>
+
                                 </td>
-                                <td>{(finalPrice * item.quantity).toFixed(2)}€</td> {/* calculate total price */}
+                                {/* total item price */}
+                                <td>
+                                    <div className={styles.price}>
+                                        {(finalPrice * item.quantity).toFixed(2)}€
+
+                                    </div>
+                                </td> {/* calculate total price */}
                             </tr>
                         )
                     })}
@@ -162,13 +174,13 @@ export default function ShoppingBagPage() {
             </table >
 
             {/* riga inferiore */}
-            <div className="row">
+            < div className="row" >
                 {/* colonna di sinistra */}
-                <div className="col-5">
+                < div className="col-5" >
                     da inserire il logo
-                </div>
+                </div >
                 {/* colonna di destra */}
-                <div className="col-7">
+                < div className="col-7" >
                     <div className={`${"row"} ${styles.summary_row}`}>
                         <div className="col">Totale Imponibile</div>
                         <div className={`${"col"} ${styles.summary_col}`}>
@@ -192,7 +204,7 @@ export default function ShoppingBagPage() {
                                 .toFixed(2)}€ {/* final total price */}
                         </div>
                     </div>
-                </div>
+                </div >
 
             </div >
 
