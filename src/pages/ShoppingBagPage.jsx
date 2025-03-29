@@ -1,11 +1,12 @@
 import styles from "../pages/ShoppingBagPage.module.css";
-import { useEffect, useState, useContext, use } from "react";
+import { useEffect, useState, useContext, } from "react";
+import { Link } from "react-router-dom";
 import WineContext from "../context/WineContext";
 
 
 export default function ShoppingBagPage() {
 
-    const { wines, cart, setCart } = useContext(WineContext);
+    const { wines, cart, setCart, cartPair, setCartPair } = useContext(WineContext);
 
     // get cart data from localStorage
     useEffect(() => { setCart(JSON.parse(localStorage.getItem("cart")) || []); }, []);
@@ -17,6 +18,10 @@ export default function ShoppingBagPage() {
     // save cart data back to localStorage whenever winesId changes
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
+
+    useEffect(() => {
+        setCartPair(countWinesById(cart));
     }, [cart]);
 
     // function to count the quantity of each item in the array
@@ -32,7 +37,7 @@ export default function ShoppingBagPage() {
         }));
     }
 
-    const cartino = countWinesById(cart);
+    // const cartPair = countWinesById(cart);
 
     // function to update the quantity in the cart (increment or decrement)
     const quantityButton = (id, qtyChange) => {
@@ -62,9 +67,9 @@ export default function ShoppingBagPage() {
 
     // render card only for FE
     const renderCart = wines
-        .filter(wine => cartino.some(item => item.wine_id === wine.id)) // filter wines that are in the cart
+        .filter(wine => cartPair.some(item => item.wine_id === wine.id)) // filter wines that are in the cart
         .map(wine => {
-            const item = cartino.find(item => item.wine_id === wine.id);
+            const item = cartPair.find(item => item.wine_id === wine.id);
             return {
                 ...wine,
                 quantity: item.quantity
@@ -144,6 +149,13 @@ export default function ShoppingBagPage() {
                     </td>
                 </tr>
             </table>
+
+            {/* procedi al checkout */}
+
+            <div className={styles.checkoutButton}>
+                <Link to="/checkoutpage">Procedi al checkout</Link>
+            </div>
+
 
         </>
     );
