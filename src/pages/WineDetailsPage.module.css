@@ -1,0 +1,72 @@
+.hero_section {
+
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    /* sfondo simile a quello dell'immagine */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.background_text {
+    font-size: 280px;
+    color: white;
+    /* opacity: 0.1; */
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    letter-spacing: 10px;
+    font-family: 'Source Serif 4', serif;
+    text-align: center;
+
+}
+
+h1 {
+
+    font-weight: 350;
+    text-transform: uppercase;
+}
+
+.bottle {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    height: 900px;
+    z-index: 2;
+}
+
+.rosato {
+
+    background-color: var(--pink);
+}
+
+.rosso {
+
+    background-color: var(--red);
+}
+
+.bianco {
+
+    background-color: var(--white);
+}
+
+.rosato h1 {
+
+    color: #E3AF9D;
+}
+
+.rosso h1 {
+
+    color: #694B47;
+}
+
+.bianco h1 {
+
+    color: #BBAE7D;
+}
