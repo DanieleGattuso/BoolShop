@@ -6,21 +6,12 @@ import greenImage from '../assets/image.png';
 
 export default function HomePage() {
     // State per tutti i vini e per i bestseller
-    const [wines, setWines] = useState([]);
     const [bestWines, setBestWines] = useState([]);
 
     // useEffect per effettuare le chiamate API una sola volta al mount del componente
     useEffect(() => {
-        fetchWines();
         fetchBestWines();
     }, []);
-
-    // Funzione per recuperare tutti i vini
-    function fetchWines() {
-        axios.get('http://localhost:3000/api/wines')
-            .then(res => setWines(res.data))
-            .catch(err => console.log(err));
-    }
 
     // Funzione per recuperare i vini bestseller
     function fetchBestWines() {
@@ -35,14 +26,9 @@ export default function HomePage() {
     }
 
     // Recupero dei vini specifici (per la sezione TOP 2025)
-    const redWine = getWineById(7);
-    const whiteWine = getWineById(21);
-    const roseWine = getWineById(35);
-
-    // Se i vini non sono ancora stati caricati, mostra un messaggio di caricamento
-    if (!redWine || !whiteWine || !roseWine) {
-        return <div>Caricamento vini...</div>;
-    }
+    const redWine = null;
+    const whiteWine = null;
+    const roseWine = null;
 
     return (
         <>
@@ -57,46 +43,49 @@ export default function HomePage() {
             </div>
 
             {/* Sezione TOP 2025 */}
-            <div className={styles.best_seller_title}>
-                <h1>I NOSTRI TOP 2025</h1>
-            </div>
-            <div className={styles.best_seller_container}>
-                {/* Contenitore per il vino rosso */}
-                <div className={styles.best_red_wine_container}>
-                    <div className={styles.wine_image_container}>
-                        <img src={redWine.image} alt={redWine.name} />
-                    </div>
-                    <div className={styles.wine_container_traits}>
-                        {redWine.traits.split(',').map((trait, index) => (
-                            <p key={index}>{trait.trim().toUpperCase()}</p>
-                        ))}
-                    </div>
+            {!redWine || !whiteWine || !roseWine ? <div>Caricamento vini...</div> : <>
+                <div className={styles.best_seller_title}>
+                    <h1>I NOSTRI TOP 2025</h1>
                 </div>
+                <div className={styles.best_seller_container}>
+                    {/* Contenitore per il vino rosso */}
+                    <div className={styles.best_red_wine_container}>
+                        <div className={styles.wine_image_container}>
+                            <img src={redWine.image} alt={redWine.name} />
+                        </div>
+                        <div className={styles.wine_container_traits}>
+                            {redWine.traits.split(',').map((trait, index) => (
+                                <p key={index}>{trait.trim().toUpperCase()}</p>
+                            ))}
+                        </div>
+                    </div>
 
-                {/* Contenitore per il vino bianco */}
-                <div className={styles.best_white_wine_container}>
-                    <div className={styles.wine_image_container}>
-                        <img src={whiteWine.image} alt={whiteWine.name} />
+                    {/* Contenitore per il vino bianco */}
+                    <div className={styles.best_white_wine_container}>
+                        <div className={styles.wine_image_container}>
+                            <img src={whiteWine.image} alt={whiteWine.name} />
+                        </div>
+                        <div className={styles.wine_container_traits}>
+                            {whiteWine.traits.split(',').map((trait, index) => (
+                                <p key={index}>{trait.trim().toUpperCase()}</p>
+                            ))}
+                        </div>
                     </div>
-                    <div className={styles.wine_container_traits}>
-                        {whiteWine.traits.split(',').map((trait, index) => (
-                            <p key={index}>{trait.trim().toUpperCase()}</p>
-                        ))}
-                    </div>
-                </div>
 
-                {/* Contenitore per il vino rosato */}
-                <div className={styles.best_rose_wine_container}>
-                    <div className={styles.wine_image_container}>
-                        <img src={roseWine.image} alt={roseWine.name} />
-                    </div>
-                    <div className={styles.wine_container_traits}>
-                        {roseWine.traits.split(',').map((trait, index) => (
-                            <p key={index}>{trait.trim().toUpperCase()}</p>
-                        ))}
+                    {/* Contenitore per il vino rosato */}
+                    <div className={styles.best_rose_wine_container}>
+                        <div className={styles.wine_image_container}>
+                            <img src={roseWine.image} alt={roseWine.name} />
+                        </div>
+                        <div className={styles.wine_container_traits}>
+                            {roseWine.traits.split(',').map((trait, index) => (
+                                <p key={index}>{trait.trim().toUpperCase()}</p>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>}
+
 
             {/* Immagine aggiuntiva */}
             <div className={styles.green_image_container}>
