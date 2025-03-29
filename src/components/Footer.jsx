@@ -51,9 +51,9 @@ export default function Footer() {
 
                     <div className={styles.small_social_container}>
                         <ul>
-                            <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-                            <li><a href="#"></a><i class="fa-brands fa-instagram"></i></li>
-                            <li><a href="#"></a><i class="fa-brands fa-youtube"></i></li>
+                            <li><a href="#"><i className="fa-brands fa-facebook"></i></a></li>
+                            <li><a href="#"></a><i className="fa-brands fa-instagram"></i></li>
+                            <li><a href="#"></a><i className="fa-brands fa-youtube"></i></li>
                         </ul>
 
                     </div>
