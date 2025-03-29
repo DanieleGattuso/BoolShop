@@ -23,15 +23,20 @@ button {
 
 .table_product {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    gap: 1rem;
+    gap: 1.3rem;
 }
 
 .table_image img {
     height: 60px;
 }
 
+.box_quantity {
+    display: flex;
+    margin-top: 15px;
+    gap: 0.5rem;
+}
 
 .quantity {
     display: flex;
@@ -67,4 +72,79 @@ button {
 
 .quantitybtn:active {
     color: #fff;
+}
+
+
+/* Summary  */
+.summary_row {
+    border-bottom: 0.5px solid #91825e80;
+    padding: 0.5rem;
+    text-align: center;
+    align-items: center;
+}
+
+.summary_col {
+
+    text-align: right;
+    margin: 0 1rem;
+}
+
+/* checkout button */
+.checkout_box {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+
+}
+
+.checkout_box a {
+    border-radius: 9999px;
+    padding: 0.3rem 0.6rem;
+    text-decoration: none;
+    border: 1px solid #a78888;
+    background-color: #fffcf5;
+    color: #4a2727;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+    margin-right: 0.5rem;
+}
+
+.checkout_box a:hover {
+    background-color: #ffff;
+    transition: backgrrgb(69, 32, 32)lor 0.2s ease;
+}
+
+
+
+
+@media (max-width: 480px) {
+
+    /* Add responsive styles for mobile here */
+    table {
+        font-size: 0.8rem;
+    }
+
+    .table_product {
+        flex-direction: column;
+        align-items: center
+    }
+
+    .box_quantity {
+        margin-top: 0px;
+    }
+
+    .quantity {
+        margin-right: 0.4rem;
+        min-width: 100px;
+    }
+
+    .quantitybtn {
+        color: #a78888;
+        font-size: 0.6rem;
+        padding: 3px 10px;
+    }
+
+    .table_image {
+        display: none;
+    }
 }

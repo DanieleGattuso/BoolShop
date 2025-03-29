@@ -109,8 +109,8 @@ export default function ShoppingBagPage() {
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <div className=" d-flex justify-content-center align-items-center gap-2">
+                                <td >
+                                    <div className={styles.box_quantity}>
                                         <div className={styles.quantity}>
                                             {/* pulsante per rimuovere una quantità */}
 
@@ -161,43 +161,46 @@ export default function ShoppingBagPage() {
                 </tbody>
             </table >
 
-
-            < table className={styles} >
-                <tbody>
-
-                    <tr>
-                        <td>Totale Imponibile</td>
-                        <td>
+            {/* riga inferiore */}
+            <div className="row">
+                {/* colonna di sinistra */}
+                <div className="col-5">
+                    da inserire il logo
+                </div>
+                {/* colonna di destra */}
+                <div className="col-7">
+                    <div className={`${"row"} ${styles.summary_row}`}>
+                        <div className="col">Totale Imponibile</div>
+                        <div className={`${"col"} ${styles.summary_col}`}>
                             {renderCart
                                 .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
-                                .toFixed(2)}€ {/* total amount excluding tax */}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tasse</td>
-                        <td>Incluse</td> {/* taxes included */}
-                    </tr>
-                    <tr>
-                        <td>Spedizione</td>
-                        <td>GRATUITA</td> {/* free shipping */}
-                    </tr>
-                    <tr>
-                        <td>Totale</td>
-                        <td>
+                                .toFixed(2)}€ {/* total amount excluding tax */}</div>
+                    </div>
+                    <div className={`${"row"} ${styles.summary_row}`}>
+                        <div className="col">Tasse</div>
+                        <div className={`${"col"} ${styles.summary_col}`}>Incluse</div>
+                    </div>
+                    <div className={`${"row"} ${styles.summary_row}`}>
+                        <div className="col">Spedizione</div>
+                        <div className={`${"col"} ${styles.summary_col}`}>GRATUITA</div>
+                    </div>
+                    <div className={`${"row"} ${styles.summary_row}`}>
+                        <div className="col">Totale</div>
+                        <div className={`${"col"} ${styles.summary_col}`}>
                             {renderCart
                                 .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
                                 .toFixed(2)}€ {/* final total price */}
-                        </td>
-                    </tr>
-                </tbody>
+                        </div>
+                    </div>
+                </div>
 
-            </table>
+            </div >
 
             {/* procedi al checkout */}
 
-            < div className={styles.checkoutButton} >
+            < div className={styles.checkout_box} >
                 <Link to="/checkoutpage">Procedi al checkout</Link>
-            </div>
+            </div >
 
 
         </>
