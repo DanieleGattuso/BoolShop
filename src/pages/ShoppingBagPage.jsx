@@ -90,8 +90,6 @@ export default function ShoppingBagPage() {
                                     <button onClick={() => quantityButton(item.id, -1)}>-</button>
                                     {item.quantity}
                                     <button onClick={() => quantityButton(item.id, 1)}>+</button>
-
-
                                 </td>
                                 <td>
                                     {hasDiscount ? (

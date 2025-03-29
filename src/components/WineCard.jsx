@@ -1,14 +1,23 @@
 import styles from "./WineCard.module.css";
 import { useNavigate } from "react-router-dom";
 
-const WineCard = ({ wineProps }) => {
+const WineCard = ({ wineProps, cart, setCart }) => {
+
+
     const navigate = useNavigate();
 
     const handleClick = () => {
         navigate("/winedetails", { state: { wine: wineProps } });
     };
 
+
+    // ---------------------- aggiungi prodotti al carrello -------------------------
+    const addToCart = (prodotto) => {
+        setCart([...cart, prodotto]);
+    };
+
     return (
+
         <div className={styles.wine_card}>
             {/* upper section card */}
             <div>
@@ -30,7 +39,7 @@ const WineCard = ({ wineProps }) => {
 
             {/* down section with button */}
             <div>
-                <button onClick={handleClick}>Scopri di più!</button>
+                <button onClick={() => addToCart({ id: wineProps.id })}>AGGIUNGI</button>
             </div>
         </div>
     );

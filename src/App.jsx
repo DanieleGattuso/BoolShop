@@ -42,9 +42,22 @@ export default function App() {
   }
 
 
+  // ---------------------- carrello -------------------------
+  // da modificare il nome della variabile
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+  // ------------------------------------------------------
+
+
   return (
     <>
-      <WineContext.Provider value={{ wines, setWines }}>
+      <WineContext.Provider value={{ wines, setWines, cart, setCart }}>
         <BrowserRouter>
           <Routes>
             <Route element={<DefaultLayout />}>

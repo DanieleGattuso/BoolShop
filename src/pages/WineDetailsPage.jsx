@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import WineContext from "../context/WineContext";
+
 import styles from "./WineDetailsPage.module.css";
 import waves from "../assets/path.svg"
 import grape from "../assets/grape_icon.png"
@@ -15,19 +17,13 @@ export default function WineDetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // da modificare il nome della variabile
-    const [cart, setCart] = useState(() => {
-        const savedCart = localStorage.getItem("cart");
-        return savedCart ? JSON.parse(savedCart) : [];
-    });
+    const { cart, setCart } = useContext(WineContext);
 
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
-
+    // ---------------------- carrello -------------------------
     const addToCart = (prodotto) => {
         setCart([...cart, prodotto]);
     };
+    // ------------------------------------------------------
 
     // Recupera il vino passato tramite lo state del navigate
     const wineDetails = location.state?.wine;

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import wineContext from "../context/WineContext";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 // import css
@@ -10,6 +11,10 @@ import WineCard from "../components/WineCard";
 
 
 export default function WinesPage() {
+
+    const { cart, setCart } = useContext(wineContext);
+
+
 
     // State to store all wines
     const [wines, setWines] = useState([]);
@@ -51,7 +56,7 @@ export default function WinesPage() {
 
     // Function to render WineCard components for each wine
     const renderWines = () => wines.map(wine => (
-        <WineCard key={wine.id} wineProps={wine} />
+        <WineCard key={wine.id} wineProps={wine} cart={cart} setCart={setCart} />
     ));
 
     return (
