@@ -37,7 +37,7 @@ h1 {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -30%);
-    height: 900px;
+    height: 90vh;
     z-index: 2;
 }
 
@@ -69,4 +69,104 @@ h1 {
 .bianco h1 {
 
     color: #BBAE7D;
+}
+
+
+
+
+/* WINE PROPERTIES */
+.footer_big_wave {
+
+    width: 45%;
+    height: 30px;
+    /* aumenta qui l'altezza */
+    object-fit: cover;
+    /* o contain */
+    display: block;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+}
+
+.wine_properties_big_container {
+
+    width: 100%;
+    /* background-color: #E3AF9D; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wine_properties_container {
+
+    /* background-color: aqua; */
+    height: 100%;
+    width: 90%;
+
+
+}
+
+.wine_properties_image {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.wine_properties_container h1 {
+
+    color: rgb(3, 3, 3);
+    font-size: 60px;
+    text-align: center;
+
+}
+
+.flex_container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.data_sheet_container {
+
+    /* background-color: #694B47; */
+    width: 60%;
+
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+
+
+
+.single_data_containers {
+
+    width: 50%;
+    /* background-color: aquamarine; */
+    /* border: black 1px solid; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.single_data_icon {
+
+    width: 30%;
+    /* background-color: #BBAE7D; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.single_data_script {
+    height: 100%;
+    width: 70%;
+    /* background-color: azure; */
+
+
 }

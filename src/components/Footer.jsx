@@ -8,9 +8,7 @@ export default function Footer() {
     return (
 
         <footer>
-            <div className={styles.wave_divider}>
 
-            </div>
 
 
             <div className={styles.footer_container}>
