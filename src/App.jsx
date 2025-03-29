@@ -56,10 +56,11 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
-  // ------------------------------------------------------
-  useEffect(() => {
-    console.log("questo è l'oggetto da mandare al checkoutpage", cartPair)
-  }, (cartPair));
+
+
+  // useEffect(() => {
+  //   console.log("questo è l'oggetto da mandare al checkoutpage", cartPair)
+  // }, (cartPair));
 
 
   return (
