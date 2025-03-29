@@ -30,12 +30,17 @@ export default function App() {
     fetchWines();
   }, []);
 
+  useEffect(() => {
+    console.log(wines);
+  }, [wines]);
+
   // Funzione per recuperare tutti i vini
   function fetchWines() {
     axios.get('http://localhost:3000/api/wines')
       .then(res => setWines(res.data))
       .catch(err => console.log(err));
   }
+
 
   return (
     <>

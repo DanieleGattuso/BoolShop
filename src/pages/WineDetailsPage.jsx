@@ -6,6 +6,7 @@ export default function WineDetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
 
+    // da modificare il nome della variabile
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem("cart");
         return savedCart ? JSON.parse(savedCart) : [];
