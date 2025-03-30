@@ -6,11 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShoppingBagPage() {
-
     const { wines, cart, setCart, cartPair, setCartPair } = useContext(WineContext);
 
     // get cart data from localStorage
-    useEffect(() => { setCart(JSON.parse(localStorage.getItem("cart")) || []); }, []);
+    useEffect(() => {
+        setCart(JSON.parse(localStorage.getItem("cart")) || []);
+
+    }, []);
     //     const savedCart = localStorage.getItem("cart");
     //     return savedCart ? JSON.parse(savedCart) : [];
     // });
@@ -81,26 +83,22 @@ export default function ShoppingBagPage() {
     return (
         <>
             <table className="table text-center ">
-                <thead className="">
+                <thead>
                     <tr>
                         <th scope="col">PRODOTTO</th>
                         <th scope="col">QUANTITA</th>
                         <th scope="col">PREZZO ARTICOLO</th>
-                        <th scope="col">TOTALE</th>
+                        {/* <th scope="col d-none">TOTALE</th> */}
                     </tr>
                 </thead >
                 <tbody>
                     {renderCart.map(item => {
-                        const hasDiscount = item.discount_price !== null; // check if discount exists
-                        const originalPrice = Number(item.price); // convert price to number
+                        const hasDiscount = item.discount_price !== null;
+                        const originalPrice = Number(item.price);
                         const finalPrice = hasDiscount ? Number(item.discount_price) : originalPrice;
-                        // use discount price if available
-
                         return (
                             <tr key={item.id}>
-                                {/* product */}
                                 <td>
-
                                     <div className={styles.table_product}>
                                         <div className={styles.table_image}>
                                             <img src={item.image} alt="" />
@@ -110,12 +108,9 @@ export default function ShoppingBagPage() {
                                         </div>
                                     </div>
                                 </td>
-                                {/* quantity */}
                                 <td >
                                     <div className={styles.box_quantity}>
                                         <div className={styles.quantity}>
-                                            {/* pulsante per rimuovere una quantità */}
-
                                             <button
                                                 className={styles.quantitybtn}
                                                 disabled={item.quantity === 1}
@@ -123,10 +118,7 @@ export default function ShoppingBagPage() {
                                             >
                                                 <FontAwesomeIcon icon={faMinus} />
                                             </button>
-                                            {/* numero quantita */}
                                             <span className="fw-bold px-2">{item.quantity}</span>
-
-                                            {/* pulsante per aggiungere una quantità */}
                                             <button
                                                 className={styles.quantitybtn}
                                                 disabled={item.quantity >= item.quantity_in_stock}
@@ -135,16 +127,13 @@ export default function ShoppingBagPage() {
                                                 <FontAwesomeIcon icon={faPlus} />
                                             </button>
                                         </div>
-
                                         <button className={styles.trash}
                                             onClick={() => quantityButton(item.id, 0)}
                                         >
                                             <FontAwesomeIcon icon={faTrash} />
                                         </button>
                                     </div>
-
                                 </td>
-                                {/* single item price */}
                                 <td >
                                     <div className={styles.price}>
                                         {hasDiscount ? (
@@ -160,13 +149,11 @@ export default function ShoppingBagPage() {
                                     </div>
 
                                 </td>
-                                {/* total item price */}
                                 <td>
-                                    <div className={styles.price}>
+                                    <div className="d-none">
                                         {(finalPrice * item.quantity).toFixed(2)}€
-
                                     </div>
-                                </td> {/* calculate total price */}
+                                </td>
                             </tr>
                         )
                     })}
