@@ -1,63 +1,90 @@
 import axios from "axios";
+import SearchBar from "../components/SearchBar";
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-// import css
+// Importing CSS module for styling
 import styles from "./Winespage.module.css";
 
-// import wine card
+// Importing the WineCard component to display individual wine items
 import WineCard from "../components/WineCard";
 
-
+// Main WinesPage component
 export default function WinesPage() {
 
-    // State to store all wines
+    // State to store all wines fetched from the API
     const [wines, setWines] = useState([]);
 
-    // Hook to read and modify the query string
+    // State to store wines after applying filters or search
+    const [filteredWines, setFilteredWines] = useState([]);
+
+    // Hooks for handling URL parameters and navigation
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 
-    // Read the "type" parameter from the query string (default "tutti")
+    // Extract the 'type' parameter from the URL (default is "tutti" if not provided)
     const filterType = searchParams.get("type") || "tutti";
 
-    // Function to fetch wines from the backend, modifying the URL based on the filter
+    // Extract the 'name' parameter from the URL (default is an empty string if not provided)
+    const searchQuery = searchParams.get("name") || "";
+
+    // Function to fetch wines from the backend API based on filters and search query
     const fetchWines = () => {
         let url = "http://localhost:3000/api/wines";
-        if (filterType !== "tutti") {
-            url += `?type=${filterType}`;
-        }
+        const params = [];
 
+        // Add type filter to the API URL if a specific type is selected
+        if (filterType !== "tutti") params.push(`type=${filterType}`);
+
+        // Add search query parameter to the API URL if provided
+        if (searchQuery) params.push(`search=${searchQuery}`);
+
+        // Append parameters to URL if any exist
+        if (params.length > 0) url += `?${params.join('&')}`;
+
+        // Fetch wines from the backend using axios
         axios.get(url)
             .then(res => {
-                console.log("Wines received:", res.data);
-                setWines(res.data);
+                setWines(res.data);            // Save fetched wines to the state
+                setFilteredWines(res.data);    // Initially, filteredWines will also hold all fetched wines
             })
             .catch(err => console.error("Error fetching wines:", err));
     };
 
-    // useEffect to call fetchWines when the component mounts or when the filter changes
-    useEffect(fetchWines, [filterType]);
+    // useEffect hook to call fetchWines whenever filterType or searchQuery parameters change
+    useEffect(fetchWines, [filterType, searchQuery]);
 
-    // Function to update the filter and the query string in the URL
+    // Function to handle filter button clicks; navigates to URL with type parameter
     const handleFilter = (type) => {
-        // Use the correct route, matching your App.jsx route
-        if (type === "tutti") {
-            navigate("/winespage");
-        } else {
-            navigate(`/winespage?type=${type}`);
-        }
+        navigate(type === "tutti" ? "/winespage" : `/winespage?type=${type}`);
     };
 
-    // Function to render WineCard components for each wine
-    const renderWines = () => wines.map(wine => (
+    // Function to handle search submissions; navigates to URL with name parameter
+    // Function to handle search submissions; navigates to URL with both type and name parameters
+    const handleSearch = (name) => {
+        const params = [];
+
+        // Preserve current type filter in search if it's not "tutti"
+        if (filterType !== "tutti") params.push(`type=${filterType}`);
+
+        // Add search query parameter if provided
+        if (name) params.push(`name=${name}`);
+
+        // Construct the URL with the parameters
+        const queryString = params.join("&");
+
+        // Navigate to the updated URL
+        navigate(`/winespage${queryString ? `?${queryString}` : ""}`);
+    };
+
+    // Function to render WineCard components for each wine in filteredWines state
+    const renderWines = () => filteredWines.map(wine => (
         <WineCard key={wine.id} wineProps={wine} />
     ));
 
+    // JSX to render the WinesPage UI
     return (
         <>
-
-            {/* upper section with title, description and buttons */}
             <div className={styles.big_container}>
                 <div className={styles.head_winelist_container}>
                     <h1>I NOSTRI VINI</h1>
@@ -70,15 +97,22 @@ export default function WinesPage() {
                         <button onClick={() => handleFilter("bianco")}>BIANCHI</button>
                         <button onClick={() => handleFilter("rosato")}>ROSATI</button>
                     </div>
+                    <SearchBar onSearch={handleSearch} />
                 </div>
             </div>
 
-            {/* down section with wine list of wine cards */}
             <div className={styles.big_wines_list_container}>
                 <div className={styles.wines_list_container}>
-                    {renderWines()}
+                    {filteredWines.length > 0 ? (
+                        renderWines()
+                    ) : (
+                        <div>
+                            <p>No wines found with this name. <button onClick={() => navigate('/winespage')}>Show all wines</button></p>
+                        </div>
+                    )}
                 </div>
             </div>
         </>
     );
 }
+

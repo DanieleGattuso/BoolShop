@@ -95,3 +95,9 @@
         margin-top: 5%;
     }
 }
+
+
+.container_pointer {
+
+    cursor: pointer;
+}

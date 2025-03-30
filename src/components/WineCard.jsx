@@ -11,7 +11,7 @@ const WineCard = ({ wineProps }) => {
     return (
         <div className={styles.wine_card}>
             {/* upper section card */}
-            <div>
+            <div onClick={handleClick} className={styles.container_pointer}>
                 <img src={wineProps.image} alt={wineProps.name} />
                 <h3>{wineProps.name}</h3>
 
@@ -29,9 +29,9 @@ const WineCard = ({ wineProps }) => {
             <p>{wineProps.abstract}</p>
 
             {/* down section with button */}
-            <div>
-                <button onClick={handleClick}>Scopri di più!</button>
-            </div>
+            {/* <div>
+                <button >Scopri di più!</button>
+            </div> */}
         </div>
     );
 };
