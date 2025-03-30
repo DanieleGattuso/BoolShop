@@ -6,29 +6,41 @@ import greenImage from '../assets/image.png';
 
 export default function HomePage() {
     // State per tutti i vini e per i bestseller
-    const [bestWines, setBestWines] = useState([]);
+    const [bestSeller, setBestSeller] = useState([]);
+
+    // State per tutti i vini e per i Best wines
+    const [bestWine, setBestWines] = useState([]);
+
 
     // useEffect per effettuare le chiamate API una sola volta al mount del componente
+    useEffect(() => {
+        fetchBestSeller();
+    }, []);
+
     useEffect(() => {
         fetchBestWines();
     }, []);
 
     // Funzione per recuperare i vini bestseller
-    function fetchBestWines() {
+    function fetchBestSeller() {
         axios.get('http://localhost:3000/api/wines/limited_stock')
+            .then(res => setBestSeller(res.data))
+            .catch(err => console.log(err));
+    }
+
+    function fetchBestWines() {
+        axios.get('http://localhost:3000/api/wines/best_wines')
             .then(res => setBestWines(res.data))
             .catch(err => console.log(err));
     }
 
     // Funzione helper per ottenere un vino tramite id
-    function getWineById(id) {
-        return wines.find(wine => wine.id === id);
-    }
+
 
     // Recupero dei vini specifici (per la sezione TOP 2025)
-    const redWine = null;
-    const whiteWine = null;
-    const roseWine = null;
+    const redWine = bestWine[0];
+    const whiteWine = bestWine[1];
+    const roseWine = bestWine[2];
 
     return (
         <>
@@ -97,8 +109,8 @@ export default function HomePage() {
                 <h1>BESTSELLER</h1>
             </div>
             <div className={styles.best_seller_container}>
-                {bestWines.length > 0 ? (
-                    bestWines.map(wine => (
+                {bestSeller.length > 0 ? (
+                    bestSeller.map(wine => (
                         <div key={wine.id} className={`${styles.best_dynamic_wine_container} ${styles[wine.type]}`}>
                             <div className={styles.wine_image_container}>
                                 <img src={wine.image} alt={wine.name} />

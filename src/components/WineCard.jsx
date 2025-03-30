@@ -20,7 +20,7 @@ const WineCard = ({ wineProps, cart, setCart }) => {
 
         <div className={styles.wine_card}>
             {/* upper section card */}
-            <div>
+            <div onClick={handleClick} className={styles.container_pointer}>
                 <img src={wineProps.image} alt={wineProps.name} />
                 <h3>{wineProps.name}</h3>
 
