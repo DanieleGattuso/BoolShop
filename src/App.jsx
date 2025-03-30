@@ -1,6 +1,6 @@
 // Import manage route from module react-router
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import axios from "axios";
 
 // Import context
@@ -30,9 +30,11 @@ export default function App() {
     fetchWines();
   }, []);
 
-  useEffect(() => {
-    console.log(wines);
-  }, [wines]);
+  // useEffect(() => {
+  //   console.log(wines);
+  // }, [wines]);
+
+
 
   // Funzione per recuperare tutti i vini
   function fetchWines() {
@@ -49,15 +51,21 @@ export default function App() {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
+  const [cartPair, setCartPair] = useState()
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
-  // ------------------------------------------------------
+
+
+  // useEffect(() => {
+  //   console.log("questo è l'oggetto da mandare al checkoutpage", cartPair)
+  // }, (cartPair));
 
 
   return (
     <>
-      <WineContext.Provider value={{ wines, setWines, cart, setCart }}>
+      <WineContext.Provider value={{ wines, setWines, cart, setCart, cartPair, setCartPair }}>
         <BrowserRouter>
           <Routes>
             <Route element={<DefaultLayout />}>
@@ -65,8 +73,8 @@ export default function App() {
               <Route path="/winespage" element={<Winespage />} />
               <Route path="/winedetails" element={<WineDetailsPage />} />
               {/* provvisoria */}
-              <Route path="/checkoutpage" element={<CheckoutPage />} />
               <Route path="/shopping-bag" element={< ShoppingBagPage />} />
+              <Route path="/checkoutpage" element={<CheckoutPage />} />
 
             </Route>
           </Routes>

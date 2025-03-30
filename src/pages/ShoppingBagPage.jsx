@@ -1,21 +1,31 @@
 import styles from "../pages/ShoppingBagPage.module.css";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, } from "react";
+import { Link } from "react-router-dom";
 import WineContext from "../context/WineContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShoppingBagPage() {
-
-    const { wines } = useContext(WineContext);
+    const { wines, cart, setCart, cartPair, setCartPair } = useContext(WineContext);
 
     // get cart data from localStorage
-    const [winesId, setwinesId] = useState(() => {
-        const savedCart = localStorage.getItem("cart");
-        return savedCart ? JSON.parse(savedCart) : [];
-    });
+    useEffect(() => {
+        setCart(JSON.parse(localStorage.getItem("cart")) || []);
+
+    }, []);
+    //     const savedCart = localStorage.getItem("cart");
+    //     return savedCart ? JSON.parse(savedCart) : [];
+    // });
+
 
     // save cart data back to localStorage whenever winesId changes
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(winesId));
-    }, [winesId]);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
+
+    useEffect(() => {
+        setCartPair(countWinesById(cart));
+    }, [cart]);
 
     // function to count the quantity of each item in the array
     function countWinesById(array) {
@@ -30,22 +40,28 @@ export default function ShoppingBagPage() {
         }));
     }
 
-    const cart = countWinesById(winesId);
+    // const cartPair = countWinesById(cart);
 
     // function to update the quantity in the cart (increment or decrement)
     const quantityButton = (id, qtyChange) => {
-        setwinesId(prevCart => {
+        setCart(prevCart => {
             let newCart = [...prevCart];
 
             if (qtyChange === 1) {
                 // add one more product with the same ID
                 newCart.push({ id });
-            } else {
+            }
+
+            else if (qtyChange === -1) {
                 // remove one product with the given ID
                 const index = newCart.findIndex(item => item.id === id);
                 if (index !== -1) {
                     newCart.splice(index, 1);
                 }
+            }
+            else if (qtyChange === 0) {
+                // remove all products with the given ID
+                newCart = newCart.filter(item => item.id !== id);
             }
 
             return newCart;
@@ -54,88 +70,138 @@ export default function ShoppingBagPage() {
 
     // render card only for FE
     const renderCart = wines
-        .filter(wine => cart.some(item => item.wine_id === wine.id)) // filter wines that are in the cart
+        .filter(wine => cartPair.some(item => item.wine_id === wine.id)) // filter wines that are in the cart
         .map(wine => {
-            const item = cart.find(item => item.wine_id === wine.id);
+            const item = cartPair.find(item => item.wine_id === wine.id);
             return {
                 ...wine,
                 quantity: item.quantity
             };
         });
-
-
+    console.log('queste sono le render cart', renderCart)
     // RENDER
     return (
         <>
-            <table className={styles}>
+            <table className="table text-center ">
                 <thead>
                     <tr>
-                        <th>Prodotto</th>
-                        <th>Quantità</th>
-                        <th>Prezzo Unitario</th>
-                        <th>Prezzo Totale</th>
+                        <th scope="col">PRODOTTO</th>
+                        <th scope="col">QUANTITA</th>
+                        <th scope="col">PREZZO ARTICOLO</th>
+                        {/* <th scope="col d-none">TOTALE</th> */}
                     </tr>
-                </thead>
-
+                </thead >
                 <tbody>
                     {renderCart.map(item => {
-                        const hasDiscount = item.discount_price !== null; // check if discount exists
-                        const originalPrice = Number(item.price); // convert price to number
-                        const finalPrice = hasDiscount ? Number(item.discount_price) : originalPrice; // use discount price if available
-
+                        const hasDiscount = item.discount_price !== null;
+                        const originalPrice = Number(item.price);
+                        const finalPrice = hasDiscount ? Number(item.discount_price) : originalPrice;
                         return (
                             <tr key={item.id}>
-                                <td>{item.name}</td>
                                 <td>
-                                    <button onClick={() => quantityButton(item.id, -1)}>-</button>
-                                    {item.quantity}
-                                    <button onClick={() => quantityButton(item.id, 1)}>+</button>
+                                    <div className={styles.table_product}>
+                                        <div className={styles.table_image}>
+                                            <img src={item.image} alt="" />
+                                        </div>
+                                        <div>
+                                            {item.name}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td >
+                                    <div className={styles.box_quantity}>
+                                        <div className={styles.quantity}>
+                                            <button
+                                                className={styles.quantitybtn}
+                                                disabled={item.quantity === 1}
+                                                onClick={() => quantityButton(item.id, -1)}
+                                            >
+                                                <FontAwesomeIcon icon={faMinus} />
+                                            </button>
+                                            <span className="fw-bold px-2">{item.quantity}</span>
+                                            <button
+                                                className={styles.quantitybtn}
+                                                disabled={item.quantity >= item.quantity_in_stock}
+                                                onClick={() => quantityButton(item.id, 1)}
+                                            >
+                                                <FontAwesomeIcon icon={faPlus} />
+                                            </button>
+                                        </div>
+                                        <button className={styles.trash}
+                                            onClick={() => quantityButton(item.id, 0)}
+                                        >
+                                            <FontAwesomeIcon icon={faTrash} />
+                                        </button>
+                                    </div>
+                                </td>
+                                <td >
+                                    <div className={styles.price}>
+                                        {hasDiscount ? (
+                                            <>
+                                                <s>{originalPrice.toFixed(2)}€</s>
+                                                <span>
+                                                    {finalPrice.toFixed(2)}€
+                                                </span>
+                                            </>
+                                        ) : (
+                                            `${finalPrice.toFixed(2)}€`
+                                        )}
+                                    </div>
+
                                 </td>
                                 <td>
-                                    {hasDiscount ? (
-                                        <>
-                                            <s>{originalPrice.toFixed(2)}€</s>
-                                            <span>
-                                                {finalPrice.toFixed(2)}€
-                                            </span>
-                                        </>
-                                    ) : (
-                                        `${finalPrice.toFixed(2)}€`
-                                    )}
+                                    <div className="d-none">
+                                        {(finalPrice * item.quantity).toFixed(2)}€
+                                    </div>
                                 </td>
-                                <td>{(finalPrice * item.quantity).toFixed(2)}€</td> {/* calculate total price */}
                             </tr>
-                        );
+                        )
                     })}
                 </tbody>
-            </table>
+            </table >
 
-            <table className={styles}>
-                <tr>
-                    <td>Totale Imponibile</td>
-                    <td>
-                        {renderCart
-                            .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
-                            .toFixed(2)}€ {/* total amount excluding tax */}
-                    </td>
-                </tr>
-                <tr>
-                    <td>Tasse</td>
-                    <td>Incluse</td> {/* taxes included */}
-                </tr>
-                <tr>
-                    <td>Spedizione</td>
-                    <td>GRATUITA</td> {/* free shipping */}
-                </tr>
-                <tr>
-                    <td>Totale</td>
-                    <td>
-                        {renderCart
-                            .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
-                            .toFixed(2)}€ {/* final total price */}
-                    </td>
-                </tr>
-            </table>
+            {/* riga inferiore */}
+            < div className="row" >
+                {/* colonna di sinistra */}
+                < div className="col-5" >
+                    da inserire il logo
+                </div >
+                {/* colonna di destra */}
+                < div className="col-7" >
+                    <div className={`${"row"} ${styles.summary_row}`}>
+                        <div className="col">Totale Imponibile</div>
+                        <div className={`${"col"} ${styles.summary_col}`}>
+                            {renderCart
+                                .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
+                                .toFixed(2)}€ {/* total amount excluding tax */}</div>
+                    </div>
+                    <div className={`${"row"} ${styles.summary_row}`}>
+                        <div className="col">Tasse</div>
+                        <div className={`${"col"} ${styles.summary_col}`}>Incluse</div>
+                    </div>
+                    <div className={`${"row"} ${styles.summary_row}`}>
+                        <div className="col">Spedizione</div>
+                        <div className={`${"col"} ${styles.summary_col}`}>GRATUITA</div>
+                    </div>
+                    <div className={`${"row"} ${styles.summary_row}`}>
+                        <div className="col">Totale</div>
+                        <div className={`${"col"} ${styles.summary_col}`}>
+                            {renderCart
+                                .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
+                                .toFixed(2)}€ {/* final total price */}
+                        </div>
+                    </div>
+                </div >
+
+            </div >
+
+            {/* procedi al checkout */}
+
+            < div className={styles.checkout_box} >
+                <Link to="/checkoutpage">Procedi al checkout</Link>
+            </div >
+
+
         </>
     );
 }

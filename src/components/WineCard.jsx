@@ -39,7 +39,7 @@ const WineCard = ({ wineProps, cart, setCart }) => {
 
             {/* down section with button */}
             <div>
-                <button onClick={() => addToCart({ id: wineProps.id })}>AGGIUNGI</button>
+                <button disabled={wineProps.quantity_in_stock === 0} onClick={() => addToCart({ id: wineProps.id })}>AGGIUNGI</button>
             </div>
         </div>
     );

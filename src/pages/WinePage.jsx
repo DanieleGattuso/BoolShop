@@ -14,8 +14,6 @@ export default function WinesPage() {
 
     const { cart, setCart } = useContext(wineContext);
 
-
-
     // State to store all wines
     const [wines, setWines] = useState([]);
 
@@ -84,6 +82,7 @@ export default function WinesPage() {
                     {renderWines()}
                 </div>
             </div>
+
         </>
     );
 }

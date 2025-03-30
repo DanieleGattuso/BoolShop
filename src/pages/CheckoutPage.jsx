@@ -1,25 +1,29 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import WineContext from "../context/WineContext";
 
 
-// mettiamo l'oggetto vuoto all'interno di una variabile
-const initialFormData = {
-    // aggiungiamo tutte le proprietà che vogliamo mappare e assegniamo loro un valore iniziale.
-    fullName: '',
-    email: "",
-    phoneNumber: "",
-    address: "",
-    zipCode: "",
-    country: "",
-    cart: [
-        { "wine_id": 5, "quantity": 3 },
-        { "wine_id": 12, "quantity": 2 }
-    ]
-    // cart:"" da vedere come fare
-};
+
+
 
 export default function CheckoutPage() {
+    const { cartPair } = useContext(WineContext);
+
+
+    // mettiamo l'oggetto vuoto all'interno di una variabile
+    const initialFormData = {
+        // aggiungiamo tutte le proprietà che vogliamo mappare e assegniamo loro un valore iniziale.
+        fullName: '',
+        email: "",
+        phoneNumber: "",
+        address: "",
+        zipCode: "",
+        country: "",
+        cart: cartPair,
+    };
+
+
     const endpoint = 'http://localhost:3000/api/orders';
 
     // creiamo una variabile di stato che conterrà il nostro array di oggetti
@@ -149,7 +153,7 @@ export default function CheckoutPage() {
                         </section>
 
                         <div className="d-flex justify-content-end pb-3">
-                            <Link to='/'>
+                            <Link to='/shopping-bag'>
                                 <button type="button" className="btn btn-secondary mx-3">Indietro</button>
                             </Link>
                             <button type="submit" className="btn btn-primary">Conferma</button>

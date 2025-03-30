@@ -2,3 +2,159 @@ table {
     width: 100%;
     margin-bottom: 50px;
 }
+
+button {
+    all: unset;
+    /* Rimuove tutti gli stili predefiniti */
+    background: none;
+    /* Rimuove il background */
+    border: none;
+    /* Rimuove il bordo */
+    padding: 0;
+    /* Rimuove il padding */
+    font: inherit;
+    /* Inherited font styles */
+    color: inherit;
+    /* Inherited text color */
+    cursor: pointer;
+    /* Mantiene il cursore pointer per indicare che è cliccabile */
+    outline: none;
+}
+
+.table_product {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 1.3rem;
+}
+
+.table_image img {
+    height: 60px;
+}
+
+.box_quantity {
+    display: flex;
+    margin-top: 15px;
+    gap: 0.5rem;
+}
+
+.quantity {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #a78888;
+    background-color: #fffcf5;
+    border-radius: 9999px;
+    margin-right: 0.5rem;
+    min-width: 110px;
+    transition: background-color 0.2s ease;
+}
+
+.quantitybtn {
+    color: #a78888;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.trash {
+    color: #4a2727;
+    cursor: pointer;
+}
+
+.trash:hover {
+    color: #953333;
+}
+
+.quantity:hover {
+    background-color: #f9efd9;
+}
+
+.quantitybtn:active {
+    color: #fff;
+}
+
+.price {
+    margin-top: 15px;
+}
+
+
+/* Summary  */
+.summary_row {
+    border-bottom: 0.5px solid #91825e80;
+    padding: 0.5rem;
+    text-align: center;
+    align-items: center;
+}
+
+.summary_col {
+
+    text-align: right;
+    margin: 0 1rem;
+}
+
+/* checkout button */
+.checkout_box {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+
+}
+
+.checkout_box a {
+    border-radius: 9999px;
+    padding: 0.3rem 0.6rem;
+    text-decoration: none;
+    border: 1px solid #a78888;
+    background-color: #fffcf5;
+    color: #4a2727;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+    margin-right: 0.5rem;
+}
+
+.checkout_box a:hover {
+    background-color: #ffff;
+    transition: backgrrgb(69, 32, 32)lor 0.2s ease;
+}
+
+
+
+
+@media (max-width: 480px) {
+
+    /* Add responsive styles for mobile here */
+    table {
+        font-size: 0.8rem;
+    }
+
+    .table_product {
+        flex-direction: column;
+        align-items: center
+    }
+
+    .table_image {
+        display: none;
+    }
+
+    .box_quantity {
+        margin-top: 0px;
+    }
+
+    .quantity {
+        margin-right: 0.4rem;
+        min-width: 100px;
+    }
+
+    .quantitybtn {
+        color: #a78888;
+        font-size: 0.6rem;
+        padding: 3px 10px;
+    }
+
+    .price {
+        margin-top: 0px;
+    }
+
+
+}
