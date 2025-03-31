@@ -31,7 +31,7 @@ export default function HomePage() {
     }
 
     function fetchBestWines() {
-        axios.get('http://localhost:3000/api/wines/best_wines')
+        axios.get('http://localhost:3000/api/wines/wines_selection')
             .then(res => setBestWines(res.data))
             .catch(err => console.log(err));
     }
