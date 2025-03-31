@@ -1,9 +1,10 @@
+
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useContext } from 'react';
 import WineContext from "../context/WineContext";
 import validCountries from "../functions/validCountries";
-
+import styles from "./CheckoutPage.module.css"
 
 export default function CheckoutPage() {
     const { cartPair, setCartPair, setCart } = useContext(WineContext);
@@ -12,7 +13,7 @@ export default function CheckoutPage() {
     // mettiamo l'oggetto vuoto all'interno di una variabile
     const initialFormData = {
         // aggiungiamo tutte le proprietà che vogliamo mappare e assegniamo loro un valore iniziale.
-        fullName: '',
+        fullName: "",
         email: "",
         phoneNumber: "",
         address: "",
@@ -57,7 +58,7 @@ export default function CheckoutPage() {
         if (inputValue === "fullName" && !event.target.value) {
             event.target.setCustomValidity(`inserisci il tuo nome completo`)
         } else if (inputValue === "email" && !event.target.value) {
-            event.target.setCustomValidity(`inserisci un'email valida "@" `)
+            event.target.setCustomValidity(`inserisci un'e-mail valida "@" `)
         } else if (inputValue === "phoneNumber" && !event.target.value) {
             event.target.setCustomValidity(`inserisci il tuo numero di telefono`)
         } else if (inputValue === "address" && !event.target.value) {
@@ -76,15 +77,15 @@ export default function CheckoutPage() {
     return (
         <>
             <div className="container">
-                <h1>Inserisci i tuoi dati</h1>
+                <h2 className="m-3">Ci siamo quasi...</h2>
 
                 {/* da modificare la class */}
-                <section className='add-trip-sections'>
+                <section className={styles.checkout_form}>
 
                     {/* form */}
                     <form onSubmit={sendData}>
-                        <div className='row'>
-                            <div className="col-6 mb-3">
+                        <div className={`row ${styles.input_box}`}>
+                            <div className="col-sm-12 col-lg-6 mb-3">
                                 {/* fullname */}
                                 <label htmlFor="input-fullname" className="form-label">Nome Completo</label>
                                 <input
@@ -102,9 +103,9 @@ export default function CheckoutPage() {
                                 />
                             </div>
 
-                            <div className="col mb-3">
+                            <div className="col-sm-12 col-lg-6 mb-3">
                                 {/* email */}
-                                <label htmlFor="input-email" className="form-label">Email</label>
+                                <label htmlFor="input-email" className="form-label">Indirizzo e-mail</label>
                                 <input
                                     type="email"
                                     name="email"
@@ -115,11 +116,11 @@ export default function CheckoutPage() {
                                     onInput={validateInput} // Rimuove l'errore quando l'utente inizia a scrivere
                                     className="form-control"
                                     id="input-email"
-                                    placeholder="Inserisci la tua email"
+                                    placeholder="Inserisci la tua e-mail"
                                 />
                             </div>
 
-                            <div className="col mb-3">
+                            <div className="col-sm-12 col-lg-4 mb-3">
                                 {/* phoneNumber */}
                                 <label htmlFor="input-phoneNumber" className="form-label">Numero di telefono</label>
                                 <input
@@ -135,10 +136,8 @@ export default function CheckoutPage() {
                                     placeholder="Inserisci il tuo Numero di telefono"
                                 />
                             </div>
-                        </div>
 
-                        <div className="row">
-                            <div className="col mb-3">
+                            <div className="col-sm-12 col-lg-4 mb-3">
                                 {/* address */}
                                 <label htmlFor="address" className="form-label">Indirizzo</label>
                                 <input
@@ -154,11 +153,9 @@ export default function CheckoutPage() {
                                     placeholder="Inserisci il tuo indirizzo"
                                 />
                             </div>
-                        </div>
 
-                        {/* Sezione file */}
-                        <section className='row'>
-                            <div className="mb-3 col">
+                            {/* Sezione file */}
+                            <div className="col-sm-12 col-lg-4 mb-3">
                                 <div>
                                     <label htmlFor="zipCode" className="form-label">Codice Postale</label>
                                 </div>
@@ -175,7 +172,7 @@ export default function CheckoutPage() {
                                     placeholder="Inserisci il tuo codice postale"
                                 />
                             </div>
-                            <div className="mb-3 col">
+                            <div className="col-sm-12 col-lg-4 mb-3">
                                 <div>
                                     <label htmlFor="country" className="form-label">Stato</label>
                                 </div>
@@ -195,13 +192,15 @@ export default function CheckoutPage() {
                                     ))}
                                 </select>
                             </div>
-                        </section>
+                        </div>
 
-                        <div className="d-flex justify-content-end pb-3">
-                            <Link to='/shopping-bag'>
-                                <button type="button" className="btn btn-secondary mx-3">Indietro</button>
-                            </Link>
-                            <button type="submit" className="btn btn-primary">Conferma</button>
+                        <div className={styles.box_button}>
+                            <div className={styles.back_button} >
+                                <Link to="/shopping-bag">Indietro</Link>
+                            </div >
+                            <div>
+                                <button type="submit" className={styles.confirm_button}>Conferma</button>
+                            </div>
                         </div>
                     </form>
                 </section>
