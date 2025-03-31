@@ -151,19 +151,20 @@ button {
 }
 
 .checkout_box a {
-    border-radius: 9999px;
-    padding: 0.3rem 0.6rem;
-    text-decoration: none;
-    border: 1px solid #a78888;
-    background-color: #fffcf5;
-    color: #4a2727;
-    transition: background-color 0.2s ease;
+    border-radius: 9999px !important;
+    padding: 0.3rem 0.6rem !important;
+    text-decoration: none !important;
+    border: 1px solid #a78888 !important;
+    background-color: #4a2727cf !important;
+    color: #ffffff !important;
+    transition: background-color 0.2s ease !important;
     margin-right: 0.5rem;
 }
 
 .checkout_box a:hover {
-    background-color: #ffff;
-    transition: backgrrgb(69, 32, 32)lor 0.2s ease;
+    background-color: #5a3232cf !important;
+    color: rgb(255, 255, 255) !important;
+    transition: background-color rgb(69, 32, 32)lor 0.2s ease !important;
 }
 
 

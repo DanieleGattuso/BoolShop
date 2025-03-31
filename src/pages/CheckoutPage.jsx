@@ -77,7 +77,7 @@ export default function CheckoutPage() {
     return (
         <>
             <div className="container">
-                <h2 className="m-3">Ci siamo quasi...</h2>
+                <h2 className="p-3">Ci siamo quasi...</h2>
 
                 {/* da modificare la class */}
                 <section className={styles.checkout_form}>
