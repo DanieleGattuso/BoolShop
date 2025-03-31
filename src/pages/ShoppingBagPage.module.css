@@ -11,10 +11,11 @@ button {
 
 .table_header {
     display: block;
-    text-align: left;
-    padding: 1rem 0.5rem 0.5rem !important;
-    padding-left: 2rem;
+    text-align: center;
+    padding: 1rem 2rem 0.5rem !important;
+    padding-left: 0 2rem !important;
 }
+
 
 
 .cards_box {
@@ -29,7 +30,7 @@ button {
     border-bottom: 0.5px solid #91825e80;
 }
 
-.table_product {
+.col_image {
     display: flex;
     justify-content: left;
     align-items: center;
@@ -50,6 +51,8 @@ button {
     display: flex;
     align-items: center;
     justify-content: start;
+    font-size: 1.2rem;
+    text-transform: uppercase;
 }
 
 .box_quantity {
@@ -105,6 +108,25 @@ button {
     justify-content: center;
 }
 
+.discount_price {
+    color: #c14d4d;
+}
+
+.discount {
+    color: #c14d4d;
+    font-size: 0.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    position: relative;
+    top: -0.4rem;
+
+
+}
+
+.single_price {
+    font-size: 0.8rem;
+    color: #685c45b1;
+}
 
 /* Summary  */
 .summary_row {
@@ -162,11 +184,6 @@ button {
         display: none !important;
     }
 
-
-    .table_product {
-        /* flex-direction: column; */
-        align-items: center
-    }
 
     .name_product {
         justify-content: center;

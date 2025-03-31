@@ -14,7 +14,7 @@ export default function ShoppingCard({ renderCart, quantityButton }) {
                     // riga intera della card
                     <div className={`row ${styles.card}`} key={item.id}>
                         {/* colonna di sinistra*/}
-                        <div className={`col-2 ${styles.table_product}`}>
+                        <div className={`col-2 ${styles.col_image}`}>
                             {/* immagine prodotto */}
                             <div className={styles.table_image}>
                                 <img src={item.image} alt="" />
@@ -58,17 +58,32 @@ export default function ShoppingCard({ renderCart, quantityButton }) {
                                 <div className={`col-sm-12 col-md-4 col-lg-4 ${styles.price}`}>
                                     {hasDiscount ? (
                                         <>
-                                            <span>
-                                                {(finalPrice * item.quantity).toFixed(2)}€
-                                                ({finalPrice.toFixed(2)}€/bottiglia)
-                                            </span>
+                                            <div className="d-block">
+
+                                                <span className={styles.discount_price}>
+                                                    {(finalPrice * item.quantity).toFixed(2)}€
+                                                </span>
+                                                <span className={styles.discount}> In Sconto</span>
+                                                <div className={styles.single_price}>
+                                                    ({finalPrice.toFixed(2)}€/bottiglia)
+                                                </div>
+                                            </div>
+
+
 
                                         </>
                                     ) : (
-                                        <span>
-                                            {(finalPrice * item.quantity).toFixed(2)}€
-                                            ({finalPrice.toFixed(2)}€/bottiglia)
-                                        </span>
+                                        <>
+                                            <div className="d-block">
+                                                <div>
+                                                    {(finalPrice * item.quantity).toFixed(2)}€
+                                                </div>
+                                                <div className={styles.single_price}>
+                                                    ({finalPrice.toFixed(2)}€/bottiglia)
+                                                </div>
+                                            </div>
+                                        </>
+
                                     )}
                                 </div>
 
@@ -78,7 +93,7 @@ export default function ShoppingCard({ renderCart, quantityButton }) {
                         </div>
 
 
-                    </div>
+                    </div >
                 )
             })}
 
