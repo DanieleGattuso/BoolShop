@@ -84,8 +84,8 @@ export default function ShoppingList() {
             <div className={`container ${styles.box}`}>
                 {/* shopping bag list*/}
                 <div className={`row ${styles.table_header}`}>
-                    <div className="col-6"><h6 className={styles.header_product}>PRODOTTO</h6></div>
-                    <div className="col-3"><h6>QUANTITÀ</h6></div>
+                    <div className="col-5"><h6>PRODOTTO</h6></div>
+                    <div className="col-4"><h6>QUANTITÀ</h6></div>
                     <div className="col-3"><h6>PREZZO</h6></div>
                 </div>
 

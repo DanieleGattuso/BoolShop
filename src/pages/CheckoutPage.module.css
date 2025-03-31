@@ -1,0 +1,49 @@
+.checkout_form {
+    padding: 1rem;
+
+}
+
+.input_box {
+    padding-bottom: 1rem;
+    border-bottom: 1.2px solid #cfc189;
+}
+
+.box_button {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0.2rem;
+}
+
+.back_button a {
+    border-radius: 9999px;
+    padding: 0.3rem 0.6rem;
+    text-decoration: none;
+    border: 1px solid #a78888;
+    background-color: #fffcf5;
+    color: #000000;
+    transition: background-color 0.2s ease;
+    margin-right: 0.5rem;
+}
+
+.back_button a:hover {
+    background-color: #f2ebdf;
+    color: rgb(0, 0, 0);
+    transition: background-color rgb(69, 32, 32)lor 0.2s ease;
+}
+
+.confirm_button {
+    border-radius: 9999px !important;
+    padding: 0.3rem 0.6rem !important;
+    text-decoration: none !important;
+    border: 1px solid #a78888 !important;
+    background-color: #4a2727cf !important;
+    color: #ffffff !important;
+    transition: background-color 0.2s ease !important;
+    margin-right: 0.5rem;
+}
+
+.confirm_button:hover {
+    background-color: #5a3232cf !important;
+    color: rgb(255, 255, 255) !important;
+    transition: background-color rgb(69, 32, 32)lor 0.2s ease !important;
+}
