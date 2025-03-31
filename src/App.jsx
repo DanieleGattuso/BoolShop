@@ -57,7 +57,7 @@ export default function App() {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  const [cartPair, setCartPair] = useState()
+  const [cartPair, setCartPair] = useState([])
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));

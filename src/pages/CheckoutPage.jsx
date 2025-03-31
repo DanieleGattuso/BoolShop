@@ -2,13 +2,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useContext } from 'react';
 import WineContext from "../context/WineContext";
-
-
-
+import validCountries from "../functions/validCountries";
 
 
 export default function CheckoutPage() {
-    const { cartPair } = useContext(WineContext);
+    const { cartPair, setCartPair, cart, setCart } = useContext(WineContext);
 
 
     // mettiamo l'oggetto vuoto all'interno di una variabile
@@ -35,7 +33,13 @@ export default function CheckoutPage() {
         console.log("Dati inviati:", formData);
         axios.post(endpoint, formData)
             .then(response => {
-                console.log("Ordine inviato con successo:", response.data);
+                console.log("Ordine inviato con successo:", response.data)
+                setFormData(initialFormData);
+                localStorage.clear();
+                setCart([]);
+                setCartPair([]);
+
+
             })
             .catch(error => {
                 console.error("Errore nell'invio dell'ordine:", error.response?.data || error.message);
@@ -48,6 +52,25 @@ export default function CheckoutPage() {
         setFormData(prev => ({ ...prev, [name]: value }));
     }
 
+    const validateInput = (event) => {
+        const inputValue = event.target.name
+        if (inputValue === "fullName" && !event.target.value) {
+            event.target.setCustomValidity(`inserisci il tuo nome completo`)
+        } else if (inputValue === "email" && !event.target.value) {
+            event.target.setCustomValidity(`inserisci un'email valida "@" `)
+        } else if (inputValue === "phoneNumber" && !event.target.value) {
+            event.target.setCustomValidity(`inserisci il tuo numero di telefono`)
+        } else if (inputValue === "address" && !event.target.value) {
+            event.target.setCustomValidity(`inserisci il tuo indirizzo di fatturazione`)
+        } else if (inputValue === "zipCode" && !/^\d{5}$/.test(event.target.value)) {
+            event.target.setCustomValidity(`Il codice postale deve essere composto da 5 numeri`)
+        } else if (inputValue === "country" && !validCountries.includes(event.target.value.trim())) {
+            event.target.setCustomValidity(`Paese non valido`)
+        }
+        else {
+            event.target.setCustomValidity('');
+        }
+    }
 
 
     return (
@@ -69,9 +92,13 @@ export default function CheckoutPage() {
                                     name="fullName"
                                     value={formData.fullName}
                                     onChange={setFieldValue}
+                                    required
+                                    onInvalid={validateInput} // Attiva il messaggio personalizzato
+                                    onInput={validateInput} // Rimuove l'errore quando l'utente inizia a scrivere
                                     className="form-control"
                                     id="input-fullname"
                                     placeholder="Inserisci il tuo nome"
+
                                 />
                             </div>
 
@@ -83,6 +110,9 @@ export default function CheckoutPage() {
                                     name="email"
                                     value={formData.email}
                                     onChange={setFieldValue}
+                                    required
+                                    onInvalid={validateInput} // Attiva il messaggio personalizzato
+                                    onInput={validateInput} // Rimuove l'errore quando l'utente inizia a scrivere
                                     className="form-control"
                                     id="input-email"
                                     placeholder="Inserisci la tua email"
@@ -97,6 +127,9 @@ export default function CheckoutPage() {
                                     name="phoneNumber"
                                     value={formData.phoneNumber}
                                     onChange={setFieldValue}
+                                    required
+                                    onInvalid={validateInput} // Attiva il messaggio personalizzato
+                                    onInput={validateInput} // Rimuove l'errore quando l'utente inizia a scrivere
                                     className="form-control"
                                     id="input-phoneNumber"
                                     placeholder="Inserisci il tuo Numero di telefono"
@@ -113,6 +146,9 @@ export default function CheckoutPage() {
                                     name="address"
                                     value={formData.address}
                                     onChange={setFieldValue}
+                                    required
+                                    onInvalid={validateInput} // Attiva il messaggio personalizzato
+                                    onInput={validateInput} // Rimuove l'errore quando l'utente inizia a scrivere
                                     className="form-control"
                                     id="input_address"
                                     placeholder="Inserisci il tuo indirizzo"
@@ -131,6 +167,9 @@ export default function CheckoutPage() {
                                     name="zipCode"
                                     value={formData.zipCode}
                                     onChange={setFieldValue}
+                                    required
+                                    onInvalid={validateInput} // Attiva il messaggio personalizzato
+                                    onInput={validateInput} // Rimuove l'errore quando l'utente inizia a scrivere
                                     className="form-control"
                                     id="input_zipCode"
                                     placeholder="Inserisci il tuo codice postale"
@@ -140,15 +179,21 @@ export default function CheckoutPage() {
                                 <div>
                                     <label htmlFor="country" className="form-label">Stato</label>
                                 </div>
-                                <input
-                                    type="text"
+                                <select
                                     name="country"
                                     value={formData.country}
                                     onChange={setFieldValue}
+                                    required
+                                    onInvalid={validateInput} // Attiva il messaggio personalizzato
+                                    onInput={validateInput} // Rimuove l'errore quando l'utente inizia a scrivere
                                     className="form-control"
                                     id="input_country"
-                                    placeholder="Inserisci lo stato"
-                                />
+                                >
+                                    <option value="" disabled>Seleziona il tuo stato</option>
+                                    {validCountries.map((country, index) => (
+                                        <option key={index} value={country}>{country}</option>
+                                    ))}
+                                </select>
                             </div>
                         </section>
 
