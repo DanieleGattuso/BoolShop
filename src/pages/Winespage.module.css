@@ -11,6 +11,11 @@ main {
 
 /* head container rules */
 
+.active {
+    background-color: #3a2520 !important;
+    color: white !important;
+}
+
 .head_winelist_container {
     width: 50%;
     text-align: center;

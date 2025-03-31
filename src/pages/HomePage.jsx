@@ -4,6 +4,7 @@ import styles from "./HomePage.module.css";
 import videoBg from '../assets/vinogiusto.mp4';
 import greenImage from '../assets/image.png';
 import { Link } from "react-router-dom";
+import Popup from "../components/PopUp"
 
 export default function HomePage() {
     // State per tutti i vini e per i bestseller
@@ -47,6 +48,7 @@ export default function HomePage() {
 
     return (
         <>
+            <Popup />
             {/* Sezione Hero con video di sfondo */}
             <div className={styles.homepage_video}>
                 <video autoPlay loop muted playsInline>

@@ -94,7 +94,7 @@ export default function WinesPage() {
                 <div className={styles.head_winelist_container}>
                     <h1>I NOSTRI VINI</h1>
                     <p>
-                        Vini unici, tra varietali e blend, ognuno con una propria anima ma con un’origine comune: la Terra Booleana.
+                        Vini unici, tra varietà e blend, ognuno con una propria anima ma con un'origine comune: la Terra Booleana.
                     </p>
 
 
@@ -104,11 +104,39 @@ export default function WinesPage() {
 
             <div className={styles.filters_container}>
                 <div className={styles.buttons}>
-                    <button onClick={() => handleFilter("tutti")}>TUTTI</button>
-                    <button onClick={() => handleFilter("rosso")}>ROSSI</button>
-                    <button onClick={() => handleFilter("bianco")}>BIANCHI</button>
-                    <button onClick={() => handleFilter("rosato")}>ROSATI</button>
+                    <button
+                        className={filterType === "tutti" ? styles.active : ""}
+                        onClick={() => handleFilter("tutti")}
+                    >
+                        TUTTI
+                    </button>
+                    <button
+                        className={filterType === "rosso" ? styles.active : ""}
+                        onClick={() => handleFilter("rosso")}
+                    >
+                        ROSSI
+                    </button>
+                    <button
+                        className={filterType === "bianco" ? styles.active : ""}
+                        onClick={() => handleFilter("bianco")}
+                    >
+                        BIANCHI
+                    </button>
+                    <button
+                        className={filterType === "rosato" ? styles.active : ""}
+                        onClick={() => handleFilter("rosato")}
+                    >
+                        ROSATI
+                    </button>
+                    <button
+                        className={filterType === "discount" ? styles.active : ""}
+                        onClick={() => handleFilter("discount")}
+                    >
+                        OFFERTE
+                    </button>
+
                 </div>
+
                 <SearchBar onSearch={handleSearch} className={styles.searchbar} />
             </div>
 
@@ -118,7 +146,7 @@ export default function WinesPage() {
                         renderWines()
                     ) : (
                         <div>
-                            <p>No wines found with this name. <button onClick={() => navigate('/winespage')}>Show all wines</button></p>
+                            <p>Nessun vino corrispondente ai criteri di ricerca. <button onClick={() => navigate('/winespage')}><b>Mostra tutti i vini.</b></button></p>
                         </div>
                     )}
                 </div>
