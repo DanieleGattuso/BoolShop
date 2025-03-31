@@ -2,7 +2,6 @@ import styles from "../pages/ShoppingBagPage.module.css";
 import ShoppingCard from "../components/ShoppingCard";
 import { useEffect, useContext, } from "react";
 import { Link } from "react-router-dom";
-
 import WineContext from "../context/WineContext";
 
 export default function ShoppingList() {
@@ -62,8 +61,6 @@ export default function ShoppingList() {
         });
     };
 
-    // const cartPair = countWinesById(cart);
-
     // render card only for FE
     const renderCart = wines
         .filter(wine => cartPair.some(item => item.wine_id === wine.id)) // filter wines that are in the cart
@@ -75,82 +72,58 @@ export default function ShoppingList() {
             };
         });
 
+    // Calcola il totale
+    const totalAmount = renderCart
+        .reduce((acc, { discount_price, price, quantity }) => acc + (discount_price || price) * quantity, 0)
+        .toFixed(2);
+
     console.log('queste sono le render cart', renderCart)
 
     return (
         <>
-            <div className="container">
+            <div className={`container ${styles.box}`}>
                 {/* shopping bag list*/}
                 <div className={`row ${styles.table_header}`}>
-                    {/* Prodotto */}
-                    <div className="col-4">
-                        <h6>PRODOTTO</h6>
-                    </div>
-                    {/* Quantità */}
-                    <div className="col-4">
-                        <h6>QUANTITA</h6>
-                    </div>
-                    {/* Prezzo articolo */}
-                    <div className="col-2">
-                        <h6>PREZZO ARTICOLO</h6>
-                    </div>
-                    {/* Totale */}
-                    <div className="col-2">
-                        <h6>TOTALE</h6>
-                    </div>
+                    <div className="col-6"><h6 className={styles.header_product}>PRODOTTO</h6></div>
+                    <div className="col-3"><h6>QUANTITÀ</h6></div>
+                    <div className="col-3"><h6>PREZZO</h6></div>
                 </div>
-                {/* inizio LISTA ARTICOLI */}
-                <div className="row">
-                    {/* shopping bag card */}
-                    <div className="col">
-                        <ShoppingCard
-                            renderCart={renderCart}
-                            quantityButton={quantityButton}
-                        />
-                    </div>
+
+                {/* box card */}
+                <div className={styles.cards_box}>
+                    <ShoppingCard renderCart={renderCart} quantityButton={quantityButton} />
                 </div>
-            </div >
 
 
-            {/* riga inferiore */}
-            < div className="row" >
-                {/* colonna di sinistra */}
-                < div className="col-5" >
-                    da inserire il logo
-                </div >
-                {/* colonna di destra */}
-                < div className="col-7" >
-                    <div className={`${"row"} ${styles.summary_row}`}>
-                        <div className="col">Totale Imponibile</div>
-                        <div className={`${"col"} ${styles.summary_col}`}>
-                            {renderCart
-                                .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
-                                .toFixed(2)}€ {/* total amount excluding tax */}</div>
-                    </div>
-                    <div className={`${"row"} ${styles.summary_row}`}>
-                        <div className="col">Tasse</div>
-                        <div className={`${"col"} ${styles.summary_col}`}>Incluse</div>
-                    </div>
-                    <div className={`${"row"} ${styles.summary_row}`}>
-                        <div className="col">Spedizione</div>
-                        <div className={`${"col"} ${styles.summary_col}`}>GRATUITA</div>
-                    </div>
-                    <div className={`${"row"} ${styles.summary_row}`}>
-                        <div className="col">Totale</div>
-                        <div className={`${"col"} ${styles.summary_col}`}>
-                            {renderCart
-                                .reduce((acc, item) => acc + (item.discount_price !== null ? Number(item.discount_price) : Number(item.price)) * item.quantity, 0)
-                                .toFixed(2)}€ {/* final total price */}
+
+                {/* riga inferiore */}
+                <div className="row mt-3">
+                    <div className="col-5">da inserire il logo</div>
+                    <div className="col-7">
+                        <div className={`row ${styles.summary_row}`}>
+                            <div className="col">Totale Imponibile</div>
+                            <div className={`col ${styles.summary_col}`}>{totalAmount}€</div>
+                        </div>
+                        <div className={`row ${styles.summary_row}`}>
+                            <div className="col">Tasse</div>
+                            <div className={`col ${styles.summary_col}`}>Incluse</div>
+                        </div>
+                        <div className={`row ${styles.summary_row}`}>
+                            <div className="col">Spedizione</div>
+                            <div className={`col ${styles.summary_col}`}>GRATUITA</div>
+                        </div>
+                        <div className={`row ${styles.summary_row}`}>
+                            <div className="col">Totale</div>
+                            <div className={`col ${styles.summary_col}`}>{totalAmount}€</div>
                         </div>
                     </div>
+                </div>
+
+                {/* procedi al checkout */}
+
+                <div className={styles.checkout_box} >
+                    <Link to="/checkoutpage">Procedi al checkout</Link>
                 </div >
-
-            </div >
-
-            {/* procedi al checkout */}
-
-            < div className={styles.checkout_box} >
-                <Link to="/checkoutpage">Procedi al checkout</Link>
             </div >
         </>
     )

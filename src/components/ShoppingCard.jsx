@@ -12,63 +12,72 @@ export default function ShoppingCard({ renderCart, quantityButton }) {
                 const finalPrice = hasDiscount ? Number(item.discount_price) : originalPrice;
                 return (
                     // riga intera della card
-                    <div className="row" key={item.id}>
-                        {/* col prodotto */}
-                        <div className={`col-4 ${styles.table_product}`}>
+                    <div className={`row ${styles.card}`} key={item.id}>
+                        {/* colonna di sinistra*/}
+                        <div className={`col-2 ${styles.table_product}`}>
                             {/* immagine prodotto */}
                             <div className={styles.table_image}>
                                 <img src={item.image} alt="" />
                             </div>
-                            <div>
-                                {/* nome prodotto */}
-                                {item.name}
-                            </div>
                         </div>
-                        {/* colonna quantità */}
-                        <div className={`col-4 ${styles.box_quantity}`}>
-                            <div className={styles.quantity}>
-                                <button
-                                    className={styles.quantitybtn}
-                                    disabled={item.quantity === 1}
-                                    onClick={() => quantityButton(item.id, -1)}
-                                >
-                                    <FontAwesomeIcon icon={faMinus} />
-                                </button>
-                                <span className="fw-bold px-2">{item.quantity}</span>
-                                <button
-                                    className={styles.quantitybtn}
-                                    disabled={item.quantity >= item.quantity_in_stock}
-                                    onClick={() => quantityButton(item.id, 1)}
-                                >
-                                    <FontAwesomeIcon icon={faPlus} />
-                                </button>
+                        {/* colonna di destra */}
+                        <div className={`col-10`}>
+                            {/* riga*/}
+                            <div className={`row`}>
+                                {/* colonna nome */}
+                                <div className={`col-sm-12 col-md-4 col-lg-4 ${styles.name_product}`} >
+                                    {/* nome prodotto */}
+                                    {item.name}
+                                </div>
+                                {/* colonna quantità */}
+                                <div className={`col-sm-12 col-md-4 col-lg-4 ${styles.box_quantity}`}>
+                                    <div className={styles.quantity}>
+                                        <button
+                                            className={styles.quantitybtn}
+                                            disabled={item.quantity === 1}
+                                            onClick={() => quantityButton(item.id, -1)}
+                                        >
+                                            <FontAwesomeIcon icon={faMinus} />
+                                        </button>
+                                        <span className="fw-bold px-2">{item.quantity}</span>
+                                        <button
+                                            className={styles.quantitybtn}
+                                            disabled={item.quantity >= item.quantity_in_stock}
+                                            onClick={() => quantityButton(item.id, 1)}
+                                        >
+                                            <FontAwesomeIcon icon={faPlus} />
+                                        </button>
+                                    </div>
+                                    <button className={styles.trash}
+                                        onClick={() => quantityButton(item.id, 0)}
+                                    >
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </button>
+                                </div>
+                                {/* colonna prezzo articolo */}
+                                <div className={`col-sm-12 col-md-4 col-lg-4 ${styles.price}`}>
+                                    {hasDiscount ? (
+                                        <>
+                                            <span>
+                                                {(finalPrice * item.quantity).toFixed(2)}€
+                                                ({finalPrice.toFixed(2)}€/bottiglia)
+                                            </span>
+
+                                        </>
+                                    ) : (
+                                        <span>
+                                            {(finalPrice * item.quantity).toFixed(2)}€
+                                            ({finalPrice.toFixed(2)}€/bottiglia)
+                                        </span>
+                                    )}
+                                </div>
+
+
+
                             </div>
-                            <button className={styles.trash}
-                                onClick={() => quantityButton(item.id, 0)}
-                            >
-                                <FontAwesomeIcon icon={faTrash} />
-                            </button>
-                        </div>
-                        {/* colonna prezzo articolo */}
-                        <div className={`col-2 ${styles.price}`}>
-                            {hasDiscount ? (
-                                <>
-                                    <span>{originalPrice.toFixed(2)}€</span>
-                                    <span>
-                                        {finalPrice.toFixed(2)}€
-                                    </span>
-                                </>
-                            ) : (
-                                `${finalPrice.toFixed(2)}€`
-                            )}
                         </div>
 
-                        {/* colonna prezzo totale articolo */}
-                        <div className="col-2">
-                            <p>
-                                {(finalPrice * item.quantity).toFixed(2)}€
-                            </p>
-                        </div>
+
                     </div>
                 )
             })}

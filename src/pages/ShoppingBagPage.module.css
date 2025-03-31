@@ -1,24 +1,32 @@
 table {
     width: 100%;
     margin-bottom: 50px;
+    font-size: 0.8rem;
 }
 
 button {
     all: unset;
-    /* Rimuove tutti gli stili predefiniti */
-    background: none;
-    /* Rimuove il background */
-    border: none;
-    /* Rimuove il bordo */
-    padding: 0;
-    /* Rimuove il padding */
-    font: inherit;
-    /* Inherited font styles */
-    color: inherit;
-    /* Inherited text color */
     cursor: pointer;
-    /* Mantiene il cursore pointer per indicare che è cliccabile */
-    outline: none;
+}
+
+.table_header {
+    display: block;
+    text-align: left;
+    padding: 1rem 0.5rem 0.5rem !important;
+    padding-left: 2rem;
+}
+
+
+.cards_box {
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0px 0px 20px -3px rgba(3, 3, 3, 0.3) !important;
+}
+
+.card {
+    padding: 1rem !important;
+    align-items: center;
+    border-bottom: 0.5px solid #91825e80;
 }
 
 .table_product {
@@ -28,13 +36,28 @@ button {
     gap: 1.3rem;
 }
 
+.table_image {
+    height: 150px;
+    margin: 0 auto;
+}
+
 .table_image img {
-    height: 60px;
+    height: 100%;
+}
+
+
+.name_product {
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
 
 .box_quantity {
     display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 15px;
+    flex-wrap: wrap;
     gap: 0.5rem;
 }
 
@@ -46,8 +69,9 @@ button {
     background-color: #fffcf5;
     border-radius: 9999px;
     margin-right: 0.5rem;
-    min-width: 110px;
+    min-width: 80%;
     transition: background-color 0.2s ease;
+    height: 40px;
 }
 
 .quantitybtn {
@@ -75,7 +99,10 @@ button {
 }
 
 .price {
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    display: flex;
+    text-align: center;
+    justify-content: center;
 }
 
 
@@ -108,7 +135,6 @@ button {
     border: 1px solid #a78888;
     background-color: #fffcf5;
     color: #4a2727;
-    border-radius: 9999px;
     transition: background-color 0.2s ease;
     margin-right: 0.5rem;
 }
@@ -121,29 +147,44 @@ button {
 
 
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 
     /* Add responsive styles for mobile here */
     table {
         font-size: 0.8rem;
     }
 
+    .box {
+        padding-top: 2rem !important;
+    }
+
+    .table_header {
+        display: none !important;
+    }
+
+
     .table_product {
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: center
     }
 
+    .name_product {
+        justify-content: center;
+        margin: 1rem 0;
+    }
+
     .table_image {
-        display: none;
+        height: 100px;
     }
 
     .box_quantity {
-        margin-top: 0px;
+        margin: 1rem 0;
     }
 
     .quantity {
         margin-right: 0.4rem;
-        min-width: 100px;
+        width: 80%;
+
     }
 
     .quantitybtn {
@@ -153,8 +194,6 @@ button {
     }
 
     .price {
-        margin-top: 0px;
+        margin: 1rem 0;
     }
-
-
 }
