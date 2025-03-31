@@ -14,3 +14,19 @@
 
 
 }
+
+/* Header.module.css */
+a,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.page_link_container a,
+.page_link_container a:visited,
+.page_link_container a:hover,
+.page_link_container a:active {
+    text-decoration: none !important;
+}

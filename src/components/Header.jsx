@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 // Import header css
 import styles from "./Header.module.css";
-import logo from '../assets/provaLogo.png'
+import logo from '../assets/Cantine_Booleane.svg'
 import { useContext } from "react";
 import wineContext from "../context/WineContext";
 

@@ -96,14 +96,20 @@ export default function WinesPage() {
                     <p>
                         Vini unici, tra varietali e blend, ognuno con una propria anima ma con un’origine comune: la Terra Booleana.
                     </p>
-                    <div className={styles.buttons}>
-                        <button onClick={() => handleFilter("tutti")}>TUTTI</button>
-                        <button onClick={() => handleFilter("rosso")}>ROSSI</button>
-                        <button onClick={() => handleFilter("bianco")}>BIANCHI</button>
-                        <button onClick={() => handleFilter("rosato")}>ROSATI</button>
-                    </div>
-                    <SearchBar onSearch={handleSearch} />
+
+
+
                 </div>
+            </div>
+
+            <div className={styles.filters_container}>
+                <div className={styles.buttons}>
+                    <button onClick={() => handleFilter("tutti")}>TUTTI</button>
+                    <button onClick={() => handleFilter("rosso")}>ROSSI</button>
+                    <button onClick={() => handleFilter("bianco")}>BIANCHI</button>
+                    <button onClick={() => handleFilter("rosato")}>ROSATI</button>
+                </div>
+                <SearchBar onSearch={handleSearch} className={styles.searchbar} />
             </div>
 
             <div className={styles.big_wines_list_container}>

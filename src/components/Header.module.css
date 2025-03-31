@@ -25,23 +25,24 @@ header {
     height: 150px;
     width: 100%;
     display: flex;
+
 }
 
 /************************ LOGO SECTION ***************/
 
 .logo_container {
-
     width: 15%;
-
-    /* background-color: aqua; */
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo_container img {
-
-
-    height: 100%;
-
-
+    height: 65px;
+    /* imposta altezza fissa in pixel */
+    width: auto;
+    /* mantiene il rapporto d'aspetto originale */
 }
 
 .page_link_container {
@@ -89,3 +90,57 @@ header {
     width: 20px;
     height: 20px;
 }
+
+
+@media screen and (max-width: 1800px) {}
+
+@media screen and (max-width: 1600px) {
+
+    .logo_container img {
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+
+    .logo_container img {
+        height: 35px;
+    }
+}
+
+@media screen and (max-width: 1200px) {}
+
+@media screen and (max-width: 980px) {
+    .logo_container img {
+        height: 50px;
+    }
+
+    .page_link_container {
+
+        display: none;
+    }
+
+    .header_container {
+
+        justify-content: space-between;
+    }
+
+    .logo_container {
+
+        width: 50%;
+    }
+
+    .nav_container {
+        width: 50%;
+        justify-content: end;
+    }
+
+
+}
+
+
+/* Tablet (max-width 768px) */
+@media screen and (max-width: 768px) {}
+
+/* Mobile (max-width 480px) */
+@media screen and (max-width: 480px) {}

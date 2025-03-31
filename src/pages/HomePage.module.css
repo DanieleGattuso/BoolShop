@@ -103,8 +103,12 @@
 
 .wine_image_container img {
 
-    width: 60%;
-    height: 100%;
+
+    width: 180px;
+    /* dimensione fissa ideale, scegli la tua */
+    height: auto;
+    /* altezza automatica per mantenere proporzioni */
+
     padding: 20px;
     margin-left: 20px;
     transition: transform 0.8s ease;
@@ -183,3 +187,170 @@
 
     background-color: var(--white);
 }
+
+
+
+
+
+/* MEDIA QUERY */
+
+
+/* desktop (max-width 1024px) */
+
+@media screen and (max-width: 1800px) {
+    .wine_container_traits p {
+        font-size: 40px;
+    }
+
+    .wine_container_traits {
+
+        width: 60%;
+    }
+
+    .wine_image_container {
+
+
+        width: 40%;
+
+    }
+
+    .wine_image_container img {
+
+        width: 150px;
+
+
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .wine_container_traits p {
+        font-size: 35px;
+    }
+
+    .wine_container_traits {
+
+        width: 60%;
+    }
+
+    .wine_image_container {
+
+
+        width: 40%;
+
+    }
+
+    .wine_image_container img {
+
+        width: 150px;
+
+
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .wine_container_traits p {
+        font-size: 30px;
+    }
+
+    .wine_container_traits {
+
+        width: 60%;
+    }
+
+    .wine_image_container {
+
+
+        width: 40%;
+
+    }
+
+    .wine_image_container img {
+
+        width: 8vw;
+
+
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .wine_container_traits p {
+        font-size: 20px;
+    }
+
+    .wine_container_traits {
+
+        width: 60%;
+    }
+
+    .wine_image_container {
+
+
+        width: 40%;
+
+    }
+
+    .wine_image_container img {
+
+        width: 120px;
+
+
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .wine_container_traits p {
+        font-size: 15px;
+        margin-left: 5px;
+    }
+
+    .wine_container_traits {
+
+        width: 60%;
+    }
+
+    .wine_image_container {
+
+
+        width: 40%;
+
+    }
+
+    .wine_image_container img {
+
+        width: 90px;
+
+
+    }
+}
+
+
+/* Tablet (max-width 768px) */
+@media screen and (max-width: 768px) {
+
+    .wine_container_traits {
+
+        display: none;
+    }
+
+    .wine_image_container {
+
+
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .wine_image_container img {
+
+        width: 150px;
+        margin-left: 0px;
+
+
+    }
+
+}
+
+/* Mobile (max-width 480px) */
+@media screen and (max-width: 480px) {}
