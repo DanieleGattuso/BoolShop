@@ -159,3 +159,45 @@ footer {
     color: grey;
     margin-bottom: 10px;
 }
+
+/* Tablet (max-width 768px) */
+
+@media screen and (max-width: 1200px) {
+    .footer_small_waves {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .footer_big_wave {
+        display: none;
+    }
+
+
+
+    .policy_container {
+
+        flex-wrap: wrap;
+    }
+
+    .europe_container {
+        width: 100%;
+    }
+
+    .policy_nav_bar_container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Mobile (max-width 480px) */
+@media screen and (max-width: 480px) {
+
+    .policy_nav_bar_container {
+
+        font-size: 14px;
+    }
+}

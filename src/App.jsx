@@ -18,6 +18,12 @@ import Winespage from "./pages/WinePage"
 import CheckoutPage from "./pages/CheckOutPage"
 import WineDetailsPage from "./pages/WineDetailsPage"
 
+// Import component 
+
+import ScrollToTop from "./components/ScrollToTop"
+
+
+
 
 
 export default function App() {
@@ -67,9 +73,11 @@ export default function App() {
     <>
       <WineContext.Provider value={{ wines, setWines, cart, setCart, cartPair, setCartPair }}>
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route element={<DefaultLayout />}>
               <Route path="/" element={<HomePage />} />
+
               <Route path="/winespage" element={<Winespage />} />
               <Route path="/winedetails" element={<WineDetailsPage />} />
               {/* provvisoria */}

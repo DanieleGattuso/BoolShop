@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "./HomePage.module.css";
 import videoBg from '../assets/vinogiusto.mp4';
 import greenImage from '../assets/image.png';
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
     // State per tutti i vini e per i bestseller
@@ -42,6 +43,8 @@ export default function HomePage() {
     const whiteWine = bestWine[1];
     const roseWine = bestWine[2];
 
+
+
     return (
         <>
             {/* Sezione Hero con video di sfondo */}
@@ -61,40 +64,53 @@ export default function HomePage() {
                 </div>
                 <div className={styles.best_seller_container}>
                     {/* Contenitore per il vino rosso */}
-                    <div className={styles.best_red_wine_container}>
-                        <div className={styles.wine_image_container}>
-                            <img src={redWine.image} alt={redWine.name} />
+
+                    <Link to="/winedetails" state={{ wine: redWine }}>
+                        <div className={styles.best_red_wine_container}>
+                            <div className={styles.wine_image_container}>
+                                <img src={redWine.image} alt={redWine.name} />
+                            </div>
+                            <div className={styles.wine_container_traits}>
+                                {redWine.traits.split(',').map((trait, index) => (
+                                    <p key={index}>{trait.trim().toUpperCase()}</p>
+                                ))}
+                            </div>
                         </div>
-                        <div className={styles.wine_container_traits}>
-                            {redWine.traits.split(',').map((trait, index) => (
-                                <p key={index}>{trait.trim().toUpperCase()}</p>
-                            ))}
-                        </div>
-                    </div>
+                    </Link>
 
                     {/* Contenitore per il vino bianco */}
-                    <div className={styles.best_white_wine_container}>
-                        <div className={styles.wine_image_container}>
-                            <img src={whiteWine.image} alt={whiteWine.name} />
+                    <Link to="/winedetails" state={{ wine: whiteWine }}>
+                        <div className={styles.best_white_wine_container}>
+                            <div className={styles.wine_image_container}>
+                                <img src={whiteWine.image} alt={whiteWine.name} />
+                            </div>
+                            <div className={styles.wine_container_traits}>
+                                {whiteWine.traits.split(',').map((trait, index) => (
+                                    <p key={index}>{trait.trim().toUpperCase()}</p>
+                                ))}
+                            </div>
                         </div>
-                        <div className={styles.wine_container_traits}>
-                            {whiteWine.traits.split(',').map((trait, index) => (
-                                <p key={index}>{trait.trim().toUpperCase()}</p>
-                            ))}
-                        </div>
-                    </div>
+
+                    </Link>
+
 
                     {/* Contenitore per il vino rosato */}
-                    <div className={styles.best_rose_wine_container}>
-                        <div className={styles.wine_image_container}>
-                            <img src={roseWine.image} alt={roseWine.name} />
+
+                    <Link to="/winedetails" state={{ wine: roseWine }}>
+
+                        <div className={styles.best_rose_wine_container}>
+                            <div className={styles.wine_image_container}>
+                                <img src={roseWine.image} alt={roseWine.name} />
+                            </div>
+                            <div className={styles.wine_container_traits}>
+                                {roseWine.traits.split(',').map((trait, index) => (
+                                    <p key={index}>{trait.trim().toUpperCase()}</p>
+                                ))}
+                            </div>
                         </div>
-                        <div className={styles.wine_container_traits}>
-                            {roseWine.traits.split(',').map((trait, index) => (
-                                <p key={index}>{trait.trim().toUpperCase()}</p>
-                            ))}
-                        </div>
-                    </div>
+
+                    </Link>
+
                 </div>
             </>}
 
@@ -111,16 +127,18 @@ export default function HomePage() {
             <div className={styles.best_seller_container}>
                 {bestSeller.length > 0 ? (
                     bestSeller.map(wine => (
-                        <div key={wine.id} className={`${styles.best_dynamic_wine_container} ${styles[wine.type]}`}>
-                            <div className={styles.wine_image_container}>
-                                <img src={wine.image} alt={wine.name} />
+                        <Link to="/winedetails" state={{ wine: wine }}>
+                            <div key={wine.id} className={`${styles.best_dynamic_wine_container} ${styles[wine.type]}`}>
+                                <div className={styles.wine_image_container}>
+                                    <img src={wine.image} alt={wine.name} />
+                                </div>
+                                <div className={styles.wine_container_traits}>
+                                    {wine.traits.split(',').map((trait, index) => (
+                                        <p key={index}>{trait.trim().toUpperCase()}</p>
+                                    ))}
+                                </div>
                             </div>
-                            <div className={styles.wine_container_traits}>
-                                {wine.traits.split(',').map((trait, index) => (
-                                    <p key={index}>{trait.trim().toUpperCase()}</p>
-                                ))}
-                            </div>
-                        </div>
+                        </Link>
                     ))
                 ) : (
                     <div>Caricamento bestseller...</div>

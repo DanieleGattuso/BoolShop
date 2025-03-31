@@ -3,6 +3,8 @@ import styles from "./Footer.module.css";
 import europe from "../assets/european-union.png"
 import waves from "../assets/path.svg"
 
+import { Link } from "react-router-dom";
+
 export default function Footer() {
 
     return (
@@ -19,15 +21,18 @@ export default function Footer() {
                     <div className={styles.footer_nav_bars}>
                         <ul>
                             <li>CHI SIAMO</li>
-                            <li>COMUNITA'</li>
+
                             <li>TERRITORIO</li>
                         </ul>
                     </div>
 
                     <div className={styles.footer_nav_bars}>
                         <ul>
-                            <li>I NOSTRI VINI</li>
-                            <li>A TAVOLA</li>
+                            <Link to='/winespage'>
+                                <li>I NOSTRI VINI</li>
+                            </Link>
+
+
                             <li>SOSTENIBILITA'</li>
                         </ul>
                     </div>
@@ -36,7 +41,7 @@ export default function Footer() {
                         <ul>
                             <li>CONTATTI</li>
                             <li>SHOP</li>
-                            <li>CANTINA BOOLWINE</li>
+
                         </ul>
                     </div>
                 </div>

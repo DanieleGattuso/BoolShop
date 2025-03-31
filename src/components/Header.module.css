@@ -57,15 +57,13 @@ header {
 }
 
 .nav_container {
-
-    width: 15%;
-
-
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
+    /* <-- assicurati che ci sia */
     gap: 25px;
     font-size: 25px;
+    transform: translateY(-8px);
 }
 
 
@@ -73,6 +71,10 @@ header {
 /************************ ICON ***************/
 .icon_cart {
     position: relative;
+    display: flex;
+    /* <-- centra l’icona verticalmente */
+    align-items: center;
+
 }
 
 .icon_cart p {
@@ -132,15 +134,35 @@ header {
 
     .nav_container {
         width: 50%;
-        justify-content: end;
+        justify-content: center;
     }
+
 
 
 }
 
 
 /* Tablet (max-width 768px) */
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+    .nav_container {
+        transform: translateY(0px);
+    }
+
+}
 
 /* Mobile (max-width 480px) */
 @media screen and (max-width: 480px) {}
+
+
+
+.sticky_header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(246, 246, 246, 0.8);
+    backdrop-filter: blur(10px);
+    /* oppure il colore che vuoi */
+
+
+
+}
