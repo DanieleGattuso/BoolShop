@@ -10,22 +10,16 @@ export default function ShoppingBagPage() {
 
     // get cart data from localStorage
     useEffect(() => {
-        setCart(JSON.parse(localStorage.getItem("cart")) || []);
-
+        const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        setCart(storedCart);
+        setCartPair(countWinesById(storedCart));
     }, []);
-    //     const savedCart = localStorage.getItem("cart");
-    //     return savedCart ? JSON.parse(savedCart) : [];
-    // });
-
 
     // save cart data back to localStorage whenever winesId changes
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
 
-    useEffect(() => {
-        setCartPair(countWinesById(cart));
-    }, [cart]);
 
     // function to count the quantity of each item in the array
     function countWinesById(array) {
@@ -64,6 +58,8 @@ export default function ShoppingBagPage() {
                 newCart = newCart.filter(item => item.id !== id);
             }
 
+            // Aggiorna sia `cart` che `cartPair`
+            setCartPair(countWinesById(newCart));
             return newCart;
         });
     };
