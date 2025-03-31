@@ -6,7 +6,7 @@ import validCountries from "../functions/validCountries";
 
 
 export default function CheckoutPage() {
-    const { cartPair, setCartPair, cart, setCart } = useContext(WineContext);
+    const { cartPair, setCartPair, setCart } = useContext(WineContext);
 
 
     // mettiamo l'oggetto vuoto all'interno di una variabile
