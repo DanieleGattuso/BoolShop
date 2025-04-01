@@ -33,6 +33,28 @@
     /* Semi-transparent black overlay */
 }
 
+.video_abstract_container {
+
+    width: 60%;
+
+}
+
+.video_abstract_container h1 {
+    font-size: 40px;
+    font-weight: 300;
+    /* più leggero = più morbido */
+    color: rgba(255, 255, 255, 0.7);
+    /* bianco semitrasparente */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+    /* sfumatura sotto */
+    transition: all 0.3s ease;
+    text-align: center;
+
+    text-transform: none;
+}
+
+
+
 
 /* ======== BEST SELLER WINE SECTION ======== */
 
@@ -309,6 +331,10 @@
 
 
     }
+
+    .video_abstract_container h1 {
+        font-size: 30px;
+    }
 }
 
 @media screen and (max-width: 980px) {
@@ -344,6 +370,14 @@
 
 
 /* Tablet (max-width 768px) */
+@media screen and (max-width: 850px) {
+
+    .video_abstract_container h1 {
+        display: none;
+    }
+
+}
+
 @media screen and (max-width: 768px) {
 
     .wine_container_traits {

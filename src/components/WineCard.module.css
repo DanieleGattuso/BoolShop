@@ -7,7 +7,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: background-color 0.8s ease;
 }
+
+
 
 
 /* Styling for the wine image */
@@ -38,6 +41,12 @@
     text-transform: uppercase;
 }
 
+.wine_card:hover {
+    background-color: rgba(251, 244, 236, 0.879);
+    /* ⬅️ aggiungi questa */
+
+}
+
 /* Description text styling */
 
 
@@ -49,6 +58,31 @@
     font-size: 18px;
     height: 100%;
     padding: 10px;
+}
+
+.price_container {
+    margin-bottom: 20px;
+    font-size: 18px
+}
+
+.size_container {
+    margin-bottom: 20px;
+    font-size: 18px
+}
+
+.old_price {
+    text-decoration: line-through;
+    color: gray;
+    margin-right: 10px;
+}
+
+.discounted_price {
+    color: rgb(175, 10, 10);
+
+}
+
+.normal_price {
+    color: black;
 }
 
 /* Styling for the action button */
