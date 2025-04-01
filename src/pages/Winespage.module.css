@@ -28,7 +28,7 @@ main {
 
 /* head container title rules */
 .head_winelist_container h1 {
-    font-size: 5rem;
+    font-size: 100px;
     letter-spacing: 4px;
     margin-top: 5%;
     font-weight: 100;
@@ -36,11 +36,12 @@ main {
 
 /* head container paragraph rules */
 .head_winelist_container p {
-    font-size: 20px;
+    font-size: 30px;
     width: 46%;
     margin-left: 27%;
     margin-top: 5%;
     margin-bottom: 5%;
+    line-height: 2em;
 }
 
 /* head container button rules */
@@ -49,7 +50,7 @@ main {
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
-    margin-left: 30px;
+
 }
 
 /* Styling for the action button */
@@ -158,12 +159,32 @@ main {
 
 .filters_container {
 
-
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons_filter_container {
+
+
+    width: 90%;
     display: flex;
 
     justify-content: space-between;
     align-items: center;
 
     margin-bottom: 30px;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .buttons_filter_container {
+        display: block;
+    }
+
+    .buttons {
+        margin-bottom: 20px;
+    }
 }

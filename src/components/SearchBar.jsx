@@ -26,9 +26,11 @@ function SearchBar({ onSearch }) {
                 onKeyDown={handleKeyDown}  // Aggiunto evento per il tasto Enter
                 className={styles.input}
             />
-            <button onClick={handleClick} className={styles.button}>
+            <button onClick={handleClick}>
                 Cerca!
             </button>
+
+
         </div>
     );
 }

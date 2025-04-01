@@ -103,41 +103,51 @@ export default function WinesPage() {
             </div>
 
             <div className={styles.filters_container}>
-                <div className={styles.buttons}>
-                    <button
-                        className={filterType === "tutti" ? styles.active : ""}
-                        onClick={() => handleFilter("tutti")}
-                    >
-                        TUTTI
-                    </button>
-                    <button
-                        className={filterType === "rosso" ? styles.active : ""}
-                        onClick={() => handleFilter("rosso")}
-                    >
-                        ROSSI
-                    </button>
-                    <button
-                        className={filterType === "bianco" ? styles.active : ""}
-                        onClick={() => handleFilter("bianco")}
-                    >
-                        BIANCHI
-                    </button>
-                    <button
-                        className={filterType === "rosato" ? styles.active : ""}
-                        onClick={() => handleFilter("rosato")}
-                    >
-                        ROSATI
-                    </button>
-                    <button
-                        className={filterType === "discount" ? styles.active : ""}
-                        onClick={() => handleFilter("discount")}
-                    >
-                        OFFERTE
-                    </button>
+                <div className={styles.buttons_filter_container}>
+                    <div className={styles.buttons}>
+                        <button
+                            className={filterType === "tutti" ? styles.active : ""}
+                            onClick={() => handleFilter("tutti")}
+                        >
+                            TUTTI
+                        </button>
+                        <button
+                            className={filterType === "rosso" ? styles.active : ""}
+                            onClick={() => handleFilter("rosso")}
+                        >
+                            ROSSI
+                        </button>
+                        <button
+                            className={filterType === "bianco" ? styles.active : ""}
+                            onClick={() => handleFilter("bianco")}
+                        >
+                            BIANCHI
+                        </button>
+                        <button
+                            className={filterType === "rosato" ? styles.active : ""}
+                            onClick={() => handleFilter("rosato")}
+                        >
+                            ROSATI
+                        </button>
+                        <button
+                            className={filterType === "discount" ? styles.active : ""}
+                            onClick={() => handleFilter("discount")}
+                        >
+                            OFFERTE
+                        </button>
 
+
+
+
+                    </div>
+                    <div className={styles.searchbar}>
+                        <SearchBar onSearch={handleSearch} />
+                    </div>
                 </div>
 
-                <SearchBar onSearch={handleSearch} className={styles.searchbar} />
+
+
+
             </div>
 
             <div className={styles.big_wines_list_container}>

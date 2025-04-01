@@ -39,12 +39,16 @@
 }
 
 /* Description text styling */
-.wine_card p {
-    margin: 3% 2%;
-    line-height: 2em;
-    color: #420A0A;
-    font-size: 18px;
 
+
+.abstract_container {
+
+
+    line-height: 2em;
+    color: #621414;
+    font-size: 18px;
+    height: 100%;
+    padding: 10px;
 }
 
 /* Styling for the action button */
@@ -69,12 +73,29 @@
 /********** RESPONSIVE ************/
 
 /* Tablet (max-width 768px) */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1100px) {
     .wine_card {
 
         width: 30%;
 
     }
+
+    .wine_card h3 {
+        font-size: 20px;
+
+
+    }
+
+    .wine_card h4 {
+
+        font-size: 15px;
+    }
+
+    .abstract_container {
+
+        font-size: 13px;
+    }
+
 
 }
 
@@ -94,6 +115,7 @@
 
         margin-top: 5%;
     }
+
 }
 
 

@@ -72,7 +72,7 @@ export default function HomePage() {
                             <div className={styles.wine_image_container}>
                                 <img src={redWine.image} alt={redWine.name} />
                             </div>
-                            <div className={styles.wine_container_traits}>
+                            <div className={`${styles.wine_container_traits} ${styles[redWine.type]}`} >
                                 {redWine.traits.split(',').map((trait, index) => (
                                     <p key={index}>{trait.trim().toUpperCase()}</p>
                                 ))}
@@ -86,7 +86,7 @@ export default function HomePage() {
                             <div className={styles.wine_image_container}>
                                 <img src={whiteWine.image} alt={whiteWine.name} />
                             </div>
-                            <div className={styles.wine_container_traits}>
+                            <div className={`${styles.wine_container_traits} ${styles[whiteWine.type]}`}>
                                 {whiteWine.traits.split(',').map((trait, index) => (
                                     <p key={index}>{trait.trim().toUpperCase()}</p>
                                 ))}
@@ -104,7 +104,7 @@ export default function HomePage() {
                             <div className={styles.wine_image_container}>
                                 <img src={roseWine.image} alt={roseWine.name} />
                             </div>
-                            <div className={styles.wine_container_traits}>
+                            <div className={`${styles.wine_container_traits} ${styles[roseWine.type]}`}>
                                 {roseWine.traits.split(',').map((trait, index) => (
                                     <p key={index}>{trait.trim().toUpperCase()}</p>
                                 ))}

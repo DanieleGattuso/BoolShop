@@ -35,7 +35,10 @@ const WineCard = ({ wineProps, cart, setCart }) => {
                 )}
             </div>
 
-            <p>{wineProps.abstract}</p>
+            <div className={styles.abstract_container}>
+                <p>{wineProps.abstract}</p>
+            </div>
+
 
             {/* down section with button */}
             <div>

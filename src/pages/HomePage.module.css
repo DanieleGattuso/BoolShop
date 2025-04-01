@@ -110,7 +110,7 @@
     /* altezza automatica per mantenere proporzioni */
 
     padding: 20px;
-    margin-left: 20px;
+    margin-left: 30px;
     transition: transform 0.8s ease;
 
 
@@ -139,7 +139,7 @@
 .wine_container_traits p {
 
     font-size: 50px;
-    color: white;
+    /* color: white; */
     font-weight: lighter;
 }
 
@@ -189,7 +189,20 @@
     background-color: var(--white);
 }
 
+.rosato p {
 
+    color: #c4998b;
+}
+
+.rosso p {
+
+    color: #694B47;
+}
+
+.bianco p {
+
+    color: #a5965f;
+}
 
 
 

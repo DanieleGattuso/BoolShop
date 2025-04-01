@@ -1,4 +1,24 @@
-.searchbar_container {
+.searchbar_container {}
 
-    margin-right: 30px;
+.searchbar_container input {
+
+    border-radius: 25px;
+    border: 1px black solid;
+
+
+}
+
+input {
+
+    padding-left: 10px;
+
+
+}
+
+@media screen and (max-width: 770px) {
+
+    .searchbar_container {
+        display: flex;
+        justify-content: center;
+    }
 }
