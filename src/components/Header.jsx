@@ -1,5 +1,5 @@
 // Import module react router
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 // Import header css
 import styles from "./Header.module.css";
 import logo from '../assets/Cantine_Booleane.svg'
@@ -36,13 +36,13 @@ export default function Header() {
 
                     {/* Page link container */}
                     <div className={styles.page_link_container}>
-                        <Link to='/'>
-                            <p> HOME PAGE</p>
+                        <Link className={styles.underline_hover} to='/'>
+                            HOME PAGE
                         </Link>
 
-                        <Link to='/winespage'>
-                            <p> I NOSTRI VINI</p>
-                        </Link>
+                        <Link className={styles.underline_hover} to='/winespage'>
+                            I NOSTRI VINI
+                        </Link >
                         <p> CONTATTI</p>
                     </div>
 

@@ -2,12 +2,33 @@
 
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 110vh;
 
 
 
 }
 
+
+.hero_button {
+    position: absolute;
+    top: 92%;
+    /* regola questa percentuale in base a dove finisce la bottiglia */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    z-index: 3;
+    transition: background-color 0.3s ease;
+}
+
+.hero_button:hover {
+    background-color: #333;
+}
 
 .background_text {
     font-size: 200px;
@@ -170,6 +191,20 @@ h1 {
 
 }
 
+.added_message {
+    position: absolute;
+    top: 80%;
+    left: 65%;
+    transform: translateX(-50%);
+    background-color: #ffffffcc;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    z-index: 5;
+    animation: fadeInOut 2s ease forwards;
+}
+
 
 
 
@@ -206,11 +241,19 @@ h1 {
 
     }
 
-    .hero_section {
-
-        height: 62vh;
+    .added_message {
+        left: 80%;
     }
 
+    .hero_section {
+
+        height: 82vh;
+    }
+
+    .hero_button {
+
+        top: 85%;
+    }
 
 }
 
@@ -228,5 +271,30 @@ h1 {
     .background_text {
         font-size: 40px;
         top: 10%;
+    }
+}
+
+
+
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
     }
 }

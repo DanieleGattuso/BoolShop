@@ -2,11 +2,30 @@
 
 
 
+.active_link::after {
+    width: 100%;
+}
 
-a {
+.underline_hover {
+    position: relative;
+    display: inline-block;
+    color: black;
     text-decoration: none;
+}
 
+.underline_hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition: width 0.3s ease;
+}
 
+.underline_hover:hover::after {
+    width: 100%;
 }
 
 h1 {

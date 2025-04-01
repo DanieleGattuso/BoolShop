@@ -90,6 +90,28 @@ main {
 
 
 
+
+
+.filters_container {
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons_filter_container {
+
+
+    width: 90%;
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
 /* Tablet (max-width 1024px) */
 @media screen and (max-width: 720px) {
     .head_winelist_container {
@@ -156,27 +178,6 @@ main {
         padding: 0 10px;
     }
 }
-
-.filters_container {
-
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.buttons_filter_container {
-
-
-    width: 90%;
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 30px;
-}
-
 
 @media screen and (max-width: 768px) {
 
