@@ -33,6 +33,7 @@ export default function CheckoutPage() {
             .then(response => {
                 // console.log('Risposta:', response.data);
                 window.location.href = response.data.url;
+                localStorage.setItem("sessionId", response.data.sessionId);
                 setCart([])
                 setCartPair([])
                 localStorage.removeItem("cart")

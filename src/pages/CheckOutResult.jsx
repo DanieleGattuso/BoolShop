@@ -1,28 +1,29 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 export default function CheckoutResponse() {
 
-    const { orderId } = useParams();
+    const [sessionData, setSessionData] = useState(null);
 
-    const [order, setOrder] = useState(null);
+    // useEffect(() => {
+    //     axios
+    //         .get(`http://localhost:3000/api/stripes/v1/checkout/sessions/${sessionId}`)
+    //         .then((res) => console.log(res.data))
+    //         .catch((err) => console.error(err));
+    // }, [sessionId]);
 
-    useEffect(() => {
+    // console.log(sessionData)
 
-        axios
-            .get(`http://localhost:3000/api/orders/${orderId}`)
-            .then((res) => setOrder(res.data[0]))
-            .catch((err) => console.error(err));
-    }, [orderId]);
-
-    if (!order) {
+    if (!sessionData) {
         return <p>Caricamento...</p>;
     }
 
+
     return (
         <section>
-            <h2>Il tuo ordine è stato aggiornato!</h2>
+            {/* <h2>Il tuo ordine è stato aggiornato!</h2>
             {order.is_complete === 1 ? (
                 <>
                     <p>Pagamento completato</p>
@@ -38,7 +39,7 @@ export default function CheckoutResponse() {
                 <p>
                     Pagamento rifiutato, <Link to="/">torna allo shop.</Link>
                 </p>
-            )}
+            )} */}
         </section>
     );
 }
