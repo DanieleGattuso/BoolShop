@@ -21,9 +21,6 @@ export default function CheckoutPage() {
         cart: cartPair,
     };
 
-
-    const endpoint = 'http://localhost:3000/api/orders';
-
     // creiamo una variabile di stato che conterrà il nostro array di oggetti
     const [formData, setFormData] = useState(initialFormData);
 
@@ -32,17 +29,13 @@ export default function CheckoutPage() {
         e.preventDefault();
         console.log("Dati inviati:", formData);
         // const response = await axios.post(endpoint, formData)
-        axios.post(endpoint, formData, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
+        axios.post('http://localhost:3000/api/orders', formData)
             .then(response => {
-                console.log('Risposta:', response.data);
+                // console.log('Risposta:', response.data);
                 window.location.href = response.data.url;
                 setCart([])
                 setCartPair([])
-                localStorage.clear()
+                localStorage.removeItem("cart")
             })
             .catch(error => {
                 if (error.response) {
