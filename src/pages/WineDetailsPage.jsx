@@ -44,13 +44,16 @@ export default function WineDetailsPage() {
             <button onClick={() => addToCart({ id: wineDetails.id })}>AGGIUNGI</button>
             <div className={`${styles.hero_section} ${styles[wineDetails.type]}`}>
 
+
                 <h1 className={styles.background_text}>{wineDetails.name}</h1>
+
+
                 <img
                     src={wineDetails.image}
                     alt={wineDetails.name}
                     className={styles.bottle}
                 />
-                <p className={styles.description}>{wineDetails.description}</p>
+
             </div>
 
             <div className={styles.wine_properties_big_container}>
@@ -73,7 +76,7 @@ export default function WineDetailsPage() {
 
                                 </div>
                                 <div className={styles.single_data_script}>
-                                    <h5>VARIETà</h5>
+                                    <h5>VARIETÀ</h5>
                                     <p>{wineDetails.grape_variety}</p>
                                 </div>
 
