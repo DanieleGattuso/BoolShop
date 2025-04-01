@@ -31,46 +31,34 @@ export default function CheckoutPage() {
     async function sendData(e) {
         e.preventDefault();
         console.log("Dati inviati:", formData);
-        try {
-            const response = await axios.post(endpoint, formData)
-
-            if (response.data.url) {
-                // Estrai l'URL dalla risposta
-                const stripeUrl = response.data.url;
-
-                // Reindirizza l'utente alla pagina di checkout di Stripe
-                window.location.href = stripeUrl;
-
-                // .then(response => {
-                // console.log("Ordine inviato con successo:", response.data)
-                // setFormData(initialFormData);
-                // localStorage.clear();
-                // setCart([]);
-                // setCartPair([]);
-            } catch (error) {
-                console.error('Errore nella creazione della sessione Stripe:', error);
+        // const response = await axios.post(endpoint, formData)
+        axios.post(endpoint, formData, {
+            headers: {
+                'Content-Type': 'application/json',
             }
-        }
-
-
-        // .catch (error => {
-        // console.error("Errore nell'invio dell'ordine:", error.response?.data || error.message);
+        })
+            .then(response => {
+                console.log('Risposta:', response.data);
+                window.location.href = response.data.url;
+                setCart([])
+                setCartPair([])
+                localStorage.clear()
+            })
+            .catch(error => {
+                if (error.response) {
+                    // La risposta è stata ricevuta, ma il server ha risposto con un codice di stato che indica un errore
+                    console.error('Errore nella risposta:', error.response.data);
+                    console.error('Codice di stato:', error.response.status);
+                    console.error('Headers:', error.response.headers);
+                } else if (error.request) {
+                    // La richiesta è stata fatta, ma non è stata ricevuta alcuna risposta
+                    console.error('Errore nella richiesta:', error.request);
+                } else {
+                    // Qualcosa è andato storto nel configurare la richiesta
+                    console.error('Errore nella configurazione della richiesta:', error.message);
+                }
+            });
     }
-
-
-    // async function createStripeSession(cartPair) {
-    //     try {
-
-    //         if (response.data.url) {
-    //             // Estrai l'URL dalla risposta
-    //             const stripeUrl = response.data.url;
-
-    //             // Reindirizza l'utente alla pagina di checkout di Stripe
-    //             window.location.href = stripeUrl;
-    //         }
-
-    //     }
-
 
 
 
