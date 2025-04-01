@@ -9,7 +9,6 @@ import styles from "./CheckoutPage.module.css"
 export default function CheckoutPage() {
     const { cartPair, setCartPair, setCart } = useContext(WineContext);
 
-
     // mettiamo l'oggetto vuoto all'interno di una variabile
     const initialFormData = {
         // aggiungiamo tutte le proprietà che vogliamo mappare e assegniamo loro un valore iniziale.
@@ -29,23 +28,53 @@ export default function CheckoutPage() {
     const [formData, setFormData] = useState(initialFormData);
 
     // funzione per inviare i dati
-    function sendData(e) {
+    async function sendData(e) {
         e.preventDefault();
         console.log("Dati inviati:", formData);
-        axios.post(endpoint, formData)
-            .then(response => {
-                console.log("Ordine inviato con successo:", response.data)
-                setFormData(initialFormData);
-                localStorage.clear();
-                setCart([]);
-                setCartPair([]);
+        try {
+            const response = await axios.post(endpoint, formData)
+
+            if (response.data.url) {
+                // Estrai l'URL dalla risposta
+                const stripeUrl = response.data.url;
+
+                // Reindirizza l'utente alla pagina di checkout di Stripe
+                window.location.href = stripeUrl;
+
+                // .then(response => {
+                // console.log("Ordine inviato con successo:", response.data)
+                // setFormData(initialFormData);
+                // localStorage.clear();
+                // setCart([]);
+                // setCartPair([]);
+            } catch (error) {
+                console.error('Errore nella creazione della sessione Stripe:', error);
+            }
+        }
 
 
-            })
-            .catch(error => {
-                console.error("Errore nell'invio dell'ordine:", error.response?.data || error.message);
-            });
+        // .catch (error => {
+        // console.error("Errore nell'invio dell'ordine:", error.response?.data || error.message);
     }
+
+
+    // async function createStripeSession(cartPair) {
+    //     try {
+
+    //         if (response.data.url) {
+    //             // Estrai l'URL dalla risposta
+    //             const stripeUrl = response.data.url;
+
+    //             // Reindirizza l'utente alla pagina di checkout di Stripe
+    //             window.location.href = stripeUrl;
+    //         }
+
+    //     }
+
+
+
+
+
 
     // Creiamo una funzione unica per gestire l'evento onChange dei nostri campi.
     function setFieldValue(e) {
