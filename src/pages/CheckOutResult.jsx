@@ -4,15 +4,16 @@ import { Link } from "react-router-dom";
 
 
 export default function CheckoutResponse() {
-
+    const [sessionId, setSessionId] = useState(localStorage.getItem("sessionId"))
     const [sessionData, setSessionData] = useState(null);
 
-    // useEffect(() => {
-    //     axios
-    //         .get(`http://localhost:3000/api/stripes/v1/checkout/sessions/${sessionId}`)
-    //         .then((res) => console.log(res.data))
-    //         .catch((err) => console.error(err));
-    // }, [sessionId]);
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:3000/api/stripes/v1/checkout/sessions/${sessionId}`)
+            .then((res) => console.log(res.data))
+            .catch((err) => console.error(err));
+    }, [sessionId]);
 
     // console.log(sessionData)
 
@@ -23,8 +24,8 @@ export default function CheckoutResponse() {
 
     return (
         <section>
-            {/* <h2>Il tuo ordine è stato aggiornato!</h2>
-            {order.is_complete === 1 ? (
+            <h2>Il tuo ordine è stato aggiornato!</h2>
+            {/* {.is_complete === 1 ? (
                 <>
                     <p>Pagamento completato</p>
                     <p>L'ordine verrà spedito a:</p>
