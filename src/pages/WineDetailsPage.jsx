@@ -184,8 +184,19 @@ export default function WineDetailsPage() {
 
                         </div>
                     </div>
+
                 </div>
             </div>
+
+            <div className={styles.big_correlated_wines_container}>
+
+                <div className={styles.small_correlated_wines_container}>
+
+                </div>
+
+            </div>
+
+
         </>
     );
 }

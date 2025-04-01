@@ -39,6 +39,24 @@ const WineCard = ({ wineProps, cart, setCart }) => {
                 <p>{wineProps.abstract}</p>
             </div>
 
+            <div className={styles.price_container}>
+                {wineProps.discount_price ? (
+                    <p>
+                        <span className={styles.old_price}>€{wineProps.price}</span>
+                        <span className={styles.discounted_price}>€{wineProps.discount_price}</span>
+                    </p>
+                ) : (
+                    <p className={styles.normal_price}>€{wineProps.price}</p>
+                )}
+            </div>
+
+            <div className={styles.size_container}>
+
+                <p>{wineProps.size} ml</p>
+
+            </div>
+
+
 
             {/* down section with button */}
             <div>

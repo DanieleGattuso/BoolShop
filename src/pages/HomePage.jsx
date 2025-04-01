@@ -55,7 +55,11 @@ export default function HomePage() {
                     <source src={videoBg} type="video/mp4" />
                 </video>
                 <div className={styles.overlay_content}>
-                    <h1>Siamo troppo forti</h1>
+                    <div className={styles.video_abstract_container}>
+                        <h1>Boolwine è una cantina innovativa che combina tradizione e modernità per creare vini di eccellenza. Grazie a una crescita dinamica e sostenibile, si distingue per la qualità delle sue produzioni e il forte legame con il territorio, offrendo esperienze enologiche uniche.</h1>
+
+                    </div>
+
                 </div>
             </div>
 
