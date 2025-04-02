@@ -5,38 +5,32 @@ import { Link } from "react-router-dom";
 export default function CheckoutResponse() {
 
     const [sessionId, setSessionId] = useState(localStorage.getItem("sessionId"));
-    const [sessionData, setSessionData] = useState(null);
+    const [sessionData, setSessionData] = useState([]);
 
     useEffect(() => {
-        axios
-            .get(`http://localhost:3000/api/stripes/v1/checkout/sessions/${sessionId}`)
-            .then((res) => setSessionData(res.data), localStorage.removeItem("sessionId"))
-            .catch((err) => console.error(err));
+        const fetchSession = async () => {
+            try {
+                const res = await axios.get(`http://localhost:3000/api/stripes/v1/checkout/sessions/${sessionId}`);
+                setSessionData(res.data);
+
+                console.log(res.data.metadata.orderId);
+
+                await axios.patch(`http://localhost:3000/api/orders/${res.data.metadata.orderId}`);
+                console.log("Ordine confermato");
+
+                // } else if (res.data?.status === "failed") {
+                //     await axios.post("http://localhost:3000/api/orders/failed");
+                //     console.log("Pagamento fallito");
+                // }
+            } catch (err) {
+                console.error("Errore:", err);
+            }
+        };
+
+        if (sessionId) {
+            fetchSession();
+        }
     }, [sessionId]);
-
-    useEffect(() => {
-        if (!sessionData) return;
-
-        if (sessionData.status === "complete") {
-            axios.post(`http://localhost:3000/api/orders/${sessionData.metadata.orderId}`, {
-            })
-                .then((res) => console.log("Ordine confermato:", res.data))
-                .catch((err) => console.error("Errore nella conferma ordine:", err));
-        }
-
-        if (sessionData.status === "failed") {
-            axios.post("http://localhost:3000/api/orders/failed", {
-            })
-                .then((res) => console.log("Pagamento fallito:", res.data))
-                .catch((err) => console.error("Errore nella gestione del pagamento fallito:", err));
-        }
-    }, [sessionData]);
-
-    console.log(sessionData.metadata.orderId);
-
-    if (!sessionData) {
-        return <p>Caricamento...</p>;
-    }
 
     return (
         <section>
