@@ -9,7 +9,6 @@ import styles from "./CheckoutPage.module.css"
 export default function CheckoutPage() {
     const { cartPair, setCartPair, setCart } = useContext(WineContext);
 
-
     // mettiamo l'oggetto vuoto all'interno di una variabile
     const initialFormData = {
         // aggiungiamo tutte le proprietà che vogliamo mappare e assegniamo loro un valore iniziale.
@@ -22,30 +21,42 @@ export default function CheckoutPage() {
         cart: cartPair,
     };
 
-
-    const endpoint = 'http://localhost:3000/api/orders';
-
     // creiamo una variabile di stato che conterrà il nostro array di oggetti
     const [formData, setFormData] = useState(initialFormData);
 
     // funzione per inviare i dati
-    function sendData(e) {
+    async function sendData(e) {
         e.preventDefault();
         console.log("Dati inviati:", formData);
-        axios.post(endpoint, formData)
+        // const response = await axios.post(endpoint, formData)
+        axios.post('http://localhost:3000/api/orders', formData)
             .then(response => {
-                console.log("Ordine inviato con successo:", response.data)
-                setFormData(initialFormData);
-                localStorage.clear();
-                setCart([]);
-                setCartPair([]);
-
-
+                // console.log('Risposta:', response.data);
+                window.location.href = response.data.url;
+                localStorage.setItem("sessionId", response.data.sessionId);
+                setCart([])
+                setCartPair([])
+                localStorage.removeItem("cart")
             })
             .catch(error => {
-                console.error("Errore nell'invio dell'ordine:", error.response?.data || error.message);
+                if (error.response) {
+                    // La risposta è stata ricevuta, ma il server ha risposto con un codice di stato che indica un errore
+                    console.error('Errore nella risposta:', error.response.data);
+                    console.error('Codice di stato:', error.response.status);
+                    console.error('Headers:', error.response.headers);
+                } else if (error.request) {
+                    // La richiesta è stata fatta, ma non è stata ricevuta alcuna risposta
+                    console.error('Errore nella richiesta:', error.request);
+                } else {
+                    // Qualcosa è andato storto nel configurare la richiesta
+                    console.error('Errore nella configurazione della richiesta:', error.message);
+                }
             });
     }
+
+
+
+
 
     // Creiamo una funzione unica per gestire l'evento onChange dei nostri campi.
     function setFieldValue(e) {

@@ -77,6 +77,16 @@ export default function ShoppingList() {
         .reduce((acc, { discount_price, price, quantity }) => acc + (discount_price || price) * quantity, 0)
         .toFixed(2);
 
+    const shippingAmount = 14.99
+    let finalPrice = totalAmount
+    if (totalAmount < 99) {
+        finalPrice = parseFloat(totalAmount) + shippingAmount
+        finalPrice = finalPrice.toFixed(2)
+    }
+
+
+
+
     console.log('queste sono le render cart', renderCart)
 
     return (
@@ -110,11 +120,13 @@ export default function ShoppingList() {
                         </div>
                         <div className={`row ${styles.summary_row}`}>
                             <div className="col">Spedizione</div>
-                            <div className={`col ${styles.summary_col}`}>GRATUITA</div>
+                            <div className={`col ${styles.summary_col}`}>
+                                {totalAmount < 99 ? `${shippingAmount}€` : `GRATUITA`}
+                            </div>
                         </div>
                         <div className={`row ${styles.summary_row}`}>
                             <div className="col">Totale</div>
-                            <div className={`col ${styles.summary_col}`}>{totalAmount}€</div>
+                            <div className={`col ${styles.summary_col}`}>{finalPrice}€</div>
                         </div>
                     </div>
                 </div>

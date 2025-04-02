@@ -12,12 +12,13 @@ import DefaultLayout from './layout/DefaultLayout'
 // Import pages
 import HomePage from "./pages/HomePage"
 import ShoppingBagPage from "./pages/ShoppingBagPage"
-// import CheckoutResponse from "./pages/CheckoutResponse";
+import CheckoutResult from "./pages/CheckOutResult";
 
 // Import wine page
 import Winespage from "./pages/WinePage"
-import CheckoutPage from "./pages/CheckOutPage"
+import CheckoutPage from "./pages/CheckoutPage"
 import WineDetailsPage from "./pages/WineDetailsPage"
+import NotFoundPage from "./pages/NotFoundPage";
 
 // Import component 
 
@@ -65,10 +66,6 @@ export default function App() {
   }, [cart]);
 
 
-  // useEffect(() => {
-  //   console.log("questo è l'oggetto da mandare al checkoutpage", cartPair)
-  // }, (cartPair));
-
 
   return (
     <>
@@ -84,7 +81,8 @@ export default function App() {
               {/* provvisoria */}
               <Route path="/shopping-bag" element={< ShoppingBagPage />} />
               <Route path="/checkoutpage" element={<CheckoutPage />} />
-              {/* <Route path="check-out-response/:orderId" element={<CheckoutResponse />} /> */}
+              <Route path="/check-out-success" element={<CheckoutResult />} />
+              <Route path="*" element={<NotFoundPage />} />
 
             </Route>
           </Routes>
