@@ -18,6 +18,7 @@ import CheckoutResult from "./pages/CheckOutResult";
 import Winespage from "./pages/WinePage"
 import CheckoutPage from "./pages/CheckoutPage"
 import WineDetailsPage from "./pages/WineDetailsPage"
+import NotFoundPage from "./pages/NotFoundPage";
 
 // Import component 
 
@@ -81,6 +82,7 @@ export default function App() {
               <Route path="/shopping-bag" element={< ShoppingBagPage />} />
               <Route path="/checkoutpage" element={<CheckoutPage />} />
               <Route path="/check-out-success" element={<CheckoutResult />} />
+              <Route path="*" element={<NotFoundPage />} />
 
             </Route>
           </Routes>
