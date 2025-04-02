@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import WineContext from "../context/WineContext";
 import { useParams } from "react-router-dom";
 
+
 // Import styles and assets
 import styles from "./WineDetailsPage.module.css";
 import waves from "../assets/path.svg"
@@ -39,17 +40,15 @@ export default function WineDetailsPage() {
     };
 
     // Retrieve wine details passed via navigation
-    const wineDetails = location.state?.wine;
 
-    // Redirect if no wine data is found (e.g. user refreshes page)
-    useEffect(() => {
-        if (!wineDetails) {
-            navigate("/wines");
-        }
-    }, []);
+    const { wines } = useContext(WineContext);
 
-    // If no wine data, render nothing
-    if (!wineDetails) return null;
+    const wineDetails = wines.find(w => {
+        const generatedSlug = w.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g, "");
+        return generatedSlug === slug;
+    });
+
+    if (!wineDetails) return <p style={{ padding: "4rem", textAlign: "center" }}>Vino non trovato.</p>;
 
     return (
         <>
