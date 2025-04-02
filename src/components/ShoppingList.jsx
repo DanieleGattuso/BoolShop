@@ -121,7 +121,7 @@ export default function ShoppingList() {
                         <div className={`row ${styles.summary_row}`}>
                             <div className="col">Spedizione</div>
                             <div className={`col ${styles.summary_col}`}>
-                                {totalAmount < 99 ? `${shippingAmount}€` : `GRATUITA`}
+                                {totalAmount < 99 ? `${shippingAmount}€` : <b>GRATUITA</b>}
                             </div>
                         </div>
                         <div className={`row ${styles.summary_row}`}>
