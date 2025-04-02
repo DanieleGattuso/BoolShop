@@ -20,7 +20,7 @@ export default function Footer() {
 
                     <div className={styles.footer_nav_bars}>
                         <ul>
-                            <li>CHI SIAMO</li>
+                            <li><Link to='/aboutuspage'>CHI SIAMO</Link></li>
 
                             <li>TERRITORIO</li>
                         </ul>

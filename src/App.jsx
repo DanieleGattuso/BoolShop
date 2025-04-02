@@ -19,6 +19,7 @@ import Winespage from "./pages/WinePage"
 import CheckoutPage from "./pages/CheckoutPage"
 import WineDetailsPage from "./pages/WineDetailsPage"
 import NotFoundPage from "./pages/NotFoundPage";
+import AboutUsPage from "./pages/AboutUsPage"
 
 // Import component 
 
@@ -77,12 +78,13 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
 
               <Route path="/winespage" element={<Winespage />} />
-              <Route path="/winedetails" element={<WineDetailsPage />} />
+              <Route path="/winedetails/:slug" element={<WineDetailsPage />} />
               {/* provvisoria */}
               <Route path="/shopping-bag" element={< ShoppingBagPage />} />
               <Route path="/checkoutpage" element={<CheckoutPage />} />
               <Route path="/check-out-success" element={<CheckoutResult />} />
               <Route path="*" element={<NotFoundPage />} />
+              <Route path="/aboutuspage" element={<AboutUsPage />} />
 
             </Route>
           </Routes>

@@ -7,7 +7,8 @@ const WineCard = ({ wineProps, cart, setCart }) => {
     const [isPressed, setIsPressed] = useState(false); // ⬅️ Stato per animazione
 
     const handleClick = () => {
-        navigate("/winedetails", { state: { wine: wineProps } });
+        const slug = wineProps.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g, "");
+        navigate(`/winedetails/${slug}`, { state: { wine: wineProps } });
     };
 
     const addToCart = (prodotto) => {
