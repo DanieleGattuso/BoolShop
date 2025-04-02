@@ -80,7 +80,7 @@ export default function App() {
               {/* provvisoria */}
               <Route path="/shopping-bag" element={< ShoppingBagPage />} />
               <Route path="/checkoutpage" element={<CheckoutPage />} />
-              <Route path="check-out-success" element={<CheckoutResult />} />
+              <Route path="/check-out-success" element={<CheckoutResult />} />
 
             </Route>
           </Routes>

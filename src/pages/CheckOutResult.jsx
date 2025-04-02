@@ -13,15 +13,14 @@ export default function CheckoutResponse() {
                 const res = await axios.get(`http://localhost:3000/api/stripes/v1/checkout/sessions/${sessionId}`);
                 setSessionData(res.data);
 
-                console.log(res.data.metadata.orderId);
-
-                await axios.patch(`http://localhost:3000/api/orders/${res.data.metadata.orderId}`);
-                console.log("Ordine confermato");
-
-                // } else if (res.data?.status === "failed") {
-                //     await axios.post("http://localhost:3000/api/orders/failed");
-                //     console.log("Pagamento fallito");
-                // }
+                console.log(res.data);
+                if (res.data?.status === "complete") {
+                    await axios.patch(`http://localhost:3000/api/orders/order-success/${res.data.metadata.orderId}`);
+                    console.log("Ordine confermato");
+                } else if (res.data?.status === "open") {
+                    await axios.patch(`http://localhost:3000/api/orders/order-cancelled/${res.data.metadata.orderId}`);
+                    console.log("Ordine cancellato");
+                }
             } catch (err) {
                 console.error("Errore:", err);
             }
