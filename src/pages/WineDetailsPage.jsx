@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import WineContext from "../context/WineContext";
+import { useParams } from "react-router-dom";
 
 // Import styles and assets
 import styles from "./WineDetailsPage.module.css";
@@ -13,26 +14,27 @@ import taste_notes from "../assets/note.png"
 import winemaking from "../assets/vinificazione.png"
 import food_pairings from "../assets/abbinamenti.png"
 import alcohol_volume from "../assets/gradoalcolico.png"
+import Toast from "../components/Toast";
 
 export default function WineDetailsPage() {
     // Hooks for navigation and route state
     const location = useLocation();
     const navigate = useNavigate();
+    const { slug } = useParams();
 
     // Global cart context
     const { cart, setCart } = useContext(WineContext);
 
     // Local state for the "Added to cart" confirmation message
-    const [showAddedMessage, setShowAddedMessage] = useState(false);
+    const [toastMessage, setToastMessage] = useState("");
 
     // Add product to cart and show confirmation
     const addToCart = (prodotto) => {
-        setCart([...cart, prodotto]); // Add selected wine to the cart
+        setCart([...cart, prodotto]);
+        setToastMessage("Aggiunto al carrello!");
 
-        // Show confirmation message for 2 seconds
-        setShowAddedMessage(true);
         setTimeout(() => {
-            setShowAddedMessage(false);
+            setToastMessage("");
         }, 2000);
     };
 
@@ -72,10 +74,7 @@ export default function WineDetailsPage() {
                     ACQUISTA
                 </button>
 
-                {/* Confirmation message shown on click */}
-                {showAddedMessage && (
-                    <div className={styles.added_message}>Aggiunto al carrello!</div>
-                )}
+
             </div>
 
             {/* === TECHNICAL SHEET SECTION === */}
@@ -195,7 +194,7 @@ export default function WineDetailsPage() {
                 </div>
 
             </div>
-
+            {toastMessage && <Toast message={toastMessage} />}
 
         </>
     );

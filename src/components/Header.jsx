@@ -40,7 +40,7 @@ export default function Header() {
                     <div className={styles.page_link_container}>
                         <Link className={styles.underline_hover} to='/'>HOME PAGE</Link>
                         <Link className={styles.underline_hover} to='/winespage'>I NOSTRI VINI</Link>
-                        <p>CONTATTI</p>
+                        <Link className={styles.underline_hover} to='/aboutuspage'>CHI SIAMO</Link>
                     </div>
 
                     {/* Carrello + Hamburger */}
