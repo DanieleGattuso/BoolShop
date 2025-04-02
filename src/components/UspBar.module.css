@@ -9,6 +9,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .fade {

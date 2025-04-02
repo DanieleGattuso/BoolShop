@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./SearchBar.module.css";
+import { FaSearch } from 'react-icons/fa'
 
 function SearchBar({ onSearch }) {
     const [searchInput, setSearchInput] = useState("");
@@ -26,9 +27,10 @@ function SearchBar({ onSearch }) {
                 onKeyDown={handleKeyDown}  // Aggiunto evento per il tasto Enter
                 className={styles.input}
             />
-            <button onClick={handleClick}>
-                Cerca!
-            </button>
+
+            <FaSearch onClick={handleClick} className={styles.lens} />
+
+
 
 
         </div>

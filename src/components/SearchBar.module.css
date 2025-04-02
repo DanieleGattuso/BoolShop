@@ -8,6 +8,11 @@
 
 }
 
+.lens {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 input {
 
     padding-left: 10px;

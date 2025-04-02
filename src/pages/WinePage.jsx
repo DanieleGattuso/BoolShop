@@ -4,6 +4,8 @@ import { useState, useEffect, useContext } from "react";
 import wineContext from "../context/WineContext";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
+
+
 // Importing CSS module for styling
 import styles from "./Winespage.module.css";
 

@@ -1,78 +1,71 @@
-// Import module react router
-import { Link, NavLink } from "react-router-dom";
-// Import header css
+import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import logo from '../assets/Cantine_Booleane.svg'
-import { useContext } from "react";
+import logo from '../assets/Cantine_Booleane.svg';
+import { useContext, useState, useEffect } from "react";
 import wineContext from "../context/WineContext";
+import { FaBars } from 'react-icons/fa'; // icona hamburger
 
 export default function Header() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [bounce, setBounce] = useState(false); // Stato per bounce animazione
 
-    const { cart } = useContext(wineContext)
+    const toggleMenu = () => {
+        setIsMenuOpen(prev => !prev);
+    };
 
-    let cartQuantity = 0
+    const { cart } = useContext(wineContext);
+    let cartQuantity = cart.length;
 
-    for (let i = 0; i < cart.length; i++) {
-        cartQuantity++
-    }
-    console.log(cartQuantity)
+    // Triggera l'animazione bounce ogni volta che cambia la quantità nel carrello
+    useEffect(() => {
+        if (cartQuantity > 0) {
+            setBounce(true);
+            const timer = setTimeout(() => setBounce(false), 400);
+            return () => clearTimeout(timer);
+        }
+    }, [cartQuantity]);
 
     return (
-
-        // Header section
-        <header>
-
-            {/* Big header container */}
+        <header className={styles.sticky_header}>
             <div className={styles.header_container}>
-
                 <div className={styles.small_header_container}>
-                    {/* Logo container */}
+                    {/* Logo */}
                     <div className={styles.logo_container}>
-
                         <Link to='/'>
                             <img src={logo} alt="logo" />
                         </Link>
                     </div>
 
-                    {/* Page link container */}
+                    {/* Menu desktop */}
                     <div className={styles.page_link_container}>
-                        <Link className={styles.underline_hover} to='/'>
-                            HOME PAGE
-                        </Link>
-
-                        <Link className={styles.underline_hover} to='/winespage'>
-                            I NOSTRI VINI
-                        </Link >
-                        <p> CONTATTI</p>
+                        <Link className={styles.underline_hover} to='/'>HOME PAGE</Link>
+                        <Link className={styles.underline_hover} to='/winespage'>I NOSTRI VINI</Link>
+                        <p>CONTATTI</p>
                     </div>
 
-                    {/* Nav container */}
+                    {/* Carrello + Hamburger */}
                     <div className={styles.nav_container}>
                         <Link to='/shopping-bag'>
                             <div className={styles.icon_cart}>
-                                {/* icona carrello */}
                                 <i className="fa-solid fa-bag-shopping"></i>
-                                {/* numero del carrello */}
-                                {cartQuantity === 0 ? '' :
-                                    <p >{cartQuantity}</p>}
+                                {cartQuantity > 0 && (
+                                    <p className={bounce ? styles.cart_bounce : ""}>{cartQuantity}</p>
+                                )}
                             </div>
-
                         </Link>
-                        <i className="fa-solid fa-bars"></i>
+                        <FaBars onClick={toggleMenu} className={styles.hamburger_icon} />
                     </div>
-
-
                 </div>
-
-
             </div>
 
-
-
+            {/* Mobile menu */}
+            {isMenuOpen && (
+                <div className={styles.mobile_menu}>
+                    <Link className={styles.mobile_link} to='/' onClick={toggleMenu}>HOME PAGE</Link>
+                    <Link className={styles.mobile_link} to='/winespage' onClick={toggleMenu}>I NOSTRI VINI</Link>
+                    <p className={styles.mobile_link} onClick={toggleMenu}>CONTATTI</p>
+                </div>
+            )}
         </header>
-
-
-
-
-    )
+    );
 }
