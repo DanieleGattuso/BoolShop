@@ -1,26 +1,30 @@
 import { useState } from "react";
 import styles from "./WineCard.module.css";
 import { useNavigate } from "react-router-dom";
+import Toast from "./Toast";
 
 const WineCard = ({ wineProps, cart, setCart }) => {
     const navigate = useNavigate();
-    const [isPressed, setIsPressed] = useState(false); // ⬅️ Stato per animazione
+    const [isPressed, setIsPressed] = useState(false);
+    const [showToast, setShowToast] = useState(false);
 
     const handleClick = () => {
-        const slug = wineProps.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g, "");
+        const slug = wineProps.name
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^a-z0-9\-]/g, "");
         navigate(`/winedetails/${slug}`, { state: { wine: wineProps } });
     };
 
     const addToCart = (prodotto) => {
         setCart([...cart, prodotto]);
-
-        // Attiva animazione
-        setIsPressed(true);
-        setTimeout(() => setIsPressed(false), 100); // Durata breve per effetto pressione
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 2000);
     };
 
     return (
         <div className={styles.wine_card}>
+            {/* upper section card */}
             <div onClick={handleClick} className={styles.container_pointer}>
                 <img src={wineProps.image} alt={wineProps.name} />
                 <h3>{wineProps.name}</h3>
@@ -49,6 +53,7 @@ const WineCard = ({ wineProps, cart, setCart }) => {
                 <span>{wineProps.size} ml</span>
             </div>
 
+            {/* down section with button */}
             <div>
                 <button
                     disabled={wineProps.quantity_in_stock === 0}
@@ -58,6 +63,8 @@ const WineCard = ({ wineProps, cart, setCart }) => {
                     AGGIUNGI
                 </button>
             </div>
+
+            {showToast && <Toast message="Aggiunto al carrello!" />}
         </div>
     );
 };

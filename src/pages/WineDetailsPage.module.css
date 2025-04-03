@@ -31,7 +31,7 @@
 }
 
 .background_text {
-    font-size: 200px;
+    font-size: 200px !important;
     color: white;
     /* opacity: 0.1; */
     position: absolute;
@@ -49,6 +49,7 @@ h1 {
 
     font-weight: 350;
     text-transform: uppercase;
+
 
 }
 
