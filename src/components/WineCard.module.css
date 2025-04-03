@@ -108,6 +108,10 @@
     transition: transform 0.1s ease;
 }
 
+.not_available {
+    color: var(--secondary);
+    margin-bottom: 25px;
+}
 
 /********** RESPONSIVE ************/
 

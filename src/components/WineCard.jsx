@@ -54,15 +54,22 @@ const WineCard = ({ wineProps, cart, setCart }) => {
             </div>
 
             {/* down section with button */}
+            {/* down section with button */}
             <div>
-                <button
-                    disabled={wineProps.quantity_in_stock === 0}
-                    onClick={() => addToCart({ id: wineProps.id })}
-                    className={isPressed ? styles.pressed : ""}
-                >
-                    AGGIUNGI
-                </button>
+                {wineProps.quantity_in_stock > 0 ? (
+                    <button
+                        onClick={() => addToCart({ id: wineProps.id })}
+                        className={isPressed ? styles.pressed : ""}
+                    >
+                        AGGIUNGI
+                    </button>
+                ) : (
+                    <div className={styles.not_available}>
+                        Vino non disponibile
+                    </div>
+                )}
             </div>
+
 
             {showToast && <Toast message="Aggiunto al carrello!" />}
         </div>
