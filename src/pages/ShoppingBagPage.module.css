@@ -155,14 +155,14 @@ button {
     padding: 0.3rem 0.6rem !important;
     text-decoration: none !important;
     border: 1px solid #a78888 !important;
-    background-color: #4a2727cf !important;
+    background-color: #3a2520 !important;
     color: #ffffff !important;
     transition: background-color 0.2s ease !important;
     margin-right: 0.5rem;
 }
 
 .checkout_box a:hover {
-    background-color: #5a3232cf !important;
+    background-color: #5c3a34 !important;
     color: rgb(255, 255, 255) !important;
     transition: background-color rgb(69, 32, 32)lor 0.2s ease !important;
 }

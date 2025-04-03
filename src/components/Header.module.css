@@ -58,7 +58,7 @@ header {
 
 .small_header_container {
     width: 90%;
-
+    margin: 0 auto;
     display: flex;
 
     align-items: center;
@@ -75,13 +75,14 @@ header {
 
 .logo_container {
     width: 15%;
-
-
-
 }
 
-.logo_container img {
-    height: 65px;
+.img_logo_box {
+    width: 180px;
+}
+
+.img_logo_box img {
+    width: 100%;
     /* imposta altezza fissa in pixel */
 
     /* mantiene il rapporto d'aspetto originale */

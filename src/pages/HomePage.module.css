@@ -144,18 +144,12 @@
 }
 
 .wine_container_traits {
-
     width: 70%;
     display: flex;
-
     justify-content: center;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-
-
-
-
 }
 
 .wine_container_traits p {

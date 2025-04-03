@@ -31,9 +31,12 @@ export default function Header() {
                 <div className={styles.small_header_container}>
                     {/* Logo */}
                     <div className={styles.logo_container}>
-                        <Link to='/'>
-                            <img src={logo} alt="logo" />
-                        </Link>
+                        <div className={styles.img_logo_box}>
+                            <Link to='/'>
+                                <img src={logo} alt="logo" />
+                            </Link>
+                        </div>
+
                     </div>
 
                     {/* Menu desktop */}
