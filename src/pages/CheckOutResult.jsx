@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import styles from "./CheckOutResult.module.css"
 
 export default function CheckoutResponse() {
 
@@ -32,26 +33,34 @@ export default function CheckoutResponse() {
     }, [sessionId]);
 
     return (
-        <section>
-            <h2>Il tuo ordine è stato aggiornato!</h2>
-            {sessionData.status === "complete" ? (
-                <>
-                    <p>Pagamento completato</p>
-                    <p>L'ordine verrà spedito a:</p>
-                    <p>{sessionData.customer_details.name}</p>
-                    <p>{sessionData.customer_details.email}</p>
-                    <p>{sessionData.customer_details.phone || "Telefono non fornito"}</p>
-                    <p>{sessionData.customer_details.address?.line1 || "Indirizzo non disponibile"}</p>
-                    <p>{sessionData.customer_details.address?.postal_code || "CAP non disponibile"}</p>
-                    <p>{sessionData.customer_details.address?.country || "Paese non disponibile"}</p>
-                    <h2>Il totale pagato:</h2>
-                    <p>{(sessionData.amount_total / 100).toFixed(2)}€</p>
-                </>
-            ) : (
-                <p>
-                    Pagamento rifiutato, <Link to="/">torna allo shop.</Link>
-                </p>
-            )}
-        </section>
+        <div className={`container ${styles.checkoutContainer}`}>
+            <div className="row">
+                <div className="col">
+                    <div className={`card ${styles.checkoutCard}`}>
+                        <div className={`card-body  ${styles.checkoutCard}`}>
+                            <h2 className={styles.title}>Il tuo ordine è stato aggiornato!</h2>
+                            {sessionData.status === "complete" ? (
+                                <>
+                                    <p className={styles.success}>Pagamento completato</p>
+                                    <p>L'ordine verrà spedito a:</p>
+                                    <p><strong>{sessionData.customer_details.name}</strong></p>
+                                    <p>Email: {sessionData.customer_details.email}</p>
+                                    <p>Telefono: {sessionData.customer_details.phone || "Telefono non fornito"}</p>
+                                    <p>Indirizzo: {sessionData.customer_details.address?.line1 || "Indirizzo non disponibile"}</p>
+                                    <p>CAP: {sessionData.customer_details.address?.postal_code || "CAP non disponibile"}</p>
+                                    <p>Paese: {sessionData.customer_details.address?.country || "Paese non disponibile"}</p>
+                                    <h2 className={styles.totalTitle}>Il totale pagato:</h2>
+                                    <p className={styles.totalAmount}>{(sessionData.amount_total / 100).toFixed(2)}€</p>
+                                </>
+                            ) : (
+                                <p className={styles.error}>
+                                    Pagamento rifiutato, <Link to="/">torna allo shop.</Link>
+                                </p>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div >
     );
 }
