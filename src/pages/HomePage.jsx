@@ -44,7 +44,7 @@ export default function HomePage() {
                 </video>
                 <div className={styles.overlay_content}>
                     <div className={styles.video_abstract_container}>
-                        <h1>Boolwine è una cantina innovativa che combina tradizione e modernità per creare vini di eccellenza. Grazie a una crescita dinamica e sostenibile, si distingue per la qualità delle sue produzioni e il forte legame con il territorio, offrendo esperienze enologiche uniche.</h1>
+                        <h1>Cantine Booleane unisce tradizione e innovazione per creare vini d’eccellenza, con un approccio sostenibile e radicato nel territorio, offrendo esperienze enologiche uniche.</h1>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@ export default function HomePage() {
             </div>
 
             <div className={styles.best_seller_title}>
-                <h1>BESTSELLER</h1>
+                <h1>DISPONIBILITà ESCLUSIVA</h1>
             </div>
             <div className={styles.best_seller_container}>
                 {bestSeller.length > 0 ? (

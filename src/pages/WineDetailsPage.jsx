@@ -21,6 +21,8 @@ export default function WineDetailsPage() {
     const navigate = useNavigate();
     const { slug } = useParams();
     const { wines, cart, setCart } = useContext(WineContext);
+    const [isPressed, setIsPressed] = useState(false);
+
 
     const [toastMessage, setToastMessage] = useState("");
 
@@ -54,10 +56,25 @@ export default function WineDetailsPage() {
             <div className={`${styles.hero_section} ${styles[wineDetails.type]}`}>
                 <h1 className={styles.background_text}>{wineDetails.name}</h1>
                 <img src={wineDetails.image} alt={wineDetails.name} className={styles.bottle} />
-                <button className={styles.hero_button} onClick={() => addToCart({ id: wineDetails.id })}>
+                {/* <button className={styles.hero_button} onClick={() => addToCart({ id: wineDetails.id })}>
                     ACQUISTA
-                </button>
-            </div>
+                </button> */}
+                <div>
+                    {/* {wineDetails.quantity_in_stock > 0 ? ( */}
+                    <button
+                        onClick={() => addToCart({ id: wineDetails.id })}
+                        className={`${isPressed ? styles.pressed : ""}${styles.hero_button}`}
+                        disabled={wineDetails.quantity_in_stock === 0}
+                    >
+                        {wineDetails.quantity_in_stock !== 0 ? "AGGIUNGI" : "ESAURITO"}
+                    </button>
+                    {/* // ) : (
+                    //     <div className={styles.not_available}>
+                    //         Vino non disponibile
+                    //     </div>
+                    // )} */}
+                </div>
+            </div >
 
             <div className={styles.wine_properties_big_container}>
                 <div className={styles.wine_properties_container}>

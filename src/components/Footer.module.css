@@ -194,6 +194,11 @@ footer {
 
 /* Mobile (max-width 480px) */
 @media screen and (max-width: 480px) {
+    .footer_nav_bars_container {
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+
     .footer_nav_bars {
         margin: 0.5rem;
     }
@@ -203,8 +208,16 @@ footer {
     }
 
     .footer_nav_bars li {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
+        margin-bottom: 1rem;
+        text-align: center;
     }
+
+    .social_container {
+        height: 100px;
+    }
+
+
 
     .europe_container {
         padding: 0;
@@ -223,5 +236,6 @@ footer {
     .copyright_container {
         padding: 1rem 0;
         font-size: 0.6rem;
+        text-align: center;
     }
 }
