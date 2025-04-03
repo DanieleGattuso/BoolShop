@@ -197,25 +197,15 @@ header {
 
 @media screen and (max-width: 1800px) {}
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1600px) {}
 
-    .logo_container img {
-        height: 50px;
-    }
-}
-
-@media screen and (max-width: 1440px) {
-
-    .logo_container img {
-        height: 35px;
-    }
-}
+@media screen and (max-width: 1440px) {}
 
 @media screen and (max-width: 1200px) {}
 
 @media screen and (max-width: 980px) {
     .logo_container img {
-        height: 50px;
+
         margin-left: 15px;
     }
 

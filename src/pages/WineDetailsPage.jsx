@@ -100,6 +100,10 @@ export default function WineDetailsPage() {
             </div>
 
             <div className={styles.big_correlated_wines_container}>
+                <div className={styles.wine_properties_image}>
+                    <img src={waves} alt="" className={styles.footer_big_wave} />
+                </div>
+                <h1 className={styles.correlated_title}>VINI CORRELATI</h1>
                 <div className={styles.small_correlated_wines_container}>
                     {relatedWines.length > 0 ? (
                         relatedWines.map(wine => (

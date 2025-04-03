@@ -148,6 +148,15 @@ h1 {
 
 }
 
+.correlated_title {
+    color: rgb(3, 3, 3);
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-weight: 350;
+}
+
 .flex_container {
 
     display: flex;
@@ -224,13 +233,10 @@ h1 {
 /* CORRELATED WINES */
 
 .big_correlated_wines_container {
-
-    /* background-color: aqua; */
     width: 100%;
-
     display: flex;
-    justify-content: center;
-
+    flex-direction: column;
+    align-items: center;
 }
 
 .small_correlated_wines_container {

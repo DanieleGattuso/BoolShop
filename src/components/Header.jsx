@@ -63,7 +63,7 @@ export default function Header() {
                 <div className={styles.mobile_menu}>
                     <Link className={styles.mobile_link} to='/' onClick={toggleMenu}>HOME PAGE</Link>
                     <Link className={styles.mobile_link} to='/winespage' onClick={toggleMenu}>I NOSTRI VINI</Link>
-                    <p className={styles.mobile_link} onClick={toggleMenu}>CONTATTI</p>
+                    <Link className={styles.underline_hover} to='/aboutuspage' onClick={toggleMenu}>CHI SIAMO</Link>
                 </div>
             )}
         </header>
