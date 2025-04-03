@@ -108,7 +108,7 @@ export default function ShoppingList() {
 
                 {/* riga inferiore */}
                 <div className="row mt-3">
-                    <div className="d-none d-md-block col-md-5">da inserire il logo</div>
+                    <div className="d-none d-md-block col-md-5"></div>
                     <div className="col-sm-12 col-md-7">
                         <div className={`row ${styles.summary_row}`}>
                             <div className="col">Totale Imponibile</div>

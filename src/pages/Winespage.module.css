@@ -17,7 +17,7 @@ main {
 }
 
 .head_winelist_container {
-    width: 50%;
+    /* width: 50%; */
     text-align: center;
     margin: 3% 0%;
     line-height: 1.3em;
@@ -39,8 +39,8 @@ main {
     font-size: 30px;
     width: 66%;
     margin-left: 17%;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     line-height: 2em;
 }
 
