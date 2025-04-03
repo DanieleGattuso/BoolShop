@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import styles from "./HomePage.module.css";
 import videoBg from '../assets/vinogiusto.mp4';
-import greenImage from '../assets/image.png';
+import greenImage from '../assets/sunnywineyard.jpg';
 import { Link } from "react-router-dom";
 import Popup from "../components/PopUp"
 
@@ -133,8 +133,8 @@ export default function HomePage() {
             <div className={styles.best_seller_container}>
                 {bestSeller.length > 0 ? (
                     bestSeller.map(wine => (
-                        <Link to="/winedetails" state={{ wine: wine }}>
-                            <div key={wine.id} className={`${styles.best_dynamic_wine_container} ${styles[wine.type]}`}>
+                        <Link key={wine.id} to="/winedetails" state={{ wine: wine }}>
+                            <div className={`${styles.best_dynamic_wine_container} ${styles[wine.type]}`}>
                                 <div className={styles.wine_image_container}>
                                     <img src={wine.image} alt={wine.name} />
                                 </div>

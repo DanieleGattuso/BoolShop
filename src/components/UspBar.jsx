@@ -4,7 +4,7 @@ import styles from './UspBar.module.css';
 
 const messages = [
     'Spedizione gratuita su ordini superiori a €99!',
-    'Pimo 6 mitico',
+    'Vini selezionati da sommelier certificati',
     'Reso gratuito entro 30 giorni!',
 ];
 

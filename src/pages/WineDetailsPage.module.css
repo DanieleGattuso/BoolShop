@@ -59,7 +59,12 @@ h1 {
     transform: translate(-50%, -30%);
     height: 90vh;
     z-index: 2;
+
 }
+
+
+
+
 
 .rosato {
 
@@ -219,18 +224,21 @@ h1 {
 
 .big_correlated_wines_container {
 
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 100%;
-    height: 700px;
+
     display: flex;
     justify-content: center;
+
 }
 
 .small_correlated_wines_container {
 
-    background-color: rgb(255, 21, 0);
+    /* background-color: rgb(255, 21, 0); */
     width: 70%;
     height: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 
