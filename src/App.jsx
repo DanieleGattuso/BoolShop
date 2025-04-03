@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -48,7 +48,7 @@ export default function App() {
   return (
     <>
       <WineContext.Provider value={{ wines, setWines, cart, setCart, cartPair, setCartPair }}>
-        <HashRouter>
+        <BrowserRouter>
           <ScrollToTop />
           <Routes>
             <Route element={<DefaultLayout />}>
@@ -62,7 +62,7 @@ export default function App() {
               <Route path="/aboutuspage" element={<AboutUsPage />} />
             </Route>
           </Routes>
-        </HashRouter>
+        </BrowserRouter>
       </WineContext.Provider>
     </>
   );

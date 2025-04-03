@@ -24,7 +24,7 @@ export default function CheckoutPage() {
     // creiamo una variabile di stato che conterrà il nostro array di oggetti
     const [formData, setFormData] = useState(initialFormData);
 
-    console.log('ciao', localStorage.getItem("sessionId"))
+    // console.log('ciao', localStorage.getItem("sessionId"))
     // funzione per inviare i dati
     async function sendData(e) {
         e.preventDefault();
@@ -34,7 +34,7 @@ export default function CheckoutPage() {
             .then(response => {
                 // console.log('Risposta:', response.data);
                 window.location.href = response.data.url;
-                localStorage.removeItem("sessionId")
+                // localStorage.removeItem("sessionId")
                 localStorage.setItem("sessionId", response.data.sessionId);
                 setCart([])
                 setCartPair([])
