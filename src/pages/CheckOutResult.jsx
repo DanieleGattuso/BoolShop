@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./CheckOutResult.module.css"
+import wineContext from "../context/WineContext";
 
 export default function CheckoutResponse() {
+
+    const { setCart, setCartPair } = useContext(wineContext)
 
     const [sessionId, setSessionId] = useState(localStorage.getItem("sessionId"));
     const [sessionData, setSessionData] = useState([]);
@@ -18,6 +21,9 @@ export default function CheckoutResponse() {
                 if (res.data?.status === "complete") {
                     await axios.patch(`http://localhost:3000/api/orders/order-success/${res.data.metadata.orderId}`);
                     console.log("Ordine confermato");
+                    setCart([])
+                    setCartPair([])
+                    localStorage.removeItem("cart")
                 } else if (res.data?.status === "open") {
                     await axios.patch(`http://localhost:3000/api/orders/order-cancelled/${res.data.metadata.orderId}`);
                     console.log("Ordine cancellato");

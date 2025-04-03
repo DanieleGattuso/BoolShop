@@ -5,6 +5,7 @@ import { useState, useContext } from 'react';
 import WineContext from "../context/WineContext";
 import validCountries from "../functions/validCountries";
 import styles from "./CheckoutPage.module.css"
+import Toast from "../components/Toast";
 
 export default function CheckoutPage() {
     const { cartPair, setCartPair, setCart } = useContext(WineContext);
@@ -23,27 +24,30 @@ export default function CheckoutPage() {
 
     // creiamo una variabile di stato che conterrà il nostro array di oggetti
     const [formData, setFormData] = useState(initialFormData);
+    const [errorMessage, setErrorMessage] = useState("")
 
     // console.log('ciao', localStorage.getItem("sessionId"))
     // funzione per inviare i dati
     async function sendData(e) {
         e.preventDefault();
         console.log("Dati inviati:", formData);
-        // const response = await axios.post(endpoint, formData)
         axios.post('http://localhost:3000/api/orders', formData)
             .then(response => {
                 // console.log('Risposta:', response.data);
-                window.location.href = response.data.url;
-                // localStorage.removeItem("sessionId")
                 localStorage.setItem("sessionId", response.data.sessionId);
-                setCart([])
-                setCartPair([])
-                localStorage.removeItem("cart")
+                // setCart([])
+                // setCartPair([])
+                // localStorage.removeItem("cart")
+
+                setTimeout(() => {
+                    window.location.href = response.data.url;
+                }, 500); // 100ms di buffer
             })
             .catch(error => {
                 if (error.response) {
                     // La risposta è stata ricevuta, ma il server ha risposto con un codice di stato che indica un errore
-                    console.error('Errore nella risposta:', error.response.data);
+                    console.error('Errore nella risposta:', error.response.data.error);
+                    setErrorMessage(error.response.data.error)
                     console.error('Codice di stato:', error.response.status);
                     console.error('Headers:', error.response.headers);
                 } else if (error.request) {
@@ -89,9 +93,10 @@ export default function CheckoutPage() {
 
     return (
         <>
+            {errorMessage && <Toast message={`ERRORE NEL PROSEGUIRE NELL'ORDINE`} />}
+            {/* {errorMessage != "" ? <div>{errorMessage}</div> : */}
             <div className="container">
                 <h2 className="p-3">Ci siamo quasi...</h2>
-
                 {/* da modificare la class */}
                 <section className={styles.checkout_form}>
 
@@ -218,6 +223,7 @@ export default function CheckoutPage() {
                     </form>
                 </section>
             </div>
+            {/* } */}
         </>
     );
 }
