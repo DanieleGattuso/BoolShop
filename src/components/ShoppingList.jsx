@@ -108,8 +108,8 @@ export default function ShoppingList() {
 
                 {/* riga inferiore */}
                 <div className="row mt-3">
-                    <div className="col-5">da inserire il logo</div>
-                    <div className="col-7">
+                    <div className="d-none d-md-block col-md-5">da inserire il logo</div>
+                    <div className="col-sm-12 col-md-7">
                         <div className={`row ${styles.summary_row}`}>
                             <div className="col">Totale Imponibile</div>
                             <div className={`col ${styles.summary_col}`}>{totalAmount}€</div>
@@ -121,7 +121,7 @@ export default function ShoppingList() {
                         <div className={`row ${styles.summary_row}`}>
                             <div className="col">Spedizione</div>
                             <div className={`col ${styles.summary_col}`}>
-                                {totalAmount < 99 ? `${shippingAmount}€` : <b>GRATUITA</b>}
+                                {totalAmount < 99 ? `${shippingAmount}€` : <b className="text-success">GRATUITA</b>}
                             </div>
                         </div>
                         <div className={`row ${styles.summary_row}`}>

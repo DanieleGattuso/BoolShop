@@ -40,7 +40,9 @@ export default function Footer() {
                     <div className={styles.footer_nav_bars}>
                         <ul>
                             <li>CONTATTI</li>
-                            <li>SHOP</li>
+                            <Link to='/winespage'>
+                                <li>SHOP</li>
+                            </Link>
 
                         </ul>
                     </div>

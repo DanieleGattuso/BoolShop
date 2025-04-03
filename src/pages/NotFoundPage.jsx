@@ -13,9 +13,9 @@ export default function NotFoundPage() {
 
     return (
         <div className='container py-4'>
-            <h1>🍷 Ops! Il vino è andato in testa...</h1>
-            <h2>Forse è il caso di tornare alla <a href="/" className={styles.link}>HOME</a> per ritrovare la strada giusta! 🏠</h2>
-            <p className={styles.subText}>Nel dubbio, respira, bevi un bicchiere d'acqua e riprova. O magari apri un'altra bottiglia! 😉</p>
+            <h1>Ops! Il vino è andato in testa...</h1>
+            <h2>Forse è il caso di tornare alla <a href="/" className={styles.link}>HOME</a> per ritrovare la strada giusta!</h2>
+            <p className={styles.subText}>Nel dubbio, respira, bevi un bicchiere d'acqua e riprova. O magari apri un'altra bottiglia!</p>
             <div className={styles.videoBox}>
                 <video ref={videoRef} autoPlay loop muted playsInline>
                     <source src={videoBg} type="video/mp4" />
