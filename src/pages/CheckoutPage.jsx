@@ -10,11 +10,6 @@ import Toast from "../components/Toast";
 export default function CheckoutPage() {
     // CONTEXT
     const { cartPair } = useContext(WineContext);
-    // state for the form data
-    const [formData, setFormData] = useState(initialFormData);
-    // state for the error message
-    const [errorMessage, setErrorMessage] = useState("")
-
     // initial state for the form
     const initialFormData = {
         fullName: "",
@@ -25,6 +20,13 @@ export default function CheckoutPage() {
         country: "",
         cart: cartPair,
     };
+
+    // state for the form data
+    const [formData, setFormData] = useState(initialFormData);
+    // state for the error message
+    const [errorMessage, setErrorMessage] = useState("")
+
+
 
 
     // function to set the value of the form fields
