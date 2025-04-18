@@ -1,5 +1,5 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useState, useContext, useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useContext, useMemo, useEffect } from "react";
 import WineContext from "../context/WineContext";
 import WineCard from "../components/WineCard";
 import Toast from "../components/Toast";
@@ -17,7 +17,6 @@ import food_pairings from "../assets/abbinamenti.png";
 import alcohol_volume from "../assets/gradoalcolico.png";
 
 export default function WineDetailsPage() {
-    const location = useLocation();
     const navigate = useNavigate();
     const { slug } = useParams();
     const { wines, cart, setCart } = useContext(WineContext);

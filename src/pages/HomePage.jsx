@@ -1,5 +1,7 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useLocation } from "react-router-dom";
+import wineContext from "../context/WineContext";
 import styles from "./HomePage.module.css";
 import videoBg from '../assets/vinogiusto.mp4';
 import greenImage from '../assets/sunnywineyard.jpg';
@@ -7,10 +9,18 @@ import { Link } from "react-router-dom";
 import Popup from "../components/PopUp";
 
 export default function HomePage() {
+    // context
+    const { setUserLocation } = useContext(wineContext)
+
     const [bestSeller, setBestSeller] = useState([]);
     const [bestWine, setBestWines] = useState([]);
 
+    // user location
+    const location = useLocation()
     useEffect(() => {
+        // change user location state
+        setUserLocation(location)
+
         fetchBestSeller();
         fetchBestWines();
     }, []);

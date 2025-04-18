@@ -8,11 +8,10 @@ import styles from "./CheckoutPage.module.css"
 import Toast from "../components/Toast";
 
 export default function CheckoutPage() {
-    const { cartPair, setCartPair, setCart } = useContext(WineContext);
-
-    // mettiamo l'oggetto vuoto all'interno di una variabile
+    // CONTEXT
+    const { cartPair } = useContext(WineContext);
+    // initial state for the form
     const initialFormData = {
-        // aggiungiamo tutte le proprietà che vogliamo mappare e assegniamo loro un valore iniziale.
         fullName: "",
         email: "",
         phoneNumber: "",
@@ -22,54 +21,61 @@ export default function CheckoutPage() {
         cart: cartPair,
     };
 
-    // creiamo una variabile di stato che conterrà il nostro array di oggetti
+    // state for the form data
     const [formData, setFormData] = useState(initialFormData);
+    // state for the error message
     const [errorMessage, setErrorMessage] = useState("")
 
-    // console.log('ciao', localStorage.getItem("sessionId"))
-    // funzione per inviare i dati
+
+
+
+    // function to set the value of the form fields
+    function setFieldValue(e) {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    }
+
+    // function to handle form submission
     async function sendData(e) {
+        // cancel the default behavior of the form
         e.preventDefault();
-        console.log("Dati inviati:", formData);
+        // console.log("Dati inviati:", formData);
+
+        // api call to send the form data
         axios.post('http://localhost:3000/api/orders', formData)
             .then(response => {
                 // console.log('Risposta:', response.data);
-                localStorage.setItem("sessionId", response.data.sessionId);
-                // setCart([])
-                // setCartPair([])
-                // localStorage.removeItem("cart")
 
+                // insert the sessionId in localStorage
+                localStorage.setItem("sessionId", response.data.sessionId);
+                // wait 100ms & redirect to the payment page 
                 setTimeout(() => {
                     window.location.href = response.data.url;
-                }, 500); // 100ms di buffer
+                }, 500);
             })
+            // handle errors
             .catch(error => {
                 if (error.response) {
-                    // La risposta è stata ricevuta, ma il server ha risposto con un codice di stato che indica un errore
+                    // error in data response
                     console.error('Errore nella risposta:', error.response.data.error);
+                    // set the error message to the error message from the server
                     setErrorMessage(error.response.data.error)
+                    // error status code
                     console.error('Codice di stato:', error.response.status);
+                    // error headers
                     console.error('Headers:', error.response.headers);
                 } else if (error.request) {
-                    // La richiesta è stata fatta, ma non è stata ricevuta alcuna risposta
+                    // request was made but no response was received
                     console.error('Errore nella richiesta:', error.request);
                 } else {
-                    // Qualcosa è andato storto nel configurare la richiesta
+                    // something happened in setting up the request
                     console.error('Errore nella configurazione della richiesta:', error.message);
                 }
             });
     }
 
 
-
-
-
-    // Creiamo una funzione unica per gestire l'evento onChange dei nostri campi.
-    function setFieldValue(e) {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    }
-
+    // function to validate the input fields
     const validateInput = (event) => {
         const inputValue = event.target.name
         if (inputValue === "fullName" && !event.target.value) {
@@ -97,7 +103,8 @@ export default function CheckoutPage() {
             {/* {errorMessage != "" ? <div>{errorMessage}</div> : */}
             <div className="container">
                 <h2 className="p-3">Ci siamo quasi...</h2>
-                {/* da modificare la class */}
+
+                {/* checkout form */}
                 <section className={styles.checkout_form}>
 
                     {/* form */}
@@ -190,6 +197,8 @@ export default function CheckoutPage() {
                                     placeholder="Inserisci il tuo codice postale"
                                 />
                             </div>
+
+                            {/* country */}
                             <div className="col-sm-12 col-lg-4 mb-3">
                                 <div>
                                     <label htmlFor="country" className="form-label">Stato</label>
@@ -212,10 +221,13 @@ export default function CheckoutPage() {
                             </div>
                         </div>
 
+
                         <div className={styles.box_button}>
+                            {/* button to return in the shopping bag */}
                             <div className={styles.back_button} >
                                 <Link to="/shopping-bag">Indietro</Link>
                             </div >
+                            {/* button to confirm the order */}
                             <div>
                                 <button type="submit" className={styles.confirm_button}>Conferma</button>
                             </div>
@@ -223,7 +235,6 @@ export default function CheckoutPage() {
                     </form>
                 </section>
             </div>
-            {/* } */}
         </>
     );
 }

@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route, BrowserRouter } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, } from "react";
 import axios from "axios";
 
 // Import context
@@ -22,11 +22,16 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
-  const [wines, setWines] = useState([]);
 
+  const [wines, setWines] = useState([]);
+  const [userLocation, setUserLocation] = useState("")
+
+  console.log(userLocation)
   useEffect(() => {
     fetchWines();
-  }, []);
+    console.log('sto effettuando il ciclo')
+  }, [userLocation.pathname]);
+
 
   function fetchWines() {
     axios.get('http://localhost:3000/api/wines')
@@ -40,6 +45,7 @@ export default function App() {
   });
 
   const [cartPair, setCartPair] = useState([]);
+  console.log(cartPair)
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -47,7 +53,7 @@ export default function App() {
 
   return (
     <>
-      <WineContext.Provider value={{ wines, setWines, cart, setCart, cartPair, setCartPair }}>
+      <WineContext.Provider value={{ wines, setWines, cart, setCart, cartPair, setCartPair, setUserLocation }}>
         <BrowserRouter>
           <ScrollToTop />
           <Routes>

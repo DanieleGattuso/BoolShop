@@ -21,13 +21,15 @@ export default function CheckoutResponse() {
                 if (res.data?.status === "complete") {
                     await axios.patch(`http://localhost:3000/api/orders/order-success/${res.data.metadata.orderId}`);
                     console.log("Ordine confermato");
-                    setCart([])
-                    setCartPair([])
-                    localStorage.removeItem("cart")
+
                 } else if (res.data?.status === "open") {
                     await axios.patch(`http://localhost:3000/api/orders/order-cancelled/${res.data.metadata.orderId}`);
                     console.log("Ordine cancellato");
                 }
+
+                setCart([])
+                setCartPair([])
+                localStorage.removeItem("cart")
             } catch (err) {
                 console.error("Errore:", err);
             }
