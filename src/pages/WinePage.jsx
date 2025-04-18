@@ -1,8 +1,8 @@
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
 import { useState, useEffect, useContext } from "react";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import wineContext from "../context/WineContext";
-import { useSearchParams, useNavigate } from "react-router-dom";
 
 
 
@@ -15,9 +15,14 @@ import WineCard from "../components/WineCard";
 // Main WinesPage component
 export default function WinesPage() {
 
+    // context
+    const { cart, setCart, setUserLocation } = useContext(wineContext);
 
-
-    const { cart, setCart } = useContext(wineContext);
+    // user location
+    const location = useLocation()
+    useEffect(() => {
+        setUserLocation(location)
+    }, [])
 
     // State to store all wines fetched from the API
     const [wines, setWines] = useState([]);
@@ -60,6 +65,7 @@ export default function WinesPage() {
 
     // useEffect hook to call fetchWines whenever filterType or searchQuery parameters change
     useEffect(fetchWines, [filterType, searchQuery]);
+
 
     // Function to handle filter button clicks; navigates to URL with type parameter
     const handleFilter = (type) => {

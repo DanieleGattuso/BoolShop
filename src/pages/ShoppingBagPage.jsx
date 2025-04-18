@@ -1,15 +1,23 @@
 import { useEffect, useContext } from "react";
+import { useLocation } from "react-router-dom";
 import WineContext from "../context/WineContext";
 import ShoppingList from "../components/ShoppingList";
 import CartSummary from "../components/CartSummary";
 import styles from "../pages/ShoppingBagPage.module.css";
 
 export default function ShoppingBagPage() {
-    // CONTEXT
-    const { wines, cart, setCart, cartPair, setCartPair } = useContext(WineContext);
 
-    // get cart data from localStorage
+
+    // CONTEXT
+    const { wines, cart, setCart, cartPair, setCartPair, setUserLocation } = useContext(WineContext);
+
+    // save user position
+    const location = useLocation()
+    // action to do when page is active
     useEffect(() => {
+        // change user location state
+        setUserLocation(location)
+
         // transform the cart data from localStorage into an array or an empty array
         const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
         // set the cart state to the stored cart data
